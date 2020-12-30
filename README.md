@@ -21,6 +21,8 @@
 - [mattesgroeger/vim-bookmarks](https://github.com/mattesgroeger/vim-bookmarks)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
     - `:CocInstall coc-clangd coc-python coc-highlight coc-git coc-sh coc-json coc-cmake`
+    - `coc-clangd`: `clangd`
+    - `coc-python`: `jedi`
 
 ## tmux
 Just install
