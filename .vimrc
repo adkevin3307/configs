@@ -9,7 +9,6 @@ Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
-Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
