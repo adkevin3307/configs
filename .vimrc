@@ -5,10 +5,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'yggdroot/indentline'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'lervag/vimtex'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
@@ -61,9 +62,6 @@ noremap <silent> <space><space> :NERDTreeToggle<CR>
 let g:NERDSpaceDelims=1
 let g:NERDToggleCheckAllLines=1
 autocmd FileType python let g:NERDSpaceDelims=0
-
-" indentline
-let g:indentLine_char='|'
 
 " python-syntax
 let g:python_highlight_all=1
