@@ -24,15 +24,23 @@ set number
 set mouse=a
 set nowrap
 
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
 " onedark
 colorscheme onedark
 let g:airline_theme='onedark'
 
 " background
-highlight Visual ctermbg=darkgrey
+set cursorline
+highlight CursorLine ctermbg=236
+highlight CursorLineNR ctermfg=208
+highlight Visual ctermbg=darkgray
 highlight Normal ctermbg=None
 highlight SignColumn ctermbg=None
-highlight LineNr ctermbg=None ctermfg=208
+highlight LineNr ctermbg=None ctermfg=245
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
