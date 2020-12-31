@@ -48,8 +48,10 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#keymap#enabled=1
 let g:airline#extensions#tabline#show_buffers=0
 
-nmap <C-t> :tabnew<CR>
-nmap <C-q> :tabclose<CR>
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-t> <ESC>:tabnew<CR>
+nnoremap <C-q> :tabclose<CR>
+
 nmap <Leader>1 <Plug>AirlineSelectTab1
 nmap <Leader>2 <Plug>AirlineSelectTab2
 nmap <Leader>3 <Plug>AirlineSelectTab3
