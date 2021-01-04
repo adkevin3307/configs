@@ -7,6 +7,10 @@
     - `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k`
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
     - `git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k`
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+    - `git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+    - `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
 
 ## vim
 - [vim-plug](https://github.com/junegunn/vim-plug)
