@@ -9,6 +9,7 @@ Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -32,6 +33,7 @@ inoremap <C-l> <Right>
 " onedark
 colorscheme onedark
 let g:airline_theme='onedark'
+unlet g:terminal_ansi_colors
 
 " background
 set cursorline
@@ -41,6 +43,7 @@ highlight Visual ctermbg=darkgray
 highlight Normal ctermbg=None
 highlight SignColumn ctermbg=None
 highlight LineNr ctermbg=None ctermfg=245
+highlight Terminal ctermbg=None
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
@@ -106,4 +109,9 @@ endfunction
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <leader>rn <Plug>(coc-rename)
+
+" vim-floaterm
+let g:floaterm_keymap_new='<Leader>fn'
+let g:floaterm_keymap_kill='<Leader>fk'
+let g:floaterm_keymap_toggle='<Leader>ft'
 
