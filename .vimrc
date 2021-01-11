@@ -108,7 +108,7 @@ function! s:show_documentation()
 endfunction
 
 nmap <silent> <F12> <Plug>(coc-definition)
-nmap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 " vim-floaterm
 let g:floaterm_keymap_new='<Leader>fn'
