@@ -69,8 +69,10 @@ nmap <Leader>[ <Plug>AirlineSelectPrevTab
 
 " vim-clap
 noremap <silent> <space><space> :Clap files! ~<CR>
+noremap <silent> <C-f> :Clap filer!<CR>
 
 noremap <silent> <C-b> :Clap buffers!<CR>
+noremap <silent> <C-w> :bdelete<CR>
 inoremap <C-b> <ESC>:Clap buffers!<CR>
 
 " nerdtree
