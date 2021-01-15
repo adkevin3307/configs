@@ -10,6 +10,7 @@ Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 
 call plug#end()
 
@@ -35,7 +36,6 @@ colorscheme onedark
 let g:airline_theme='onedark'
 unlet g:terminal_ansi_colors
 
-" background
 set cursorline
 highlight CursorLine ctermbg=236
 highlight CursorLineNR ctermfg=208
@@ -51,8 +51,8 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#keymap#enabled=1
 let g:airline#extensions#tabline#show_buffers=0
 
-nnoremap <C-t> :tabnew<CR>
-inoremap <C-t> <ESC>:tabnew<CR>
+nnoremap <C-n> :tabnew<CR>
+inoremap <C-n> <ESC>:tabnew<CR>
 nnoremap <C-q> :tabclose<CR>
 
 nmap <Leader>1 <Plug>AirlineSelectTab1
@@ -67,8 +67,14 @@ nmap <Leader>9 <Plug>AirlineSelectTab9
 nmap <Leader>] <Plug>AirlineSelectNextTab
 nmap <Leader>[ <Plug>AirlineSelectPrevTab
 
+" vim-clap
+noremap <silent> <space><space> :Clap files! ~<CR>
+
+noremap <silent> <C-b> :Clap buffers!<CR>
+inoremap <C-b> <ESC>:Clap buffers!<CR>
+
 " nerdtree
-noremap <silent> <space><space> :NERDTreeToggle<CR>
+noremap <silent> <space><space><space> :NERDTreeToggle<CR>
 
 " nerdcommenter
 let g:NERDSpaceDelims=1
