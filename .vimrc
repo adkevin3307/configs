@@ -53,7 +53,6 @@ let g:airline#extensions#tabline#show_buffers=0
 
 nnoremap <C-n> :tabnew<CR>
 inoremap <C-n> <ESC>:tabnew<CR>
-nnoremap <C-q> :tabclose<CR>
 
 nmap <Leader>1 <Plug>AirlineSelectTab1
 nmap <Leader>2 <Plug>AirlineSelectTab2
@@ -72,7 +71,7 @@ noremap <silent> <space><space> :Clap files! ~<CR>
 noremap <silent> <C-f> :Clap filer!<CR>
 
 noremap <silent> <C-b> :Clap buffers!<CR>
-noremap <silent> <C-w> :bdelete<CR>
+noremap <silent> <C-q> :bdelete<CR>
 inoremap <C-b> <ESC>:Clap buffers!<CR>
 
 " nerdtree
