@@ -1,5 +1,9 @@
 # Configs
 
+## Environment
+- `zsh >= 5.8`
+- `vim >= 8.2`
+
 ## zsh
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
     - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
@@ -20,11 +24,15 @@
 - [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
 - [scrooloose/nerdtree](https://github.com/preservim/nerdtree)
 - [scrooloose/nerdcommenter](https://github.com/preservim/nerdcommenter)
-- [yggdroot/indentline](https://github.com/Yggdroot/indentLine)
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
 - [mattesgroeger/vim-bookmarks](https://github.com/mattesgroeger/vim-bookmarks)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-    - `:CocInstall coc-clangd coc-python coc-highlight coc-git coc-sh coc-json coc-cmake`
+    - `:CocInstall coc-clangd coc-python coc-highlight coc-git coc-sh coc-json`
+- [lervag/vimtex](https://github.com/lervag/vimtex)
+- [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
+- [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
+    - [sharkdp/fd](https://github.com/sharkdp/fd)
+    - [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## tmux
 Just install
