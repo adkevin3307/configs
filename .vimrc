@@ -70,9 +70,9 @@ nmap <Leader>[ <Plug>AirlineSelectPrevTab
 noremap <silent> <space><space> :Clap files! ~<CR>
 noremap <silent> <C-f> :Clap filer!<CR>
 
-noremap <silent> <C-b> :Clap buffers!<CR>
-noremap <silent> <C-q> :bdelete<CR>
-inoremap <C-b> <ESC>:Clap buffers!<CR>
+noremap <silent> <C-S-b> :Clap buffers!<CR>
+noremap <silent> <C-S-q> :bdelete<CR>
+inoremap <C-S-b> <ESC>:Clap buffers!<CR>
 
 " nerdtree
 noremap <silent> <space><space><space> :NERDTreeToggle<CR>
