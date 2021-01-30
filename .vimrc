@@ -67,12 +67,12 @@ nmap <Leader>] <Plug>AirlineSelectNextTab
 nmap <Leader>[ <Plug>AirlineSelectPrevTab
 
 " vim-clap
-noremap <silent> <space><space> :Clap files! ~<CR>
-noremap <silent> <C-f> :Clap filer!<CR>
+noremap <silent> <space><space> :Clap files<CR>
+noremap <silent> <C-f> :Clap filer<CR>
 
-noremap <silent> <C-S-b> :Clap buffers!<CR>
-noremap <silent> <C-S-q> :bdelete<CR>
-inoremap <C-S-b> <ESC>:Clap buffers!<CR>
+noremap <silent> <C-p> :Clap buffers<CR>
+noremap <silent> <C-q> :bdelete<CR>
+inoremap <C-p> <ESC>:Clap buffers<CR>
 
 " nerdtree
 noremap <silent> <space><space><space> :NERDTreeToggle<CR>
