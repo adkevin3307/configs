@@ -67,8 +67,8 @@ nmap <Leader>] <Plug>AirlineSelectNextTab
 nmap <Leader>[ <Plug>AirlineSelectPrevTab
 
 " vim-clap
-noremap <silent> <space><space> :Clap files<CR>
-noremap <silent> <C-f> :Clap filer<CR>
+noremap <silent> <C-f> :Clap files<CR>
+noremap <silent> <space><space> :Clap filer<CR>
 
 noremap <silent> <C-p> :Clap buffers<CR>
 noremap <silent> <C-q> :bdelete<CR>
