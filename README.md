@@ -27,7 +27,7 @@
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
 - [mattesgroeger/vim-bookmarks](https://github.com/mattesgroeger/vim-bookmarks)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-    - `:CocInstall coc-clangd coc-python coc-highlight coc-git coc-sh coc-json`
+    - `:CocInstall coc-clangd coc-pyright coc-highlight coc-git coc-sh coc-json`
 - [lervag/vimtex](https://github.com/lervag/vimtex)
 - [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
