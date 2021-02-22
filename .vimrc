@@ -11,6 +11,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 
@@ -121,4 +122,9 @@ nmap <F2> <Plug>(coc-rename)
 let g:floaterm_keymap_new='<Leader>fn'
 let g:floaterm_keymap_kill='<Leader>fk'
 let g:floaterm_keymap_toggle='<Leader>ft'
+
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
+
+let g:formatdef_autopep8='"autopep8 - --max-line-length=150"'
 
