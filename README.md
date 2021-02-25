@@ -33,6 +33,7 @@
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
     - [sharkdp/fd](https://github.com/sharkdp/fd)
     - [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
+- [vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 
 ## tmux
 - [tpm](https://github.com/tmux-plugins/tpm)
