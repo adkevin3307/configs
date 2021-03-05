@@ -18,6 +18,9 @@ function execute()
     fi
 }
 
+prompt 'Get Permission ...'
+execute 'sudo echo "Done"'
+
 cd $HOME
 
 prompt 'Basic Update & Upgrade ...'
