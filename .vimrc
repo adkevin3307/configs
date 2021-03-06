@@ -1,3 +1,9 @@
+function! BuildMaple(info)
+    if a:info.status == 'installed' || a:info.force
+        !./install.sh
+    endif
+endfunction
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'joshdick/onedark.vim'
@@ -10,7 +16,7 @@ Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
-Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
 Plug 'Chiel92/vim-autoformat'
 
 call plug#end()

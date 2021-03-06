@@ -39,6 +39,3 @@
 - [tpm](https://github.com/tmux-plugins/tpm)
     - `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
-
-## TODO
-- [ ] Install vim in `setup.sh`
