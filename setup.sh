@@ -19,7 +19,8 @@ function execute()
 }
 
 prompt 'Get Permission ...'
-execute 'sudo echo "Done"'
+execute 'sudo printf ""'
+prompt 'Get Permission Done'
 
 cd $HOME
 
