@@ -9,12 +9,17 @@ function prompt()
 
 function execute()
 {
-    eval "$1"
+    local COMMAND=$1
+    local CHECK=$2
 
-    if [[ $? != 0 ]]; then
-        echo -e "\e[1;31mExecute $1 Failed\e[0m"
+    eval "$COMMAND"
 
-        exit
+    if [[ $CHECK == "True" ]]; then
+        if [[ $? != 0 ]]; then
+            echo -e "\e[1;31mExecute $COMMAND Failed\e[0m"
+
+            exit
+        fi
     fi
 }
 
@@ -55,8 +60,7 @@ prompt 'Install oh-my-zsh Done'
 prompt 'Install vim Plugins ...'
 execute 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 execute 'cp configs/.vimrc ~'
-execute 'vim -esv -u "~/.vimrc" -i NONE -c "PlugInstall" -c "qa"'
-execute 'vim -c "CocInstall coc-clangd coc-pyright coc-sh coc-git coc-highlight" -c "qa"'
+execute 'vim -es -u "~/.vimrc" -i NONE -c "PlugInstall" -c "qa"'
 prompt 'Install vim Plugins Done'
 
 prompt 'Install tmux Plugins ...'
