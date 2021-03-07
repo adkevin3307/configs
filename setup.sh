@@ -55,7 +55,7 @@ prompt 'Install oh-my-zsh Done'
 prompt 'Install vim Plugins ...'
 execute 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 execute 'cp configs/.vimrc ~'
-execute 'yes | vim -esv -u "~/.vimrc" -i NONE -c "PlugInstall" -c "qa"'
+execute 'vim -esv -u "~/.vimrc" -i NONE -c "PlugInstall" -c "qa"'
 execute 'vim -c "CocInstall coc-clangd coc-pyright coc-sh coc-git coc-highlight" -c "qa"'
 prompt 'Install vim Plugins Done'
 
