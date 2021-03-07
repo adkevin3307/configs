@@ -4,6 +4,9 @@
 - `zsh >= 5.8`
 - `vim >= 8.2`
 
+## Usage
+- Ubuntu use `./setup.sh`
+
 ## zsh
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
     - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
@@ -31,8 +34,7 @@
 - [lervag/vimtex](https://github.com/lervag/vimtex)
 - [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
-    - [sharkdp/fd](https://github.com/sharkdp/fd)
-    - [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
+    - `:Clap install-binary!`
 - [vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 
 ## tmux
