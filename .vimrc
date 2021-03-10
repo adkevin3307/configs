@@ -13,7 +13,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-clangd coc-pyright coc-sh coc-git coc-highlight coc-cmake coc-json coc-yaml' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-clangd coc-pyright coc-sh coc-git coc-highlight coc-cmake coc-json coc-yaml coc-snippets' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
@@ -92,12 +92,15 @@ autocmd FileType python let g:NERDSpaceDelims=0
 " python-syntax
 let g:python_highlight_all=1
 
+" bookmarks
+let g:bookmark_auto_close=1
+
 " coc.nvim
 set hidden
 set nobackup
 set nowritebackup
 set cmdheight=2
-set updatetime=300
+set updatetime=100
 set shortmess+=c
 set signcolumn=yes
 
@@ -120,6 +123,14 @@ function! s:show_documentation()
         execute '!' . &keywordprg . " " . expand('<cword>')
     endif
 endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+let g:coc_snippet_next = '<tab>'
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
