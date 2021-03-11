@@ -124,13 +124,13 @@ function! s:show_documentation()
     endif
 endfunction
 
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <C-e>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next='<C-e>'
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
