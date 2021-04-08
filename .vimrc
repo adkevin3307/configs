@@ -10,6 +10,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
@@ -18,6 +19,7 @@ Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
 Plug 'Chiel92/vim-autoformat'
+Plug 'dimercel/todo-vim'
 
 call plug#end()
 
@@ -145,3 +147,5 @@ noremap <F3> :Autoformat<CR>
 
 let g:formatdef_autopep8='"autopep8 - --max-line-length=150"'
 
+" todo-vim
+nmap <F4> :TODOToggle<CR>
