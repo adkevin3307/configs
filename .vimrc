@@ -149,3 +149,6 @@ let g:formatdef_autopep8='"autopep8 - --max-line-length=150"'
 
 " todo-vim
 nmap <F4> :TODOToggle<CR>
+
+let g:todo_below=1
+let g:todo_winheight=10
