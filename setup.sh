@@ -61,6 +61,7 @@ prompt 'Install vim Plugins ...'
 execute 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 execute 'cp configs/.vimrc ~'
 execute 'vim -es -u "~/.vimrc" -i NONE -c "PlugInstall" -c "qa"'
+execute 'vim -es -u "~/.vimrc" -i NONE -c "CocUpdateSync|q"'
 prompt 'Install vim Plugins Done'
 
 prompt 'Install tmux Plugins ...'
