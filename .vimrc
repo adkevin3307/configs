@@ -36,6 +36,8 @@ set mouse=a
 set nowrap
 set hlsearch
 
+nnoremap <C-h> <Left>
+nnoremap <C-l> <Right>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
