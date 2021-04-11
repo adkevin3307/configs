@@ -1,13 +1,17 @@
 # Configs
 
 ## Environment
+
 - `zsh >= 5.8`
 - `vim >= 8.2`
+- `clang-format >= 10.0`
 
 ## Usage
+
 - Ubuntu use `./setup.sh`
 
 ## zsh
+
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
     - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k)
@@ -20,6 +24,7 @@
     - `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
 
 ## vim
+
 - [vim-plug](https://github.com/junegunn/vim-plug)
     - `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
@@ -38,6 +43,11 @@
 - [vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 
 ## tmux
+
 - [tpm](https://github.com/tmux-plugins/tpm)
     - `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
+
+## Clang-Format
+
+- Just use `.clang-format`
