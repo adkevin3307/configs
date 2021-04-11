@@ -18,6 +18,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
 
@@ -152,13 +153,16 @@ let g:floaterm_keymap_new='<Leader>fn'
 let g:floaterm_keymap_kill='<Leader>fk'
 let g:floaterm_keymap_toggle='<Leader>ft'
 
+" vim-better-whitespace
+nnoremap <F3> :StripWhitespace<CR>
+
 " vim-autoformat
-noremap <F3> :Autoformat<CR>
+noremap <F4> :Autoformat<CR>
 
 let g:formatdef_autopep8='"autopep8 - --max-line-length=150"'
 
 " todo-vim
-nmap <F4> :TODOToggle<CR>
+nnoremap <F5> :TODOToggle<CR>
 
 let g:todo_below=1
 let g:todo_winheight=10
