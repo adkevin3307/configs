@@ -37,8 +37,6 @@ set nowrap
 set hlsearch
 
 inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 " onedark
@@ -77,15 +75,15 @@ nmap <Leader>] <Plug>AirlineSelectNextTab
 nmap <Leader>[ <Plug>AirlineSelectPrevTab
 
 " vim-clap
-noremap <silent> <C-f> :Clap files<CR>
-noremap <silent> <space><space> :Clap filer<CR>
+nnoremap <silent> <C-f> :Clap files<CR>
+nnoremap <silent> <space><space> :Clap filer<CR>
 
-noremap <silent> <C-p> :Clap buffers<CR>
-noremap <silent> <C-q> :bdelete<CR>
+nnoremap <silent> <C-p> :Clap buffers<CR>
+nnoremap <silent> <C-q> :bdelete<CR>
 inoremap <C-p> <ESC>:Clap buffers<CR>
 
 " nerdtree
-noremap <silent> <space><space><space> :NERDTreeToggle<CR>
+nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>
 
 " nerdcommenter
 let g:NERDSpaceDelims=1
@@ -136,6 +134,13 @@ inoremap <silent><expr> <C-e>
             \ coc#refresh()
 
 let g:coc_snippet_next='<C-e>'
+
+nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<Down>"
+nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<Up>"
+inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Down>"
+inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Up>"
+vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<Down>"
+vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<Up>"
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
