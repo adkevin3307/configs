@@ -34,6 +34,7 @@ set expandtab
 set number
 set mouse=a
 set nowrap
+set hlsearch
 
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
