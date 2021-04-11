@@ -14,7 +14,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-clangd coc-pyright coc-sh coc-git coc-highlight coc-cmake coc-json coc-yaml coc-snippets' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
@@ -107,6 +107,8 @@ set updatetime=100
 set shortmess+=c
 set signcolumn=yes
 
+let g:coc_global_extensions=['coc-clangd', 'coc-pyright', 'coc-sh', 'coc-git', 'coc-highlight', 'coc-cmake', 'coc-json', 'coc-yaml', 'coc-snippets']
+
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -128,10 +130,10 @@ function! s:show_documentation()
 endfunction
 
 inoremap <silent><expr> <C-e>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? coc#_select_confirm() :
+            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 
 let g:coc_snippet_next='<C-e>'
 
