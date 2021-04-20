@@ -159,7 +159,7 @@ nnoremap <F3> :StripWhitespace<CR>
 " vim-autoformat
 noremap <F4> :Autoformat<CR>
 
-let g:formatdef_autopep8='"autopep8 - --max-line-length=150"'
+let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
 
 " todo-vim
 nnoremap <F5> :TODOToggle<CR>
