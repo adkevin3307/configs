@@ -1,8 +1,9 @@
-function! BuildMaple(info)
-    if a:info.status == 'installed' || a:info.force
-        !./install.sh
-    endif
-endfunction
+let data_dir = '~/.vim'
+
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 
@@ -17,7 +18,7 @@ Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
-Plug 'liuchengxu/vim-clap', { 'do': function('BuildMaple') }
+Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
