@@ -51,7 +51,7 @@ execute apt update
 prompt "Add vim PPA Done\n"
 
 prompt "Install Packages ...\n"
-execute apt install -y zsh vim git htop tmux tree curl clang-format-10 python3-pip
+execute apt install -y zsh vim git htop tmux tree curl expect clang-format-10 python3-pip
 
 if [[ $EUID == 0 ]]; then
     bash -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)"
@@ -89,7 +89,14 @@ prompt "Install tmux Plugins Done\n"
 
 prompt "Install vim ...\n"
 execute cp ~/configs/.vimrc ~
-execute vim ~/.vimrc
+
+if [[ $EUID == 0 ]]; then
+    expect -c 'spawn vim ~/.vimrc; expect "ENTER"; send "\r"; interact;'
+else
+    sudo expect -c 'spawn vim ~/.vimrc; expect "ENTER"; send "\r"; interact;'
+fi
+echo ""
+
 prompt "Install vim Done\n"
 
 execute chown -R $(id -nu):$(id -ng) ~
