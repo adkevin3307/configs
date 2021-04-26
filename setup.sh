@@ -26,7 +26,7 @@ function execute()
     if [[ $EUID == 0 ]]; then
         eval "$*"
     else
-        sudo eval "$*"
+        eval "sudo $*"
     fi
 }
 
