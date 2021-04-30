@@ -171,4 +171,5 @@ let g:todo_below=1
 let g:todo_winheight=10
 
 " vim-gitgutter
-let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_signs=0
+let g:gitgutter_preview_win_floating=1
