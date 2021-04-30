@@ -22,6 +22,7 @@ Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -148,6 +149,7 @@ vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
+nmap <leader>qf <Plug>(coc-fix-current)
 
 " vim-floaterm
 let g:floaterm_keymap_new='<Leader>fn'
@@ -167,3 +169,6 @@ nnoremap <F5> :TODOToggle<CR>
 
 let g:todo_below=1
 let g:todo_winheight=10
+
+" vim-gitgutter
+let g:gitgutter_preview_win_floating = 1
