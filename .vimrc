@@ -149,7 +149,6 @@ vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
-nmap <leader>qf <Plug>(coc-fix-current)
 
 " vim-floaterm
 let g:floaterm_keymap_new='<Leader>fn'
