@@ -82,6 +82,7 @@ nmap <Leader>[ <Plug>AirlineSelectPrevTab
 nnoremap <silent> <C-f> :Clap files<CR>
 nnoremap <silent> <space><space> :Clap filer<CR>
 nnoremap <silent> <C-g> :Clap commits<CR>
+nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 
