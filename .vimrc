@@ -22,7 +22,6 @@ Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
-Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -82,9 +81,10 @@ nmap <Leader>[ <Plug>AirlineSelectPrevTab
 " vim-clap
 nnoremap <silent> <C-f> :Clap files<CR>
 nnoremap <silent> <space><space> :Clap filer<CR>
-
+nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
+
 inoremap <C-p> <ESC>:Clap buffers<CR>
 
 " nerdtree
@@ -168,7 +168,3 @@ nnoremap <F5> :TODOToggle<CR>
 
 let g:todo_below=1
 let g:todo_winheight=10
-
-" vim-gitgutter
-let g:gitgutter_signs=0
-let g:gitgutter_preview_win_floating=1
