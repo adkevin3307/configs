@@ -153,6 +153,10 @@ vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <F2> <Plug>(coc-rename)
 
+nmap <Leader>gp <Plug>(coc-git-prevchunk)
+nmap <Leader>gn <Plug>(coc-git-nextchunk)
+nmap <Leader>g <Plug>(coc-git-chunkinfo)
+
 " vim-floaterm
 let g:floaterm_keymap_new='<Leader>fn'
 let g:floaterm_keymap_kill='<Leader>fk'
