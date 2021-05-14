@@ -58,6 +58,7 @@ highlight LineNr ctermbg=None ctermfg=245
 highlight Terminal ctermbg=None
 
 " vim-airline
+let g:airline#extensions#scrollbar#enabled=0
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#keymap#enabled=1
