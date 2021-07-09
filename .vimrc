@@ -22,6 +22,7 @@ Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
+Plug 'pechorin/any-jump.vim'
 
 call plug#end()
 
@@ -66,26 +67,12 @@ let g:airline#extensions#tabline#show_buffers=0
 let g:airline#entensions#hunks#enabled=1
 let g:airline#extensions#hunks#coc_git=1
 
-nnoremap <C-n> :tabnew<CR>
-inoremap <C-n> <ESC>:tabnew<CR>
-
-nmap <Leader>1 <Plug>AirlineSelectTab1
-nmap <Leader>2 <Plug>AirlineSelectTab2
-nmap <Leader>3 <Plug>AirlineSelectTab3
-nmap <Leader>4 <Plug>AirlineSelectTab4
-nmap <Leader>5 <Plug>AirlineSelectTab5
-nmap <Leader>6 <Plug>AirlineSelectTab6
-nmap <Leader>7 <Plug>AirlineSelectTab7
-nmap <Leader>8 <Plug>AirlineSelectTab8
-nmap <Leader>9 <Plug>AirlineSelectTab9
-nmap <Leader>] <Plug>AirlineSelectNextTab
-nmap <Leader>[ <Plug>AirlineSelectPrevTab
-
 " vim-clap
 nnoremap <silent> <C-f> :Clap files<CR>
 nnoremap <silent> <space><space> :Clap filer<CR>
 nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
+nnoremap <silent> <C-m> :Clap maps<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 
@@ -163,16 +150,13 @@ let g:floaterm_keymap_new='<Leader>fn'
 let g:floaterm_keymap_kill='<Leader>fk'
 let g:floaterm_keymap_toggle='<Leader>ft'
 
-" vim-better-whitespace
-nnoremap <F3> :StripWhitespace<CR>
-
 " vim-autoformat
 noremap <F4> :Autoformat<CR>
 
 let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
 
 " todo-vim
-nnoremap <F5> :TODOToggle<CR>
+nnoremap <F3> :TODOToggle<CR>
 
 let g:todo_below=1
 let g:todo_winheight=10
