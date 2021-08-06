@@ -23,6 +23,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
 Plug 'pechorin/any-jump.vim'
+Plug 'liuchengxu/vista.vim'
 
 call plug#end()
 
@@ -77,6 +78,7 @@ nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 
 inoremap <C-p> <ESC>:Clap buffers<CR>
+nnoremap <C-t> :Clap tags<CR>
 
 " nerdtree
 nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>

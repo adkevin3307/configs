@@ -47,7 +47,7 @@ execute 'apt update'
 prompt "Add vim PPA Done\n"
 
 prompt "Install Packages ...\n"
-execute 'apt install -y zsh vim git htop tmux tree curl expect clang-format-10 python3-pip'
+execute 'apt install -y zsh vim git htop tmux tree curl ctags expect clang-format-10 python3-pip'
 execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)"'
 execute 'apt install -y nodejs'
 execute 'python3 -m pip install autopep8'
