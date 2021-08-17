@@ -16,7 +16,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
@@ -24,6 +23,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'dimercel/todo-vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -162,3 +162,6 @@ nnoremap <F3> :TODOToggle<CR>
 
 let g:todo_below=1
 let g:todo_winheight=10
+
+" indentLine
+let g:indentLine_char='|'
