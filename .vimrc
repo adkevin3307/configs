@@ -16,6 +16,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
@@ -165,3 +166,6 @@ let g:todo_winheight=10
 
 " indentLine
 let g:indentLine_char='|'
+let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json']
+
+nnoremap <C-i> :IndentLinesToggle<CR>
