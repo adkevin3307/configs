@@ -25,6 +25,7 @@ Plug 'dimercel/todo-vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'wfxr/minimap.vim'
 
 call plug#end()
 
@@ -153,6 +154,9 @@ let g:floaterm_keymap_new='<Leader>fn'
 let g:floaterm_keymap_kill='<Leader>fk'
 let g:floaterm_keymap_toggle='<Leader>ft'
 
+" vim-better-whitespace
+let g:better_whitespace_filetypes_blacklist=['minimap']
+
 " vim-autoformat
 noremap <F4> :Autoformat<CR>
 
@@ -169,3 +173,14 @@ let g:indentLine_char='|'
 let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json']
 
 nnoremap <C-i> :IndentLinesToggle<CR>
+
+" code-minimap
+let g:minimap_auto_start=1
+let g:minimap_auto_start_win_enter=1
+let g:minimap_width=20
+let g:minimap_highlight_range=1
+let g:minimap_git_colors=1
+let g:minimap_highlight_search=1
+let g:minimap_cursor_color_priority=100
+let g:minimap_search_color_priority=110
+let g:minimap_git_color_priority=120
