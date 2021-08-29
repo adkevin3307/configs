@@ -53,8 +53,6 @@ execute 'apt install -y nodejs'
 execute 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
 execute 'python3 -m pip install autopep8'
 execute 'ln -s /usr/bin/clang-format-10 /usr/bin/clang-format'
-source $HOME/.cargo/env
-cargo install code-minimap
 prompt "Install Packages Done\n"
 
 prompt "Install oh-my-zsh ...\n"
