@@ -14,14 +14,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
-Plug 'mattesgroeger/vim-bookmarks'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
-Plug 'dimercel/todo-vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
@@ -92,10 +90,8 @@ autocmd FileType python let g:NERDSpaceDelims=0
 " python-syntax
 let g:python_highlight_all=1
 
-" bookmarks
-let g:bookmark_auto_close=1
-
 " coc.nvim
+set encoding=utf-8
 set hidden
 set nobackup
 set nowritebackup
@@ -158,14 +154,6 @@ noremap <F4> :Autoformat<CR>
 
 let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
 
-" todo-vim
-nnoremap <F3> :TODOToggle<CR>
-
-let g:todo_below=1
-let g:todo_winheight=10
-
 " indentLine
 let g:indentLine_char='|'
 let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json']
-
-nnoremap <C-i> :IndentLinesToggle<CR>
