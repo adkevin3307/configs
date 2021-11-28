@@ -23,6 +23,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'gelguy/wilder.nvim'
 
 call plug#end()
 
@@ -157,3 +158,20 @@ let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
 " indentLine
 let g:indentLine_char='|'
 let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json']
+
+" wilder.nvim
+call wilder#setup({'modes': [':', '/', '?']})
+
+call wilder#set_option('pipeline', [
+            \   wilder#branch(
+            \     wilder#cmdline_pipeline(),
+            \     wilder#search_pipeline(),
+            \   ),
+            \ ])
+
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+            \ 'highlighter': wilder#basic_highlighter(),
+            \ 'highlights': {
+                \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
+                \ },
+                \ }))
