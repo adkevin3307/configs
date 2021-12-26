@@ -20,7 +20,6 @@ Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
-Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'gelguy/wilder.nvim'
@@ -44,6 +43,8 @@ nnoremap <C-h> <Left>
 nnoremap <C-l> <Right>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+nnoremap <Leader>n :nohl<CR>
 
 " onedark
 colorscheme onedark
@@ -75,10 +76,13 @@ nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-m> :Clap maps<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
+nnoremap <silent> <C-t> :Clap tags<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
+nnoremap <silent> <Leader>j :Clap dumb_jump<CR>
 
-inoremap <C-p> <ESC>:Clap buffers<CR>
-nnoremap <C-t> :Clap tags<CR>
+inoremap <silent> <C-f> <ESC>:Clap files<CR>
+inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
+inoremap <silent> <C-t> <ESC>:Clap tags<CR>
 
 " nerdtree
 nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>
