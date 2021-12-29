@@ -76,13 +76,13 @@ nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-m> :Clap maps<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
-nnoremap <silent> <C-t> :Clap tags coc<CR>
+nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 nnoremap <silent> <Leader>j :Clap dumb_jump<CR>
 
 inoremap <silent> <C-f> <ESC>:Clap files<CR>
 inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
-inoremap <silent> <C-t> <ESC>:Clap tags coc<CR>
+inoremap <silent> <C-t> <ESC>:silent! Clap tags coc<CR>
 
 " nerdtree
 nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>

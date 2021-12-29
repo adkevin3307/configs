@@ -47,12 +47,13 @@ execute 'apt update'
 prompt "Add vim PPA Done\n"
 
 prompt "Install Packages ...\n"
-execute 'apt install -y zsh vim git htop tmux tree curl ctags expect clang-format-10 python3-pip'
+execute 'apt install -y zsh vim git htop tmux tree curl clang-format-10 clangd-10 python3-pip'
 execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)"'
 execute 'apt install -y nodejs'
 execute 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
 execute 'python3 -m pip install autopep8'
 execute 'ln -s /usr/bin/clang-format-10 /usr/bin/clang-format'
+execute 'ln -s /usr/bin/clangd-10 /usr/bin/clangd'
 prompt "Install Packages Done\n"
 
 prompt "Install oh-my-zsh ...\n"
@@ -72,5 +73,4 @@ prompt "Install tmux Plugins Done\n"
 
 prompt "Install vim ...\n"
 cp ~/configs/.vimrc ~
-expect -c 'spawn vim ~/.vimrc; expect "ENTER"; send "\r"; interact;'
-prompt "Install vim Done\n"
+vim -E +'PlugInstall --sync'
