@@ -8,7 +8,8 @@
 
 ## Usage
 
-- Ubuntu use `./setup.sh`
+- Ubuntu use `setup.sh`
+    - The last step in `setup.sh` will open `~/.vimrc` and install plugins, after install finish, just use `:qa` to leave
 
 ## zsh
 
@@ -26,27 +27,31 @@
 ## vim
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
-    - `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
 - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
-- [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
-- [scrooloose/nerdtree](https://github.com/preservim/nerdtree)
-- [scrooloose/nerdcommenter](https://github.com/preservim/nerdcommenter)
+- [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
+- [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
+- [Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
+- [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
-- [mattesgroeger/vim-bookmarks](https://github.com/mattesgroeger/vim-bookmarks)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-    - `:CocInstall coc-clangd coc-pyright coc-highlight coc-git coc-sh coc-json`
 - [lervag/vimtex](https://github.com/lervag/vimtex)
 - [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
+- [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
-    - `:Clap install-binary!`
-- [vim-autoformat](https://github.com/Chiel92/vim-autoformat)
+- [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
+- [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
+- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
+- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 
 ## tmux
 
-- [tpm](https://github.com/tmux-plugins/tpm)
+- [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
     - `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+- [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tumx-sensible)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
+- [tmux-plugins/tmux-yank](https://github.com/tmux-plugins/tmux-yank)
+- [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
 
 ## Clang-Format
 
