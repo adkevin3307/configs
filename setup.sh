@@ -47,7 +47,7 @@ execute 'apt update'
 prompt "Add vim PPA Done\n"
 
 prompt "Install Packages ...\n"
-execute 'apt install -y zsh vim git htop tmux tree curl clang-format-10 clangd-10 python3-pip'
+execute 'apt install -y zsh vim git htop tmux tree curl ripgrep clang-format-10 clangd-10 python3-pip'
 execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)"'
 execute 'apt install -y nodejs'
 execute 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
