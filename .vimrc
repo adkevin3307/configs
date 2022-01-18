@@ -91,6 +91,7 @@ nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>
 let g:NERDSpaceDelims=1
 let g:NERDToggleCheckAllLines=1
 autocmd FileType python let g:NERDSpaceDelims=0
+nnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " python-syntax
 let g:python_highlight_all=1
@@ -147,7 +148,7 @@ nmap <F2> <Plug>(coc-rename)
 
 nmap <Leader>gp <Plug>(coc-git-prevchunk)
 nmap <Leader>gn <Plug>(coc-git-nextchunk)
-nmap <Leader>g <Plug>(coc-git-chunkinfo)
+nmap <Leader>gg <Plug>(coc-git-chunkinfo)
 
 " vim-floaterm
 let g:floaterm_keymap_new='<Leader>fn'
