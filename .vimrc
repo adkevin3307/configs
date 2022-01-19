@@ -90,8 +90,11 @@ nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>
 " nerdcommenter
 let g:NERDSpaceDelims=1
 let g:NERDToggleCheckAllLines=1
+let g:NERDCreateDefaultMappings=0
 autocmd FileType python let g:NERDSpaceDelims=0
+
 nnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
+vnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " python-syntax
 let g:python_highlight_all=1
