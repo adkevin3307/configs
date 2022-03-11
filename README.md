@@ -13,7 +13,7 @@
 
 ## Key Mapping
 
-List some of useful custom key mappings in vim.
+List some of useful custom key mappings.
 
 - `<C>`: `Ctrl`
 - `<S>`: `Shift`
@@ -25,6 +25,8 @@ List some of useful custom key mappings in vim.
 - `<F4>`: F4 key
 - `<F12>`: F12 key
 - `N` / `I` / `V`: Normal / Insert / Visual mode
+
+### vim
 
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
@@ -49,6 +51,10 @@ List some of useful custom key mappings in vim.
 | `<Leader>gg`    | `N`        | show git change                         |
 | `<Leader>gn`    | `N`        | goto next git change                    |
 | `<Leader>gp`    | `N`        | goto previous git change                |
+
+### tmux
+
+TODO
 
 ## Reference
 
@@ -87,8 +93,4 @@ List some of useful custom key mappings in vim.
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
 - [tmux-plugins/tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 - [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
-
-### Clang-Format
-
-- Just use `.clang-format`
 
