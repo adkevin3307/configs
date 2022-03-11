@@ -70,8 +70,8 @@ let g:airline#entensions#hunks#enabled=1
 let g:airline#extensions#hunks#coc_git=1
 
 " vim-clap
-nnoremap <silent> <C-f> :Clap files<CR>
-nnoremap <silent> <space><space> :Clap filer<CR>
+nnoremap <silent> <space><space> :Clap files<CR>
+nnoremap <silent> <C-f> :Clap filer<CR>
 nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-m> :Clap maps<CR>
