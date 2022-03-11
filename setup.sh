@@ -16,9 +16,23 @@ function get_permission()
         sudo printf ""
         prompt "Get Permission Done"
     fi
+}
 
-    echo ""
-    echo ""
+function check_directory()
+{
+    PWD=$(pwd)
+
+    if [[ -e $PWD/configs/setup.sh ]]; then
+        PWD=$PWD/configs
+    fi
+
+    if [[ -e $PWD/setup.sh ]]; then
+        prompt "Repository Path: $PWD\n"
+    else
+        prompt "Cannot Find 'setup.py'\n"
+
+        exit 0
+    fi
 }
 
 function execute()
@@ -30,47 +44,46 @@ function execute()
     fi
 }
 
-cd $HOME
-
 get_permission
 
-prompt "Basic Update & Upgrade ...\n"
+check_directory
+
+prompt "Basic Update & Upgrade ..."
 execute 'apt update'
 execute 'apt -y upgrade'
 execute 'apt -y autoremove'
 prompt "Basic Update & Upgrade Done\n"
 
-prompt "Add vim PPA ...\n"
+prompt "Add vim PPA ..."
 execute 'apt install -y software-properties-common'
 execute 'add-apt-repository -y ppa:jonathonf/vim'
-execute 'apt update'
 prompt "Add vim PPA Done\n"
 
-prompt "Install Packages ...\n"
-execute 'apt install -y zsh vim git htop tmux tree curl ripgrep clang-format-10 clangd-10 python3-pip'
-execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)"'
-execute 'apt install -y nodejs'
-execute 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
+prompt "Install Packages ..."
+execute 'apt install -y zsh vim git htop tmux tree curl clang-format-10 clangd-10 python3-pip'
+execute 'curl -sL install-node.vercel.app/lts | bash -s -- -y'
 execute 'python3 -m pip install autopep8'
-execute 'ln -s /usr/bin/clang-format-10 /usr/bin/clang-format'
-execute 'ln -s /usr/bin/clangd-10 /usr/bin/clangd'
+execute 'ln -sf /usr/bin/clang-format-10 /usr/bin/clang-format'
+execute 'ln -sf /usr/bin/clangd-10 /usr/bin/clangd'
 prompt "Install Packages Done\n"
 
-prompt "Install oh-my-zsh ...\n"
+prompt "Install oh-my-zsh ..."
+rm -vrf ~/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-cp ~/configs/.zshrc ~
-cp ~/configs/.p10k.zsh ~
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+cp -vf $PWD/.zshrc ~
+cp -vf $PWD/.p10k.zsh ~
 prompt "Install oh-my-zsh Done\n"
 
-prompt "Install tmux Plugins ...\n"
+prompt "Install tmux Plugins ..."
+rm -vrf ~/.tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-cp ~/configs/.tmux.conf ~
+cp -vf $PWD/.tmux.conf ~
 ~/.tmux/plugins/tpm/bin/install_plugins
 prompt "Install tmux Plugins Done\n"
 
-prompt "Install vim ...\n"
-cp ~/configs/.vimrc ~
+prompt "Install vim ..."
+cp -vf $PWD/.vimrc ~
 vim -E +'PlugInstall --sync'
