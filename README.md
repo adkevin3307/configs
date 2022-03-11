@@ -8,23 +8,59 @@
 
 ## Usage
 
-- Ubuntu use `setup.sh`
-    - The last step in `setup.sh` will open `~/.vimrc` and install plugins, after install finish, just use `:qa` to leave
+- `Ubuntu` users can use `setup.sh` directly
+- The last step in `setup.sh` will open `~/.vimrc` and install plugins, after install finish, just use `:qa` to leave
 
-## zsh
+## Key Mapping
+
+List some of useful custom key mappings in vim.
+
+- `<C>`: `Ctrl`
+- `<S>`: `Shift`
+- `<Leader>`: `\`
+- `<CR>`: `Enter`
+- `<TAB>`: `Tab`
+- `<space>`: `Space`
+- `<F2>`: F2 key
+- `<F4>`: F4 key
+- `<F12>`: F12 key
+- `N` / `I` / `V`: Normal / Insert / Visual mode
+
+|       Key       |    Mode    |               Description               |
+| --------------- | ---------- | --------------------------------------- |
+| `<C-m>`, `<CR>` | `N` / `I`  | show all the key mappings               |
+| `<F2>`          | `N`        | rename selected word                    |
+| `<F4>`          | `N`        | auto format                             |
+| `<F12>`         | `N`        | goto definition                         |
+| `<TAB>`         | `I`        | select next in auto complete prompt     |
+| `<S-TAB>`       | `I`        | select previous in auto complete prompt |
+| `?`             | `N`        | show documentation on current word      |
+| `<C-f>`         | `N` / `I`  | show files                              |
+| `<C-g>`         | `N`        | show git commits                        |
+| `<C-j>`         | `N` / `I`  | scroll down in documentation            |
+| `<C-k>`         | `N` / `I`  | scroll up in documentation              |
+| `<C-p>`         | `N` / `I`  | show buffer list                        |
+| `<C-q>`         | `N`        | close current buffer                    |
+| `<C-t>`         | `N` / `I`  | show tags in current file               |
+| `<C-y>`         | `N`        | show yank history                       |
+| `<Leader>j`     | `N`        | search in current file                  |
+| `<Leader>n`     | `N`        | unset highlight                         |
+| `<Leader>cc`    | `N`        | toggle code comment                     |
+| `<Leader>gg`    | `N`        | show git change                         |
+| `<Leader>gn`    | `N`        | goto next git change                    |
+| `<Leader>gp`    | `N`        | goto previous git change                |
+
+## Reference
+
+### zsh
 
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-    - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k)
-    - `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k`
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
-    - `git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k`
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-    - `git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-    - `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
 
-## vim
+### vim
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
@@ -44,15 +80,15 @@
 - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 
-## tmux
+### tmux
 
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
-    - `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 - [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tumx-sensible)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
 - [tmux-plugins/tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 - [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
 
-## Clang-Format
+### Clang-Format
 
 - Just use `.clang-format`
+
