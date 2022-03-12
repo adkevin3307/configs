@@ -61,7 +61,8 @@ prompt "Add vim PPA Done\n"
 
 prompt "Install Packages ..."
 execute 'apt install -y zsh vim git htop tmux tree curl clang-format-10 clangd-10 python3-pip'
-execute 'curl -sL install-node.vercel.app/lts | bash -s -- -y'
+execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_lts.x)"'
+execute 'apt install -y nodejs'
 execute 'python3 -m pip install autopep8'
 execute 'ln -sf /usr/bin/clang-format-10 /usr/bin/clang-format'
 execute 'ln -sf /usr/bin/clangd-10 /usr/bin/clangd'
