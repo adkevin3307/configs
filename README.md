@@ -15,6 +15,7 @@
 
 List some of useful custom key mappings.
 
+- `<A>`: `Alt`
 - `<C>`: `Ctrl`
 - `<S>`: `Shift`
 - `<Leader>`: `\`
@@ -51,6 +52,8 @@ List some of useful custom key mappings.
 | `<Leader>gg`    | `N`        | show git change                         |
 | `<Leader>gn`    | `N`        | goto next git change                    |
 | `<Leader>gp`    | `N`        | goto previous git change                |
+| `<A-k>`         | `N` / `V`  | move current line / block up            |
+| `<A-j>`         | `N` / `V`  | move current line / block down          |
 
 ### tmux
 
@@ -85,6 +88,7 @@ TODO
 - [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
+- [matze/vim-move](https://github.com/matze/vim-move)
 
 ### tmux
 

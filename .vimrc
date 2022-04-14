@@ -23,6 +23,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Yggdroot/indentLine'
 Plug 'gelguy/wilder.nvim'
+Plug 'matze/vim-move'
 
 call plug#end()
 
@@ -183,3 +184,13 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
                 \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
                 \ },
                 \ }))
+
+" vim-move
+let c='a'
+while c <= 'z'
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
+endw
+
+set timeout ttimeoutlen=50
