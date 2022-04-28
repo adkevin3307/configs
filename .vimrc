@@ -93,6 +93,7 @@ let g:NERDSpaceDelims=1
 let g:NERDToggleCheckAllLines=1
 let g:NERDCreateDefaultMappings=0
 autocmd FileType python let g:NERDSpaceDelims=0
+autocmd FileType yaml let g:NERDSpaceDelims=1
 
 nnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
 vnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
@@ -166,7 +167,7 @@ let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
 
 " indentLine
 let g:indentLine_char='|'
-let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json']
+let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json', 'markdown']
 
 " wilder.nvim
 call wilder#setup({'modes': [':', '/', '?']})
