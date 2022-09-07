@@ -86,5 +86,7 @@ cp -vf $PWD/.tmux.conf ~
 prompt "Install tmux Plugins Done\n"
 
 prompt "Install vim ..."
+mkdir -p ~/.vim
+cp -vf $PWD/coc-settings.json ~/.vim
 cp -vf $PWD/.vimrc ~
 vim -E +'PlugInstall --sync'
