@@ -16,7 +16,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lervag/vimtex'
-Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
@@ -113,8 +112,8 @@ set signcolumn=yes
 
 let g:coc_global_extensions=['coc-clangd', 'coc-pyright', 'coc-sh', 'coc-git', 'coc-highlight', 'coc-cmake', 'coc-json', 'coc-yaml', 'coc-snippets', 'coc-vimlsp']
 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -133,14 +132,6 @@ function! s:show_documentation()
     endif
 endfunction
 
-inoremap <silent><expr> <C-e>
-            \ pumvisible() ? coc#_select_confirm() :
-            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-
-let g:coc_snippet_next='<C-e>'
-
 nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<Down>"
 nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<Up>"
 inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Down>"
@@ -154,11 +145,6 @@ nmap <F2> <Plug>(coc-rename)
 nmap <Leader>gp <Plug>(coc-git-prevchunk)
 nmap <Leader>gn <Plug>(coc-git-nextchunk)
 nmap <Leader>gg <Plug>(coc-git-chunkinfo)
-
-" vim-floaterm
-let g:floaterm_keymap_new='<Leader>fn'
-let g:floaterm_keymap_kill='<Leader>fk'
-let g:floaterm_keymap_toggle='<Leader>ft'
 
 " vim-autoformat
 noremap <F4> :Autoformat<CR>
@@ -182,9 +168,9 @@ call wilder#set_option('pipeline', [
 call wilder#set_option('renderer', wilder#popupmenu_renderer({
             \ 'highlighter': wilder#basic_highlighter(),
             \ 'highlights': {
-                \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
-                \ },
-                \ }))
+            \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
+            \ },
+            \ }))
 
 " vim-move
 let c='a'
@@ -192,6 +178,6 @@ while c <= 'z'
     exec "set <A-".c.">=\e".c
     exec "imap \e".c." <A-".c.">"
     let c = nr2char(1+char2nr(c))
-endw
+    endw
 
-set timeout ttimeoutlen=50
+    set timeout ttimeoutlen=50

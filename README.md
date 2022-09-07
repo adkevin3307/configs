@@ -81,7 +81,6 @@ TODO
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
 - [lervag/vimtex](https://github.com/lervag/vimtex)
-- [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
 - [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
