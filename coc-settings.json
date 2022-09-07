@@ -1,0 +1,4 @@
+{
+    "suggest.noselect": true,
+    "pyright.inlayHints.enable": false
+}
