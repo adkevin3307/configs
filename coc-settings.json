@@ -1,4 +1,5 @@
 {
     "suggest.noselect": true,
-    "pyright.inlayHints.enable": false
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.functionReturnTypes": false
 }

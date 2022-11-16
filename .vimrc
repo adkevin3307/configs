@@ -74,7 +74,6 @@ nnoremap <silent> <space><space> :Clap files<CR>
 nnoremap <silent> <C-f> :Clap filer<CR>
 nnoremap <silent> <C-g> :Clap commits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
-nnoremap <silent> <C-m> :Clap maps<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
