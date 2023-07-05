@@ -48,6 +48,7 @@ List some of useful custom key mappings.
 | `<C-y>`         | `N`        | show yank history                       |
 | `<Leader>j`     | `N`        | search in current file                  |
 | `<Leader>n`     | `N`        | unset highlight                         |
+| `<Leader>d`     | `N`        | add docstring                           |
 | `<Leader>cc`    | `N`        | toggle code comment                     |
 | `<Leader>gg`    | `N`        | show git change                         |
 | `<Leader>gn`    | `N`        | goto next git change                    |
@@ -88,6 +89,7 @@ TODO
 - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [matze/vim-move](https://github.com/matze/vim-move)
+- [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
 
 ### tmux
 
