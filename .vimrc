@@ -23,6 +23,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'Yggdroot/indentLine'
 Plug 'gelguy/wilder.nvim'
 Plug 'matze/vim-move'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 call plug#end()
 
@@ -180,3 +181,6 @@ while c <= 'z'
     endw
 
     set timeout ttimeoutlen=50
+
+" vim-doge
+let g:doge_doc_standard_python='numpy'
