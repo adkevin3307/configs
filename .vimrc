@@ -149,7 +149,8 @@ nmap <Leader>gg <Plug>(coc-git-chunkinfo)
 " vim-autoformat
 noremap <F4> :Autoformat<CR>
 
-let g:formatdef_autopep8='"autopep8 - --max-line-length=200"'
+let g:formatters_python=['black']
+let g:formatdef_black='"black - --line-length=200 --skip-string-normalization"'
 
 " indentLine
 let g:indentLine_char='|'

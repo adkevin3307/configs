@@ -63,7 +63,7 @@ prompt "Install Packages ..."
 execute 'apt install -y zsh vim git htop tmux tree curl clang-format clangd python3-pip'
 execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_lts.x)"'
 execute 'apt install -y nodejs'
-execute 'python3 -m pip install autopep8'
+execute 'python3 -m pip install black'
 prompt "Install Packages Done\n"
 
 prompt "Install oh-my-zsh ..."
