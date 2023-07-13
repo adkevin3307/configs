@@ -46,7 +46,7 @@ List some of useful custom key mappings.
 | `<C-q>`         | `N`        | close current buffer                    |
 | `<C-t>`         | `N` / `I`  | show tags in current file               |
 | `<C-y>`         | `N`        | show yank history                       |
-| `<Leader>j`     | `N`        | search in current file                  |
+| `<Leader>f`     | `N`        | search in current file                  |
 | `<Leader>n`     | `N`        | unset highlight                         |
 | `<Leader>d`     | `N`        | add docstring                           |
 | `<Leader>cc`    | `N`        | toggle code comment                     |
@@ -90,6 +90,7 @@ TODO
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [matze/vim-move](https://github.com/matze/vim-move)
 - [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
+- [djoshea/vim-autoread](https://github.com/djoshea/vim-autoread)
 
 ### tmux
 

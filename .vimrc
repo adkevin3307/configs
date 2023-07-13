@@ -24,6 +24,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'gelguy/wilder.nvim'
 Plug 'matze/vim-move'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'djoshea/vim-autoread'
 
 call plug#end()
 
@@ -73,12 +74,12 @@ let g:airline#extensions#hunks#coc_git=1
 " vim-clap
 nnoremap <silent> <space><space> :Clap files<CR>
 nnoremap <silent> <C-f> :Clap filer<CR>
-nnoremap <silent> <C-g> :Clap commits<CR>
+nnoremap <silent> <C-g> :Clap bcommits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
 nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
-nnoremap <silent> <Leader>j :Clap dumb_jump<CR>
+nnoremap <silent> <Leader>f :Clap dumb_jump<CR>
 
 inoremap <silent> <C-f> <ESC>:Clap files<CR>
 inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
