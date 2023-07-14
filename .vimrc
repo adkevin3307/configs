@@ -10,21 +10,18 @@ call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'Yggdroot/indentLine'
+Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'lervag/vimtex'
-Plug 'liuchengxu/vista.vim'
-Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Chiel92/vim-autoformat'
-Plug 'Yggdroot/indentLine'
-Plug 'gelguy/wilder.nvim'
-Plug 'matze/vim-move'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+Plug 'gelguy/wilder.nvim'
 Plug 'djoshea/vim-autoread'
+Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 
 call plug#end()
 
@@ -40,6 +37,15 @@ set number
 set mouse=a
 set nowrap
 set hlsearch
+
+set encoding=utf-8
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=100
+set shortmess+=c
+set signcolumn=yes
 
 nnoremap <C-h> <Left>
 nnoremap <C-l> <Right>
@@ -71,22 +77,15 @@ let g:airline#extensions#tabline#show_buffers=0
 let g:airline#entensions#hunks#enabled=1
 let g:airline#extensions#hunks#coc_git=1
 
-" vim-clap
-nnoremap <silent> <space><space> :Clap files<CR>
-nnoremap <silent> <C-f> :Clap filer<CR>
-nnoremap <silent> <C-g> :Clap bcommits<CR>
-nnoremap <silent> <C-y> :Clap yanks<CR>
-nnoremap <silent> <C-p> :Clap buffers<CR>
-nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
-nnoremap <silent> <C-q> :bdelete<CR>
-nnoremap <silent> <Leader>f :Clap dumb_jump<CR>
+" indentLine
+let g:indentLine_char='|'
+let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json', 'markdown']
 
-inoremap <silent> <C-f> <ESC>:Clap files<CR>
-inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
-inoremap <silent> <C-t> <ESC>:silent! Clap tags coc<CR>
+" vim-autoformat
+noremap <F4> :Autoformat<CR>
 
-" nerdtree
-nnoremap <silent> <space><space><space> :NERDTreeToggle<CR>
+let g:formatters_python=['black']
+let g:formatdef_black='"black - --line-length=200 --skip-string-normalization"'
 
 " nerdcommenter
 let g:NERDSpaceDelims=1
@@ -102,15 +101,6 @@ vnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
 let g:python_highlight_all=1
 
 " coc.nvim
-set encoding=utf-8
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=100
-set shortmess+=c
-set signcolumn=yes
-
 let g:coc_global_extensions=['coc-clangd', 'coc-pyright', 'coc-sh', 'coc-git', 'coc-highlight', 'coc-cmake', 'coc-json', 'coc-yaml', 'coc-snippets', 'coc-vimlsp']
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
@@ -147,15 +137,8 @@ nmap <Leader>gp <Plug>(coc-git-prevchunk)
 nmap <Leader>gn <Plug>(coc-git-nextchunk)
 nmap <Leader>gg <Plug>(coc-git-chunkinfo)
 
-" vim-autoformat
-noremap <F4> :Autoformat<CR>
-
-let g:formatters_python=['black']
-let g:formatdef_black='"black - --line-length=200 --skip-string-normalization"'
-
-" indentLine
-let g:indentLine_char='|'
-let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json', 'markdown']
+" vim-doge
+let g:doge_doc_standard_python='numpy'
 
 " wilder.nvim
 call wilder#setup({'modes': [':', '/', '?']})
@@ -174,15 +157,16 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
             \ },
             \ }))
 
-" vim-move
-let c='a'
-while c <= 'z'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
-    endw
+" vim-clap
+nnoremap <silent> <space><space> :Clap files<CR>
+nnoremap <silent> <C-f> :Clap filer<CR>
+nnoremap <silent> <C-g> :Clap bcommits<CR>
+nnoremap <silent> <C-y> :Clap yanks<CR>
+nnoremap <silent> <C-p> :Clap buffers<CR>
+nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
+nnoremap <silent> <C-q> :bdelete<CR>
+nnoremap <silent> <Leader>f :Clap dumb_jump<CR>
 
-    set timeout ttimeoutlen=50
-
-" vim-doge
-let g:doge_doc_standard_python='numpy'
+inoremap <silent> <C-f> <ESC>:Clap files<CR>
+inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
+inoremap <silent> <C-t> <ESC>:silent! Clap tags coc<CR>

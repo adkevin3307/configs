@@ -31,7 +31,6 @@ List some of useful custom key mappings.
 
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
-| `<C-m>`, `<CR>` | `N` / `I`  | show all the key mappings               |
 | `<F2>`          | `N`        | rename selected word                    |
 | `<F4>`          | `N`        | auto format                             |
 | `<F12>`         | `N`        | goto definition                         |
@@ -53,8 +52,6 @@ List some of useful custom key mappings.
 | `<Leader>gg`    | `N`        | show git change                         |
 | `<Leader>gn`    | `N`        | goto next git change                    |
 | `<Leader>gp`    | `N`        | goto previous git change                |
-| `<A-k>`         | `N` / `V`  | move current line / block up            |
-| `<A-j>`         | `N` / `V`  | move current line / block down          |
 
 ### tmux
 
@@ -76,21 +73,16 @@ TODO
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
 - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 - [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
-- [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
-- [Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
+- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
+- [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 - [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
-- [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-- [lervag/vimtex](https://github.com/lervag/vimtex)
-- [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
-- [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
-- [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
-- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
-- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
-- [matze/vim-move](https://github.com/matze/vim-move)
+- [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
 - [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
+- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [djoshea/vim-autoread](https://github.com/djoshea/vim-autoread)
+- [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
 
 ### tmux
 
