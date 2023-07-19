@@ -74,7 +74,7 @@ TODO
 - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 - [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
 - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
-- [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
+- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
 - [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)

@@ -12,11 +12,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'Yggdroot/indentLine'
-Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'ntpeters/vim-better-whitespace'
-
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
@@ -82,12 +81,6 @@ let g:airline#extensions#hunks#coc_git=1
 let g:indentLine_char='|'
 let g:indentLine_fileTypeExclude=['dockerfile', 'tex', 'json', 'markdown']
 
-" vim-autoformat
-noremap <F4> :Autoformat<CR>
-
-let g:formatters_python=['black']
-let g:formatdef_black='"black - --line-length=200 --skip-string-normalization"'
-
 " nerdcommenter
 let g:NERDSpaceDelims=1
 let g:NERDToggleCheckAllLines=1
@@ -100,6 +93,12 @@ vnoremap <silent> <Leader>cc :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " python-syntax
 let g:python_highlight_all=1
+
+" vim-autoformat
+noremap <F4> :Autoformat<CR>
+
+let g:formatters_python=['black']
+let g:formatdef_black='"black - --line-length=200 --skip-string-normalization"'
 
 " coc.nvim
 let g:coc_global_extensions=['coc-clangd', 'coc-pyright', 'coc-sh', 'coc-git', 'coc-highlight', 'coc-cmake', 'coc-json', 'coc-yaml', 'coc-snippets', 'coc-vimlsp']
