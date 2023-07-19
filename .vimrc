@@ -16,6 +16,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-python/python-syntax'
 Plug 'ntpeters/vim-better-whitespace'
+
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
@@ -139,6 +140,7 @@ nmap <Leader>gg <Plug>(coc-git-chunkinfo)
 
 " vim-doge
 let g:doge_doc_standard_python='numpy'
+let g:doge_comment_jump_modes=['n', 's']
 
 " wilder.nvim
 call wilder#setup({'modes': [':', '/', '?']})
