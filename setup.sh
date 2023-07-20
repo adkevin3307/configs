@@ -5,6 +5,15 @@ function prompt()
     echo -e "\e[1;32m$*\e[0m"
 }
 
+function execute()
+{
+    if [[ $EUID == 0 ]]; then
+        eval "$*"
+    else
+        eval "sudo $*"
+    fi
+}
+
 function get_permission()
 {
     if [[ $EUID == 0 ]]; then
@@ -18,6 +27,25 @@ function get_permission()
     fi
 }
 
+function basic_update_upgrade()
+{
+    prompt "Basic Update & Upgrade ..."
+    execute 'apt update'
+    execute 'apt -y upgrade'
+    execute 'apt -y autoremove'
+    prompt "Basic Update & Upgrade Done\n"
+}
+
+function install_packages()
+{
+    prompt "Install Packages ..."
+    execute 'apt install -y zsh git htop tmux tree curl clang-format clangd python3-pip'
+    execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_lts.x)"'
+    execute 'apt install -y nodejs'
+    execute 'python3 -m pip install black'
+    prompt "Install Packages Done\n"
+}
+
 function check_directory()
 {
     PWD=$(pwd)
@@ -26,65 +54,110 @@ function check_directory()
         PWD=$PWD/configs
     fi
 
-    if [[ -e $PWD/setup.sh ]]; then
-        prompt "Repository Path: $PWD\n"
-    else
-        prompt "Cannot Find 'setup.py'\n"
+    if [[ ! -e $PWD/setup.sh ]]; then
+        prompt "Cannot Find 'setup.sh'\n"
 
         exit 0
     fi
+
+    echo $PWD
 }
 
-function execute()
+function install_omz()
 {
-    if [[ $EUID == 0 ]]; then
-        eval "$*"
-    else
-        eval "sudo $*"
-    fi
+    PWD=$1
+
+    prompt "Install oh-my-zsh ..."
+    rm -vrf ~/.oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+    git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    cp -vf $PWD/.zshrc ~
+    cp -vf $PWD/.p10k.zsh ~
+    prompt "Install oh-my-zsh Done\n"
 }
+
+function install_tmux()
+{
+    PWD=$1
+
+    prompt "Install tmux Plugins ..."
+    rm -vrf ~/.tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    cp -vf $PWD/.tmux.conf ~
+    ~/.tmux/plugins/tpm/bin/install_plugins
+    prompt "Install tmux Plugins Done\n"
+}
+
+function install_editor()
+{
+    PWD=$1
+    EDITOR=$2
+
+    prompt "Install $EDITOR ..."
+    execute 'apt install -y software-properties-common'
+
+    if [[ $EDITOR == "VIM" ]]; then
+        execute 'add-apt-repository -y ppa:jonathonf/vim'
+        execute 'apt update'
+        execute 'apt install -y vim'
+
+        mkdir -p ~/.vim
+        cp -vf $PWD/coc-settings.json ~/.vim
+        cp -vf $PWD/.vimrc ~
+
+        vim -E +'PlugInstall --sync'
+    elif [[ $EDITOR == "NVIM" ]]; then
+        execute 'add-apt-repository -y ppa:neovim-ppa/stable'
+        execute 'apt update'
+        execute 'apt install -y neovim'
+
+        mkdir -p ~/.config/nvim
+        cp -vf $PWD/coc-settings.json ~/.config/nvim
+        cp -vf $PWD/init.vim ~/.config/nvim
+
+        nvim -E +'PlugInstall --sync'
+    fi
+
+    prompt "Install $EDITOR Done\n"
+}
+
+while [[ $# -gt 0 ]]; do
+    KEY=$1
+
+    case $1 in
+        -e|--editor)
+            EDITOR=$2
+
+            shift
+            shift
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
+if [[ -z $EDITOR ]]; then
+    prompt "Set default editor to NVIM ..."
+
+    EDITOR="NVIM"
+fi
+
+if [[ $EDITOR != "VIM" && $EDITOR != "NVIM" ]]; then
+    prompt "Editor $EDITOR not defined\n"
+
+    exit 0
+fi
 
 get_permission
+basic_update_upgrade
+install_packages
 
-check_directory
+PWD=$(check_directory)
+prompt "Repository Path: $PWD\n"
 
-prompt "Basic Update & Upgrade ..."
-execute 'apt update'
-execute 'apt -y upgrade'
-execute 'apt -y autoremove'
-prompt "Basic Update & Upgrade Done\n"
-
-prompt "Add vim PPA ..."
-execute 'apt install -y software-properties-common'
-execute 'add-apt-repository -y ppa:jonathonf/vim'
-prompt "Add vim PPA Done\n"
-
-prompt "Install Packages ..."
-execute 'apt install -y zsh vim git htop tmux tree curl clang-format clangd python3-pip'
-execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_lts.x)"'
-execute 'apt install -y nodejs'
-execute 'python3 -m pip install black'
-prompt "Install Packages Done\n"
-
-prompt "Install oh-my-zsh ..."
-rm -vrf ~/.oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-cp -vf $PWD/.zshrc ~
-cp -vf $PWD/.p10k.zsh ~
-prompt "Install oh-my-zsh Done\n"
-
-prompt "Install tmux Plugins ..."
-rm -vrf ~/.tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-cp -vf $PWD/.tmux.conf ~
-~/.tmux/plugins/tpm/bin/install_plugins
-prompt "Install tmux Plugins Done\n"
-
-prompt "Install vim ..."
-mkdir -p ~/.vim
-cp -vf $PWD/coc-settings.json ~/.vim
-cp -vf $PWD/.vimrc ~
-vim -E +'PlugInstall --sync'
+install_omz $PWD
+install_tmux $PWD
+install_editor $PWD $EDITOR
