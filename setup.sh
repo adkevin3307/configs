@@ -14,6 +14,23 @@ function execute()
     fi
 }
 
+function check_directory()
+{
+    PWD=$(pwd)
+
+    if [[ -e $PWD/configs/setup.sh ]]; then
+        PWD=$PWD/configs
+    fi
+
+    if [[ ! -e $PWD/setup.sh ]]; then
+        prompt "Cannot Find 'setup.sh'\n"
+
+        exit 0
+    fi
+
+    echo $PWD
+}
+
 function get_permission()
 {
     if [[ $EUID == 0 ]]; then
@@ -44,23 +61,6 @@ function install_packages()
     execute 'apt install -y nodejs'
     execute 'python3 -m pip install black'
     prompt "Install Packages Done\n"
-}
-
-function check_directory()
-{
-    PWD=$(pwd)
-
-    if [[ -e $PWD/configs/setup.sh ]]; then
-        PWD=$PWD/configs
-    fi
-
-    if [[ ! -e $PWD/setup.sh ]]; then
-        prompt "Cannot Find 'setup.sh'\n"
-
-        exit 0
-    fi
-
-    echo $PWD
 }
 
 function install_omz()
@@ -151,12 +151,12 @@ if [[ $EDITOR != "VIM" && $EDITOR != "NVIM" ]]; then
     exit 0
 fi
 
+PWD=$(check_directory)
+prompt "Repository Path: $PWD\n"
+
 get_permission
 basic_update_upgrade
 install_packages
-
-PWD=$(check_directory)
-prompt "Repository Path: $PWD\n"
 
 install_omz $PWD
 install_tmux $PWD

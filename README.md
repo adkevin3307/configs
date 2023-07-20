@@ -27,7 +27,7 @@ List some of useful custom key mappings.
 - `<F12>`: F12 key
 - `N` / `I` / `V`: Normal / Insert / Visual mode
 
-### vim
+### vim / nvim
 
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
@@ -67,17 +67,18 @@ TODO
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-### vim
+### vim / nvim
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
 - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 - [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
 - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
-- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
 - [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
+- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
+- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
 - [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
