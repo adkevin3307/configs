@@ -56,6 +56,23 @@ inoremap <C-l> <Right>
 
 nnoremap <Leader>n :nohl<CR>
 
+tnoremap <C-n> <C-w>N
+
+tnoremap <A-Left> <C-w><Left>
+tnoremap <A-Right> <C-w><Right>
+tnoremap <A-Up> <C-w><Up>
+tnoremap <A-Down> <C-w><Down>
+
+nnoremap <A-Left> <C-w><Left>
+nnoremap <A-Right> <C-w><Right>
+nnoremap <A-Up> <C-w><Up>
+nnoremap <A-Down> <C-w><Down>
+
+inoremap <A-Left> <C-w><Left>
+inoremap <A-Right> <C-w><Right>
+inoremap <A-Up> <C-w><Up>
+inoremap <A-Down> <C-w><Down>
+
 " onedark
 colorscheme onedark
 unlet g:terminal_ansi_colors
