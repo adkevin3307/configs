@@ -56,24 +56,25 @@ nnoremap <Leader>n :nohl<CR>
 
 " onedark
 colorscheme onedark
-let g:airline_theme='onedark'
 unlet g:terminal_ansi_colors
 
 set cursorline
-highlight CursorLine ctermbg=236
+highlight CursorLine ctermbg=None
 highlight CursorLineNR ctermfg=208
-highlight Visual ctermbg=darkgray
-highlight Normal ctermbg=None
-highlight SignColumn ctermbg=None
 highlight LineNr ctermbg=None ctermfg=245
+
+highlight Normal ctermbg=None
 highlight Terminal ctermbg=None
+highlight Visual ctermbg=darkgray
+highlight SignColumn ctermbg=None
 
 " vim-airline
+let g:airline_theme='onedark'
 let g:airline#extensions#scrollbar#enabled=0
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#keymap#enabled=1
-let g:airline#extensions#tabline#show_buffers=0
+let g:airline#extensions#tabline#show_buffers=1
 let g:airline#entensions#hunks#enabled=1
 let g:airline#extensions#hunks#coc_git=1
 
