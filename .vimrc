@@ -23,6 +23,8 @@ Plug 'gelguy/wilder.nvim'
 Plug 'djoshea/vim-autoread'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 
+Plug 'sillybun/vim-repl'
+
 call plug#end()
 
 filetype plugin indent on
@@ -165,10 +167,18 @@ nnoremap <silent> <C-f> :Clap filer<CR>
 nnoremap <silent> <C-g> :Clap bcommits<CR>
 nnoremap <silent> <C-y> :Clap yanks<CR>
 nnoremap <silent> <C-p> :Clap buffers<CR>
-nnoremap <silent> <C-t> :silent! Clap tags coc<CR>
+nnoremap <silent> <C-t> :silent! Clap tags<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 nnoremap <silent> <Leader>f :Clap dumb_jump<CR>
 
 inoremap <silent> <C-f> <ESC>:Clap files<CR>
 inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
-inoremap <silent> <C-t> <ESC>:silent! Clap tags coc<CR>
+inoremap <silent> <C-t> <ESC>:silent! Clap tags<CR>
+
+" vim-repl
+let repl_position=3
+let g:sendtorepl_invoke_key='<Leader>r'
+
+nnoremap <Leader>t :REPLToggle<CR>
+nnoremap <Leader>a :REPLSendAll<CR>
+nnoremap <Leader>s :REPLSendSession<CR>
