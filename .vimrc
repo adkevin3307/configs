@@ -176,9 +176,10 @@ inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
 inoremap <silent> <C-t> <ESC>:silent! Clap tags<CR>
 
 " vim-repl
-let repl_position=3
+let g:repl_position=3
+let g:repl_console_name='REPL'
 let g:sendtorepl_invoke_key='<Leader>r'
-let g:repl_program = {'python': 'bpython', 'default': 'zsh'}
+let g:repl_program={'python': 'bpython', 'default': 'zsh'}
 
 nnoremap <Leader>t :REPLToggle<CR>
 nnoremap <Leader>a :REPLSendAll<CR>
