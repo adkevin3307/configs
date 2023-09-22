@@ -171,13 +171,14 @@ nnoremap <silent> <C-t> :silent! Clap tags<CR>
 nnoremap <silent> <C-q> :bdelete<CR>
 nnoremap <silent> <Leader>f :Clap dumb_jump<CR>
 
-inoremap <silent> <C-f> <ESC>:Clap files<CR>
+inoremap <silent> <C-f> <ESC>:Clap filer<CR>
 inoremap <silent> <C-p> <ESC>:Clap buffers<CR>
 inoremap <silent> <C-t> <ESC>:silent! Clap tags<CR>
 
 " vim-repl
 let g:repl_position=3
 let g:repl_console_name='REPL'
+let g:repl_python_auto_import=0
 let g:sendtorepl_invoke_key='<Leader>r'
 let g:repl_program={'python': 'bpython', 'default': 'zsh'}
 
