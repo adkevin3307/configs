@@ -56,10 +56,17 @@ function basic_update_upgrade()
 function install_packages()
 {
     prompt "Install Packages ..."
-    execute 'apt install -y zsh git htop tmux tree curl clang-format clangd python3-pip'
-    execute 'bash -c "$(curl -fsSL https://deb.nodesource.com/setup_lts.x)"'
+
+    execute 'apt install -y zsh git htop tmux tree curl ca-certificates gnupg clang-format clangd python3-pip'
+
+    execute 'mkdir -p /etc/apt/keyrings'
+    execute 'curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg'
+    execute 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list'
+    execute 'apt update'
     execute 'apt install -y nodejs'
+
     execute 'python3 -m pip install black'
+
     prompt "Install Packages Done\n"
 }
 
@@ -107,7 +114,7 @@ function install_editor()
         cp -vf $PWD/coc-settings.json ~/.vim
         cp -vf $PWD/.vimrc ~
 
-        vim -E +'PlugInstall --sync'
+        # vim -E +'PlugInstall --sync'
     elif [[ $EDITOR == "NVIM" ]]; then
         execute 'add-apt-repository -y ppa:neovim-ppa/stable'
         execute 'apt update'
@@ -117,10 +124,10 @@ function install_editor()
         cp -vf $PWD/coc-settings.json ~/.config/nvim
         cp -vf $PWD/init.vim ~/.config/nvim
 
-        nvim -E +'PlugInstall --sync'
+        # nvim -E +'PlugInstall --sync'
     fi
 
-    prompt "Install $EDITOR Done\n"
+    prompt "Copy $EDITOR Settings Done, Need Install Custom\n"
 }
 
 while [[ $# -gt 0 ]]; do
