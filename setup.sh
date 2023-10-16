@@ -60,8 +60,9 @@ function install_packages()
     execute 'apt install -y zsh git htop tmux tree curl ca-certificates gnupg clang-format clangd python3-pip'
 
     execute 'mkdir -p /etc/apt/keyrings'
-    execute 'curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg'
-    execute 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list'
+    execute 'gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg < $(curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key)'
+    execute 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" > nodesource.list'
+    execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
     execute 'apt update'
     execute 'apt install -y nodejs'
 
