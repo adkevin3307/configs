@@ -57,7 +57,7 @@ function install_packages()
 {
     prompt "Install Packages ..."
 
-    execute 'apt install -y zsh git htop tmux tree curl ca-certificates gnupg clang-format clangd python3-pip'
+    execute 'apt install -y zsh git htop tmux tree curl ripgrep ca-certificates gnupg clang-format clangd python3-pip'
 
     execute 'mkdir -p /etc/apt/keyrings'
     execute 'gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg < $(curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key)'
