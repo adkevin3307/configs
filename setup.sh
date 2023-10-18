@@ -148,9 +148,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z $EDITOR ]]; then
-    prompt "Set default editor to NVIM ..."
+    prompt "Set default editor to VIM ..."
 
-    EDITOR="NVIM"
+    EDITOR="VIM"
 fi
 
 if [[ $EDITOR != "VIM" && $EDITOR != "NVIM" ]]; then
