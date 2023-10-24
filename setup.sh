@@ -59,6 +59,9 @@ function install_packages()
 
     execute 'apt install -y zsh git htop tmux tree curl ripgrep ca-certificates gnupg clang-format clangd python3-pip'
 
+    execute 'apt install -y bat'
+    execute 'ln -s $(which batcat) /usr/bin/bat'
+
     execute 'mkdir -p /etc/apt/keyrings'
     execute 'gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg < $(curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key)'
     execute 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" > nodesource.list'
