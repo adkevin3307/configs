@@ -63,8 +63,10 @@ function install_packages()
     execute 'ln -s $(which batcat) /usr/bin/bat'
 
     execute 'mkdir -p /etc/apt/keyrings'
-    execute 'gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg < $(curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key)'
-    execute 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" > nodesource.list'
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
+    execute 'gpg -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
+    rm nodesource-repo.gpg.key
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" > nodesource.list
     execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
     execute 'apt update'
     execute 'apt install -y nodejs'
