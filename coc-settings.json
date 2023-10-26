@@ -1,5 +1,6 @@
 {
     "suggest.noselect": true,
     "pyright.inlayHints.variableTypes": false,
-    "pyright.inlayHints.functionReturnTypes": false
+    "pyright.inlayHints.functionReturnTypes": false,
+    "diagnostic.enableHighlightLineNumber": false
 }

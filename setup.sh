@@ -57,7 +57,7 @@ function install_packages()
 {
     prompt "Install Packages ..."
 
-    execute 'apt install -y zsh git htop tmux tree curl ripgrep ca-certificates gnupg clang-format clangd python3-pip'
+    execute 'apt install -y zsh git htop tmux tree curl unzip ripgrep ca-certificates gnupg clang-format clangd python3-pip'
 
     execute 'apt install -y bat'
     execute 'ln -s $(which batcat) /usr/bin/bat'
@@ -120,13 +120,16 @@ function install_editor()
 
         # vim -E +'PlugInstall --sync'
     elif [[ $EDITOR == "NVIM" ]]; then
-        execute 'add-apt-repository -y ppa:neovim-ppa/stable'
-        execute 'apt update'
-        execute 'apt install -y neovim'
+        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        chmod u+x nvim.appimage
+        ./nvim.appimage --appimage-extract
+        execute 'mv squashfs-root /'
+        execute 'ln -s /squashfs-root/AppRun /usr/bin/nvim'
 
         mkdir -p ~/.config/nvim
         cp -vf $PWD/coc-settings.json ~/.config/nvim
-        cp -vf $PWD/init.vim ~/.config/nvim
+        cp -vf $PWD/init.lua ~/.config/nvim
+        cp -vrf $PWD/lua ~/.config/nvim
 
         # nvim -E +'PlugInstall --sync'
     fi
