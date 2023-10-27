@@ -1,21 +1,41 @@
 return {
     {
-        "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-telescope/telescope.nvim",
         dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
+
+            "gbprod/yanky.nvim",
+            "nvim-telescope/telescope-file-browser.nvim"
         },
         config = function()
-            require("telescope").load_extension "file_browser"
+            local actions = require("telescope.actions")
+
+            require("telescope").setup({
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<ESC>"] = actions.close,
+                            ["<TAB>"] = actions.move_selection_next,
+                            ["<S-TAB>"] = actions.move_selection_previous
+                        }
+                    }
+                }
+            })
+
+            require("yanky").setup({})
+
+            require("telescope").load_extension("yank_history")
+            require("telescope").load_extension("file_browser")
 
             local keymap = vim.keymap.set
             local builtin = require("telescope.builtin")
 
-            keymap("n", "<C-f>", ":Telescope file_browser<CR>", {})
             keymap("n", "<C-p>", builtin.buffers, {})
             keymap("n", "<C-t>", builtin.help_tags, {})
-            keymap("n", "<C-g>", builtin.git_bcommits, {})
             keymap("n", "<C-r>", builtin.live_grep, {})
+            keymap("n", "<C-g>", builtin.git_bcommits, {})
+            keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
+            keymap("n", "<C-f>", ":Telescope file_browser<CR>", {})
         end
     },
     {
@@ -82,6 +102,17 @@ return {
                     end
                 }
             )
+        end
+    },
+    {
+        "dstein64/nvim-scrollview",
+        config = function()
+            require("scrollview").setup({
+                signs_column = 0,
+                current_only = true,
+                include_end_region = true,
+                signs_on_startup = { "conflicts", "diagnostics", "search", "trail" }
+            })
         end
     }
 }

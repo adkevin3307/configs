@@ -1,15 +1,10 @@
 return {
     {
-        "williamboman/mason.nvim",
-        priority = 100,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        priority = 90,
-    },
-    {
         "neovim/nvim-lspconfig",
-        priority = 80,
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim"
+        },
         config = function()
             require("mason").setup()
 
@@ -30,7 +25,6 @@ return {
             })
         end
     },
-
     {
         "neoclide/coc.nvim",
         branch = "master",

@@ -29,5 +29,5 @@ keymap("i", "<C-k>", "<Up>")
 keymap("i", "<C-l>", "<Right>")
 
 keymap("n", "<Leader>n", ":nohl<CR>")
-keymap("n", "<C-q>", ":bdelete<CR>")
+keymap("n", "<C-q>", ":bdelete<CR>", { silent = true })
 keymap("n", "*", "*``")
