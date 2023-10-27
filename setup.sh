@@ -127,6 +127,7 @@ function install_editor()
         ./nvim.appimage --appimage-extract
         execute 'mv squashfs-root /'
         execute 'ln -s /squashfs-root/AppRun /usr/bin/nvim'
+        execute 'python3 -m pip install pynvim'
 
         mkdir -p ~/.config/nvim
         cp -vf $PWD/coc-settings.json ~/.config/nvim
