@@ -83,5 +83,16 @@ return {
                 }
             )
         end
+    },
+    {
+        "dstein64/nvim-scrollview",
+        config = function()
+            require("scrollview").setup({
+                signs_column = 0,
+                current_only = true,
+                include_end_region = true,
+                signs_on_startup = { "conflicts", "diagnostics", "search", "trail" }
+            })
+        end
     }
 }
