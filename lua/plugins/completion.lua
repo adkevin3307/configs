@@ -36,7 +36,7 @@ return {
         branch = "master",
         build = "npm ci",
         config = function()
-            vim.g.coc_global_extensions = { "coc-clangd", "coc-pyright", "coc-sh", "coc-cmake", "coc-json", "coc-yaml", "coc-lua" }
+            vim.g.coc_global_extensions = { "coc-clangd", "coc-pyright", "coc-sh", "coc-cmake", "coc-json", "coc-yaml", "coc-lua", "coc-git" }
 
             local keymap = vim.keymap.set
 
@@ -60,10 +60,13 @@ return {
                 end
             end
 
-            keymap("n", "?", "<CMD>lua _G.show_docs()<CR>", { silent = true })
-
-            keymap("n", "<F2>", "<Plug>(coc-rename)", { silent = true })
-            keymap("n", "<F12>", "<Plug>(coc-definition)", { silent = true })
+            local opts = { silent = true }
+            keymap("n", "<F2>", "<Plug>(coc-rename)", opts)
+            keymap("n", "<F12>", "<Plug>(coc-definition)", opts)
+            keymap("n", "?", "<CMD>lua _G.show_docs()<CR>", opts)
+            keymap("n", "<Leader>gn", "<Plug>(coc-git-nextchunk)", opts)
+            keymap("n", "<Leader>gp", "<Plug>(coc-git-prevchunk)", opts)
+            keymap("n", "<Leader>gg", "<Plug>(coc-git-chunkinfo)", opts)
 
             local opts = { silent = true, nowait = true, expr = true }
             keymap("n", "<C-j>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<Down>"', opts)
@@ -72,6 +75,12 @@ return {
             keymap("i", "<C-k>", 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Up>"', opts)
             keymap("v", "<C-j>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<Down>"', opts)
             keymap("v", "<C-k>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<Up>"', opts)
+
+            local colors = require("onedark.colors")
+            vim.api.nvim_set_hl(0, "CocUnusedHighlight", { bg = colors.none })
+            vim.api.nvim_set_hl(0, "CocGitAddedSign", { bg = colors.green, fg = "#000000" })
+            vim.api.nvim_set_hl(0, "CocGitRemovedSign", { bg = colors.red, fg = "#000000" })
+            vim.api.nvim_set_hl(0, "CocGitChangedSign", { bg = colors.none, fg = colors.yellow })
         end
     }
 }
