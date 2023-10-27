@@ -89,14 +89,14 @@ return {
         config = function()
             require("gitsigns").setup({
                 numhl = true,
-                current_line_blame = true,
-                -- sign_priority = 20
+                current_line_blame = true
             })
 
             local keymap = vim.keymap.set
 
             keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", {})
             keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", {})
+            keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", {})
         end
     }
 }
