@@ -32,8 +32,8 @@ return {
 
             keymap("n", "<C-p>", builtin.buffers, {})
             keymap("n", "<C-t>", builtin.help_tags, {})
-            keymap("n", "<C-r>", builtin.live_grep, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
+            keymap("n", "<Leader>f", builtin.live_grep, {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser<CR>", {})
         end
@@ -113,6 +113,76 @@ return {
                 include_end_region = true,
                 signs_on_startup = { "conflicts", "diagnostics", "search", "trail" }
             })
+        end
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup({
+                current_line_blame = true
+            })
+
+            local colors = require("onedark.colors")
+            vim.api.nvim_set_hl(0, "GitSignsAddPreview", { bg = colors.none, fg = colors.green })
+            vim.api.nvim_set_hl(0, "GitSignsDeletePreview", { bg = colors.none, fg = colors.red })
+
+            local keymap = vim.keymap.set
+            keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", { silent = true })
+            keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", { silent = true })
+            keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", { silent = true })
+        end
+    },
+    {
+        "ntpeters/vim-better-whitespace",
+        config = function()
+            vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
+        end
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("ibl").setup()
+        end
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "python", "bash" },
+                sync_install = false,
+                auto_install = true,
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false
+                }
+            }
+        end
+    },
+    {
+        "numToStr/Comment.nvim",
+        opts = {
+            toggler = {
+                line = "<Leader>cc"
+            },
+            opleader = {
+                line = "<Leader>cc",
+                block = "<Leader>bc"
+            },
+            mapping = {
+                basic = false,
+                extra = false
+            }
+        }
+    },
+    {
+        "vim-autoformat/vim-autoformat",
+        config = function()
+            local keymap = vim.keymap.set
+
+            keymap("n", "<F4>", ":Autoformat<CR>", { noremap = true })
+
+            vim.g.formatters_python = { "black" }
+            vim.g.formatdef_black = '"black - --line-length=200 --skip-string-normalization"'
         end
     }
 }
