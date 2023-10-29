@@ -41,7 +41,9 @@ return {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "neovim/nvim-lspconfig",
-            "hrsh7th/cmp-nvim-lsp"
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path"
         },
         config = function()
             local has_words_before = function()
@@ -77,11 +79,11 @@ return {
                     ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
                     ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" })
                 },
-                sources = cmp.config.sources({
+                sources = {
                     { name = "nvim_lsp" },
-                }, {
-                    { name = "buffer" }
-                })
+                    { name = "buffer" },
+                    { name = "path" }
+                }
             })
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -91,6 +93,7 @@ return {
             require("lspconfig").bashls.setup({ capabilities = capabilities })
             require("lspconfig").lua_ls.setup({ capabilities = capabilities })
             require("lspconfig").pyright.setup({ capabilities = capabilities })
+
         end
     }
 }
