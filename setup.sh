@@ -56,23 +56,9 @@ function basic_update_upgrade()
 function install_packages()
 {
     prompt "Install Packages ..."
-
-    execute 'apt install -y zsh git htop tmux tree curl unzip ripgrep ca-certificates gnupg clang-format clangd python3-pip'
-
-    execute 'apt install -y bat'
+    execute 'apt install -y zsh git bat htop tmux tree curl unzip gnupg ripgrep ca-certificates clang-format clangd python3-pip'
     execute 'ln -s $(which batcat) /usr/bin/bat'
-
-    execute 'mkdir -p /etc/apt/keyrings'
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
-    execute 'gpg -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
-    rm nodesource-repo.gpg.key
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" > nodesource.list
-    execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
-    execute 'apt update'
-    execute 'apt install -y nodejs'
-
     execute 'python3 -m pip install black'
-
     prompt "Install Packages Done\n"
 }
 
@@ -112,6 +98,15 @@ function install_editor()
     execute 'apt install -y software-properties-common'
 
     if [[ $EDITOR == "VIM" ]]; then
+        execute 'mkdir -p /etc/apt/keyrings'
+        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
+        execute 'gpg -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
+        rm nodesource-repo.gpg.key
+        echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" > nodesource.list
+        execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
+        execute 'apt update'
+        execute 'apt install -y nodejs'
+
         execute 'add-apt-repository -y ppa:jonathonf/vim'
         execute 'apt update'
         execute 'apt install -y vim'
@@ -119,8 +114,6 @@ function install_editor()
         mkdir -p ~/.vim
         cp -vf $PWD/coc-settings.json ~/.vim
         cp -vf $PWD/.vimrc ~
-
-        # vim -E +'PlugInstall --sync'
     elif [[ $EDITOR == "NVIM" ]]; then
         curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
@@ -130,14 +123,11 @@ function install_editor()
         execute 'python3 -m pip install pynvim'
 
         mkdir -p ~/.config/nvim
-        cp -vf $PWD/coc-settings.json ~/.config/nvim
         cp -vf $PWD/init.lua ~/.config/nvim
         cp -vrf $PWD/lua ~/.config/nvim
-
-        # nvim -E +'PlugInstall --sync'
     fi
 
-    prompt "Copy $EDITOR Settings Done, Need Install Custom\n"
+    prompt "Copy $EDITOR Settings Done, Remember to RUN $EDITOR to Finish Install\n"
 }
 
 while [[ $# -gt 0 ]]; do
