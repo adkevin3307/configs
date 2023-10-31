@@ -62,20 +62,20 @@ return {
             })
 
             wilder.set_option("renderer", wilder.popupmenu_renderer(
-                wilder.popupmenu_palette_theme({
-                    border = "rounded",
-                    min_height = 0,
-                    max_height = "75%",
-                    prompt_position = "top",
-                    reverse = 0,
+            wilder.popupmenu_palette_theme({
+                border = "rounded",
+                min_height = 0,
+                max_height = "75%",
+                prompt_position = "top",
+                reverse = 0,
 
-                    highlighter = wilder.basic_highlighter(),
-                    left = { " ", wilder.popupmenu_devicons() },
-                    right = { " ", wilder.popupmenu_scrollbar() },
-                    highlights = {
-                        accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
-                    }
-                })
+                highlighter = wilder.basic_highlighter(),
+                left = { " ", wilder.popupmenu_devicons() },
+                right = { " ", wilder.popupmenu_scrollbar() },
+                highlights = {
+                    accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
+                }
+            })
             ))
         end
     },
@@ -90,17 +90,18 @@ return {
         opts = {},
         config = function()
             require("barbecue").setup({
+                theme = "catppuccin",
                 create_autocmd = false
             })
 
             vim.api.nvim_create_autocmd(
-                { "WinResized", "BufWinEnter", "CursorHold", "InsertLeave" },
-                {
-                    group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-                    callback = function()
-                        require("barbecue.ui").update()
-                    end
-                }
+            { "WinResized", "BufWinEnter", "CursorHold", "InsertLeave" },
+            {
+                group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+                callback = function()
+                    require("barbecue.ui").update()
+                end
+            }
             )
         end
     },
@@ -117,38 +118,20 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile"
+        },
         config = function()
             require("gitsigns").setup({
-                signcolumn = true,
-                numhl = false,
-                linehl = false,
-                word_diff = false,
+                theme = "onedark",
                 watch_gitdir = {
                     follow_files = true
                 },
                 attach_to_untracked = true,
                 current_line_blame = true,
                 current_line_blame_opts = {
-                    virt_text = true,
-                    virt_text_pos = "eol",
-                    delay = 3000,
-                    ignore_whitespace = false,
-                    virt_text_priority = 100
-                },
-                current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
-                sign_priority = 6,
-                update_debounce = 100,
-                status_formatter = nil,
-                max_file_length = 40000,
-                preview_config = {
-                    border = "single",
-                    style = "minimal",
-                    relative = "cursor",
-                    row = 0,
-                    col = 1
-                },
-                yadm = {
-                    enable = false
+                    delay = 3000
                 }
             })
 
@@ -210,5 +193,20 @@ return {
             vim.g.formatters_python = { "black" }
             vim.g.formatdef_black = '"black - --line-length=200 --skip-string-normalization"'
         end
+    },
+    {
+        "stevearc/dressing.nvim"
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("nvim-tree").setup({})
+
+            local keymap = vim.keymap.set
+            keymap("n", "<C-b>", ":NvimTreeToggle<CR>", { silent = true })
+        end,
     }
 }

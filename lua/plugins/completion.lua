@@ -1,6 +1,10 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        event = {
+            "BufReadPre",
+            "BufNewFile"
+        },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim"
@@ -43,7 +47,10 @@ return {
             "neovim/nvim-lspconfig",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path"
+            "hrsh7th/cmp-path",
+
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip"
         },
         config = function()
             local has_words_before = function()
@@ -54,8 +61,17 @@ return {
             end
 
             local cmp = require("cmp")
+            local luasnip = require("luasnip")
 
             cmp.setup({
+                completion = {
+                    completeopt = "menu,menuone.preview.noselect"
+                },
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end
+                },
                 mapping = {
                     ["<TAB>"] = function(fallback)
                         if not cmp.select_next_item() then
@@ -81,6 +97,7 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
+                    { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" }
                 }
@@ -93,7 +110,6 @@ return {
             require("lspconfig").bashls.setup({ capabilities = capabilities })
             require("lspconfig").lua_ls.setup({ capabilities = capabilities })
             require("lspconfig").pyright.setup({ capabilities = capabilities })
-
         end
     }
 }
