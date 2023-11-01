@@ -34,6 +34,7 @@ return {
                     local keymap = vim.keymap.set
                     local opts = { buffer = ev.buf }
 
+                    keymap("n", "<Leader>e", vim.diagnostic.open_float, opts)
                     keymap("n", "<F12>", vim.lsp.buf.definition, opts)
                     keymap("n", "<F2>", vim.lsp.buf.rename, opts)
                     keymap("n", "?", vim.lsp.buf.hover, opts)
