@@ -8,6 +8,9 @@ return {
                 style = 'dark',
                 transparent = true,
                 term_colors = true,
+                code_style = {
+                    comments = "none"
+                },
                 highlights = {
                     CursorLine = { bg = "none" },
                     CursorLineNR = { fg = "#ff8800" }

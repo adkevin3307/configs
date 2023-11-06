@@ -218,6 +218,12 @@ return {
                 gui_style = {
                     fg = "BOLD",
                     bg = "NONE"
+                },
+                highlight = {
+                    pattern = [[.*<(KEYWORDS)\s*]]
+                },
+                search = {
+                    pattern = [[\b(KEYWORDS)]]
                 }
             })
         end
