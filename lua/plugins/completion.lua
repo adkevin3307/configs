@@ -29,16 +29,44 @@ return {
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {
-                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(ev)
                     local keymap = vim.keymap.set
                     local opts = { buffer = ev.buf }
 
-                    keymap("n", "<Leader>e", vim.diagnostic.open_float, opts)
+                    keymap("n", "<Leader>e", vim.diagnostic.open_float)
                     keymap("n", "<F12>", vim.lsp.buf.definition, opts)
                     keymap("n", "<F2>", vim.lsp.buf.rename, opts)
                     keymap("n", "?", vim.lsp.buf.hover, opts)
                 end
+            })
+
+            function OpenDiagnosticsIfNoFloat()
+                for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+                    local index = tonumber(vim.api.nvim_win_get_config(winid).zindex) or 0
+
+                    if index > 45 then
+                        return
+                    end
+                end
+
+                vim.diagnostic.open_float(0, {
+                    scope = "cursor",
+                    focusable = false,
+                    close_events = {
+                        "CursorMoved",
+                        "CursorMovedI",
+                        "BufHidden",
+                        "InsertCharPre",
+                        "WinLeave"
+                    }
+                })
+            end
+
+            vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+            vim.api.nvim_create_autocmd({ "CursorHold" }, {
+                pattern = "*",
+                group = "lsp_diagnostics_hold",
+                command = "lua OpenDiagnosticsIfNoFloat()"
             })
         end
     },
@@ -49,6 +77,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
 
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip"
@@ -100,7 +129,8 @@ return {
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
                     { name = "buffer" },
-                    { name = "path" }
+                    { name = "path" },
+                    { name = "nvim_lsp_signature_help" }
                 }
             })
 

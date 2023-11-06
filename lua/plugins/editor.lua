@@ -124,7 +124,6 @@ return {
         },
         config = function()
             require("gitsigns").setup({
-                theme = "onedark",
                 watch_gitdir = {
                     follow_files = true
                 },
@@ -208,5 +207,19 @@ return {
             local keymap = vim.keymap.set
             keymap("n", "<C-b>", ":NvimTreeToggle<CR>", { silent = true })
         end,
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
+        config = function()
+            require("todo-comments").setup({
+                gui_style = {
+                    fg = "BOLD",
+                    bg = "NONE"
+                }
+            })
+        end
     }
 }
