@@ -176,6 +176,7 @@ return {
     {
         "numToStr/Comment.nvim",
         opts = {
+            ignore = "^$",
             toggler = {
                 line = "<Leader>cc"
             },
