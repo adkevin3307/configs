@@ -31,11 +31,12 @@ return {
             local builtin = require("telescope.builtin")
 
             keymap("n", "<C-p>", builtin.buffers, {})
-            keymap("n", "<C-t>", builtin.help_tags, {})
+            keymap("n", "<C-t>", builtin.treesitter, {})
+            keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
-            keymap("n", "<Leader>f", builtin.live_grep, {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser<CR>", {})
+            keymap("n", "<C-d>", function() builtin.diagnostics({ bufnr = 0 }) end, {})
         end
     },
     {
@@ -107,6 +108,7 @@ return {
     },
     {
         "dstein64/nvim-scrollview",
+        enabled = false,
         config = function()
             require("scrollview").setup({
                 signs_column = 0,

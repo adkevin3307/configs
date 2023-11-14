@@ -42,11 +42,15 @@ return {
 
             function OpenDiagnosticsIfNoFloat()
                 for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-                    local index = tonumber(vim.api.nvim_win_get_config(winid).zindex) or 0
-
-                    if index > 45 then
+                    if vim.api.nvim_win_get_config(winid).zindex then
                         return
                     end
+
+                    -- local index = tonumber(vim.api.nvim_win_get_config(winid).zindex) or 0
+                    --
+                    -- if index > 45 then -- scrollview zindex (basic: 40, signs: 45)
+                    --     return
+                    -- end
                 end
 
                 vim.diagnostic.open_float(0, {
