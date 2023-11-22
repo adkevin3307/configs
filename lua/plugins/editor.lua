@@ -35,7 +35,7 @@ return {
             keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
-            keymap("n", "<C-f>", ":Telescope file_browser<CR>", {})
+            keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
             keymap("n", "<C-d>", function() builtin.diagnostics({ bufnr = 0 }) end, {})
         end
     },
