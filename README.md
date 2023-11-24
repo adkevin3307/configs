@@ -27,7 +27,7 @@ List some of useful custom key mappings.
 - `<F12>`: F12 key
 - `N` / `I` / `V`: Normal / Insert / Visual mode
 
-### vim / nvim
+### vim
 
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
@@ -53,9 +53,41 @@ List some of useful custom key mappings.
 | `<Leader>gn`    | `N`        | goto next git change                    |
 | `<Leader>gp`    | `N`        | goto previous git change                |
 
+### nvim
+
+|       Key       |    Mode    |               Description               |
+| --------------- | ---------- | --------------------------------------- |
+| `<F2>`          | `N`        | rename selected word                    |
+| `<F4>`          | `N`        | auto format                             |
+| `<F12>`         | `N`        | goto definition                         |
+| `<TAB>`         | `I`        | select next in auto complete prompt     |
+| `<S-TAB>`       | `I`        | select previous in auto complete prompt |
+| `?`             | `N`        | show documentation on current word      |
+| `<C-f>`         | `N`        | show files                              |
+| `<C-g>`         | `N`        | show git commits                        |
+| `<C-p>`         | `N`        | show buffer list                        |
+| `<C-q>`         | `N`        | close current buffer                    |
+| `<C-t>`         | `N`        | show tags in current file               |
+| `<C-y>`         | `N`        | show yank history                       |
+| `<C-d>`         | `N`        | show diagnostic                         |
+| `<C-b>`         | `N`        | open structure tree                     |
+| `<Leader>n`     | `N`        | unset highlight                         |
+| `<Leader>cc`    | `N`        | toggle code comment                     |
+| `<Leader>gg`    | `N`        | show git change                         |
+| `<Leader>gn`    | `N`        | goto next git change                    |
+| `<Leader>gp`    | `N`        | goto previous git change                |
+
 ### tmux
 
-TODO
+- `<Leader>`: `<C-b>`
+
+|       Key       |          Description          |
+| --------------- | ----------------------------- |
+| `<S-Up>`        | select up pane                |
+| `<S-Down>`      | select down pane              |
+| `<S-Left>`      | select left pane              |
+| `<S-Right>`     | select right pane             |
+| `<Leader>/`     | search in buffer              |
 
 ## Reference
 
@@ -67,7 +99,7 @@ TODO
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-### vim / nvim
+### vim
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
@@ -78,12 +110,47 @@ TODO
 - [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
 - [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
-- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
 - [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [djoshea/vim-autoread](https://github.com/djoshea/vim-autoread)
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
+- [sillybun/vim-repl](https://github.com/sillybun/vim-repl)
+
+### nvim
+
+- [navarasu/onedark.nvim](https://github.com/navarasu/onedark.nvim)
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- [gbprod/yanky.nvim](https://github.com/gbprod/yanky.nvim)
+- [nvim-telescope/telescope-file-browser.nvim](https://github.com/nvim-telescope/telescope-file-browser.nvim)
+- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
+- [roxma/nvim-yarp](https://github.com/roxma/nvim-yarp)
+- [roxma/vim-hug-neovim-rpc](https://github.com/roxma/vim-hug-neovim-rpc)
+- [utilyre/barbecue.nvim](https://github.com/utilyre/barbecue.nvim)
+- [dstein64/nvim-scrollview](https://github.com/dstein64/nvim-scrollview)
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
+- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
+- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
+- [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
+- [nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+- [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
+- [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
+- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+- [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
+- [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
+- [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
+- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 
 ### tmux
 
