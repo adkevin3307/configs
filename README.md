@@ -3,13 +3,13 @@
 ## Environment
 
 - `zsh >= 5.8`
-- `vim >= 8.2`
+- `vim >= 8.2` / `nvim >= 0.9.4`
 - `clang-format >= 10.0`
 
 ## Usage
 
 - `Ubuntu` users can use `setup.sh` directly
-- The last step in `setup.sh` will open `~/.vimrc` and install plugins, after install finish, just use `:qa` to leave
+- Remember to open sth. with `editor (vim / nvim)` first, go get a coffee and wait
 
 ## Key Mapping
 
