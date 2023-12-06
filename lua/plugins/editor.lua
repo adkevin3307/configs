@@ -91,7 +91,6 @@ return {
         opts = {},
         config = function()
             require("barbecue").setup({
-                theme = "catppuccin",
                 create_autocmd = false
             })
 
@@ -104,18 +103,6 @@ return {
                 end
             }
             )
-        end
-    },
-    {
-        "dstein64/nvim-scrollview",
-        enabled = false,
-        config = function()
-            require("scrollview").setup({
-                signs_column = 0,
-                current_only = true,
-                include_end_region = true,
-                signs_on_startup = { "conflicts", "diagnostics", "search", "trail" }
-            })
         end
     },
     {
