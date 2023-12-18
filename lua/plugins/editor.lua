@@ -222,5 +222,23 @@ return {
                 }
             })
         end
+    },
+    {
+        "AckslD/muren.nvim",
+        config = function()
+            require("muren").setup({
+                keys = {
+                    close = "<ESC>"
+                },
+                patterns_width = 40,
+                patterns_height = 20,
+                options_width = 40,
+                options_height = 20,
+                preview_height = 30
+            })
+
+            local keymap = vim.keymap.set
+            keymap("n", "<F3>", ":MurenToggle<CR>", { silent = true })
+        end
     }
 }
