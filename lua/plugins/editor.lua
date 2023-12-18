@@ -5,7 +5,8 @@ return {
             "nvim-lua/plenary.nvim",
 
             "gbprod/yanky.nvim",
-            "nvim-telescope/telescope-file-browser.nvim"
+            "nvim-telescope/telescope-file-browser.nvim",
+            "stevearc/aerial.nvim"
         },
         config = function()
             local actions = require("telescope.actions")
@@ -26,14 +27,15 @@ return {
 
             require("telescope").load_extension("yank_history")
             require("telescope").load_extension("file_browser")
+            require("telescope").load_extension("aerial")
 
             local keymap = vim.keymap.set
             local builtin = require("telescope.builtin")
 
             keymap("n", "<C-p>", builtin.buffers, {})
-            keymap("n", "<C-t>", builtin.treesitter, {})
             keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
+            keymap("n", "<C-t>", ":Telescope aerial<CR>", {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
             keymap("n", "<C-d>", function() builtin.diagnostics({ bufnr = 0 }) end, {})
@@ -239,6 +241,16 @@ return {
 
             local keymap = vim.keymap.set
             keymap("n", "<F3>", ":MurenToggle<CR>", { silent = true })
+        end
+    },
+    {
+        "stevearc/aerial.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function()
+            require("aerial").setup({})
         end
     }
 }
