@@ -115,6 +115,14 @@ return {
         },
         config = function()
             require("gitsigns").setup({
+                signs = {
+                    add          = { text = ' │' },
+                    change       = { text = ' │' },
+                    delete       = { text = ' │' },
+                    topdelete    = { text = ' │' },
+                    changedelete = { text = ' │' },
+                    untracked    = { text = ' │' },
+                },
                 watch_gitdir = {
                     follow_files = true
                 },
@@ -252,5 +260,46 @@ return {
         config = function()
             require("aerial").setup({})
         end
+    },
+    {
+        "gorbit99/codewindow.nvim",
+        config = function()
+            require("codewindow").setup({
+                z_index = 10,
+                auto_enable = true,
+                show_cursor = false,
+                screen_bounds = "background",
+                window_border = "none"
+            })
+
+            vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = require("onedark.colors").grey })
+        end
+    },
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async",
+            "nvim-treesitter/nvim-treesitter",
+            {
+                "luukvbaal/statuscol.nvim",
+                config = function()
+                    local builtin = require("statuscol.builtin")
+                    require("statuscol").setup({
+                        relculright = true,
+                        segments = {
+                            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+                            { text = { "%s" }, click = "v:lua.ScSa" },
+                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                        },
+                    })
+                end,
+            },
+        },
+        event = "BufReadPost",
+        opts = {
+            provider_selector = function()
+                return { "treesitter", "indent" }
+            end,
+        }
     }
 }

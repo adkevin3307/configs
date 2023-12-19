@@ -39,38 +39,30 @@ return {
                 end
             })
 
-            function OpenDiagnosticsIfNoFloat()
-                for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-                    if vim.api.nvim_win_get_config(winid).zindex then
-                        return
-                    end
-
-                    -- local index = tonumber(vim.api.nvim_win_get_config(winid).zindex) or 0
-                    --
-                    -- if index > 45 then -- scrollview zindex (basic: 40, signs: 45)
-                    --     return
-                    -- end
-                end
-
-                vim.diagnostic.open_float(0, {
-                    scope = "cursor",
-                    focusable = false,
-                    close_events = {
-                        "CursorMoved",
-                        "CursorMovedI",
-                        "BufHidden",
-                        "InsertCharPre",
-                        "WinLeave"
+            vim.api.nvim_create_autocmd("CursorHold", {
+                buffer = bufnr,
+                callback = function()
+                    local opts = {
+                        focusable = false,
+                        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                        border = "single",
+                        source = "always",
+                        prefix = "",
+                        scope = "cursor",
                     }
+
+                    vim.diagnostic.open_float(nil, opts)
+                end
+            })
+
+            for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+                vim.fn.sign_define("DiagnosticSign" .. diag, {
+                    text = "",
+                    texthl = "DiagnosticSign" .. diag,
+                    linehl = "",
+                    numhl = "DiagnosticSign" .. diag,
                 })
             end
-
-            vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
-            vim.api.nvim_create_autocmd({ "CursorHold" }, {
-                pattern = "*",
-                group = "lsp_diagnostics_hold",
-                command = "lua OpenDiagnosticsIfNoFloat()"
-            })
         end
     },
     {
