@@ -269,8 +269,7 @@ return {
                 auto_enable = true,
                 show_cursor = false,
                 screen_bounds = "background",
-                window_border = "none",
-                events = { "TextChanged", "InsertLeave", "DiagnosticChanged", "FileWritePost", "CursorMoved", "CursorMovedI" }
+                window_border = "none"
             })
 
             vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = require("onedark.colors").grey })
