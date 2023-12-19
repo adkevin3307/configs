@@ -12,7 +12,6 @@ return {
                     comments = "none"
                 },
                 highlights = {
-                    CursorLine = { bg = "none" },
                     CursorLineNR = { fg = "#ff8800" }
                 }
             }
