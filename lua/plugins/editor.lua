@@ -210,7 +210,7 @@ return {
             require("nvim-tree").setup({})
 
             local keymap = vim.keymap.set
-            keymap("n", "<C-b>", ":NvimTreeToggle<CR>", { silent = true })
+            keymap("n", "<Leader>b", ":NvimTreeToggle<CR>", { silent = true })
         end,
     },
     {
@@ -236,15 +236,18 @@ return {
     {
         "AckslD/muren.nvim",
         config = function()
+            local _width = math.floor(vim.o.columns * 0.2)
+            local _height = math.floor(vim.o.lines * 0.25)
+
             require("muren").setup({
                 keys = {
                     close = "<ESC>"
                 },
-                patterns_width = 40,
-                patterns_height = 20,
-                options_width = 40,
-                options_height = 20,
-                preview_height = 30
+                patterns_width = _width,
+                patterns_height = _height,
+                options_width = _width,
+                options_height = _height,
+                preview_height = math.floor(vim.o.lines * 0.5)
             })
 
             local keymap = vim.keymap.set
@@ -265,7 +268,7 @@ return {
         "gorbit99/codewindow.nvim",
         config = function()
             require("codewindow").setup({
-                z_index = 10,
+                z_index = 1,
                 auto_enable = true,
                 show_cursor = false,
                 screen_bounds = "background",
