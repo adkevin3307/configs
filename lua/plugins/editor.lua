@@ -6,7 +6,8 @@ return {
 
             "gbprod/yanky.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            "stevearc/aerial.nvim"
+            "stevearc/aerial.nvim",
+            "folke/noice.nvim"
         },
         config = function()
             local actions = require("telescope.actions")
@@ -35,6 +36,7 @@ return {
             keymap("n", "<C-p>", builtin.buffers, {})
             keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
+            keymap("n", "<C-n>", ":Telescope notify<CR>", {})
             keymap("n", "<C-t>", ":Telescope aerial<CR>", {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
@@ -64,9 +66,13 @@ return {
                 )
             })
 
+            local _width = math.floor(vim.o.columns * 0.6)
+
             wilder.set_option("renderer", wilder.popupmenu_renderer(
             wilder.popupmenu_palette_theme({
                 border = "rounded",
+                min_width = "60%",
+                max_width = "60%",
                 min_height = 0,
                 max_height = "75%",
                 prompt_position = "top",
@@ -304,5 +310,33 @@ return {
                 return { "treesitter", "indent" }
             end,
         }
+    },
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            {
+                "rcarriga/nvim-notify",
+                config = function()
+                    require("notify").setup({
+                        background_colour = "#000000"
+                    })
+                end
+            }
+        },
+        config = function()
+            require("noice").setup({
+                cmdline = {
+                    enabled = false
+                },
+                lsp = {
+                    signature = {
+                        enabled = false
+                    }
+                }
+            })
+
+            vim.api.nvim_set_hl(0, "NoiceVirtualText", { bg = require("onedark.colors").orange, fg = "#000000" })
+        end
     }
 }
