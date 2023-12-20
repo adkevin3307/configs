@@ -6,8 +6,46 @@ return {
 
             "gbprod/yanky.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            "stevearc/aerial.nvim",
-            "folke/noice.nvim"
+            {
+                "stevearc/aerial.nvim",
+                dependencies = {
+                    "nvim-treesitter/nvim-treesitter",
+                    "nvim-tree/nvim-web-devicons"
+                },
+                config = function()
+                    require("aerial").setup({})
+                end
+            },
+            {
+                "folke/noice.nvim",
+                dependencies = {
+                    "MunifTanjim/nui.nvim",
+                    {
+                        "rcarriga/nvim-notify",
+                        config = function()
+                            require("notify").setup({
+                                background_colour = "#000000"
+                            })
+                        end
+                    }
+                },
+                config = function()
+                    require("noice").setup({
+                        presets = {
+                            bottom_search = true,
+                            command_palette = true,
+                            long_message_to_split = true
+                        },
+                        lsp = {
+                            signature = {
+                                enabled = false
+                            }
+                        }
+                    })
+
+                    vim.api.nvim_set_hl(0, "NoiceVirtualText", { bg = require("onedark.colors").orange, fg = "#000000" })
+                end
+            }
         },
         config = function()
             local actions = require("telescope.actions")
@@ -52,7 +90,7 @@ return {
         build = ":UpdateRemotePlugins",
         config = function()
             local wilder = require("wilder")
-            wilder.setup({ modes = { ":", "/" } })
+            wilder.setup({ modes = { "/" } })
 
             wilder.set_option("pipeline", {
                 wilder.branch(
@@ -66,15 +104,13 @@ return {
                 )
             })
 
-            local _width = math.floor(vim.o.columns * 0.6)
-
             wilder.set_option("renderer", wilder.popupmenu_renderer(
             wilder.popupmenu_palette_theme({
                 border = "rounded",
-                min_width = "60%",
-                max_width = "60%",
+                min_width = "30%",
+                max_width = "30%",
                 min_height = 0,
-                max_height = "75%",
+                max_height = "50%",
                 prompt_position = "top",
                 reverse = 0,
 
@@ -261,16 +297,6 @@ return {
         end
     },
     {
-        "stevearc/aerial.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons"
-        },
-        config = function()
-            require("aerial").setup({})
-        end
-    },
-    {
         "gorbit99/codewindow.nvim",
         config = function()
             require("codewindow").setup({
@@ -310,33 +336,5 @@ return {
                 return { "treesitter", "indent" }
             end,
         }
-    },
-    {
-        "folke/noice.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            {
-                "rcarriga/nvim-notify",
-                config = function()
-                    require("notify").setup({
-                        background_colour = "#000000"
-                    })
-                end
-            }
-        },
-        config = function()
-            require("noice").setup({
-                cmdline = {
-                    enabled = false
-                },
-                lsp = {
-                    signature = {
-                        enabled = false
-                    }
-                }
-            })
-
-            vim.api.nvim_set_hl(0, "NoiceVirtualText", { bg = require("onedark.colors").orange, fg = "#000000" })
-        end
     }
 }
