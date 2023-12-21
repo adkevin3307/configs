@@ -110,7 +110,7 @@ return {
                 min_width = "30%",
                 max_width = "30%",
                 min_height = 0,
-                max_height = "50%",
+                max_height = "95%",
                 prompt_position = "top",
                 reverse = 0,
 
