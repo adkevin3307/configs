@@ -36,14 +36,15 @@ return {
                             command_palette = true,
                             long_message_to_split = true
                         },
+                        messages = {
+                            view_search = false
+                        },
                         lsp = {
                             signature = {
                                 enabled = false
                             }
                         }
                     })
-
-                    vim.api.nvim_set_hl(0, "NoiceVirtualText", { bg = require("onedark.colors").orange, fg = "#000000" })
                 end
             }
         },
@@ -151,6 +152,9 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
+        dependencies = {
+            "petertriho/nvim-scrollbar"
+        },
         event = {
             "BufReadPre",
             "BufNewFile"
@@ -179,6 +183,8 @@ return {
             keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", { silent = true })
+
+            require("scrollbar.handlers.gitsigns").setup({})
         end
     },
     {
@@ -297,20 +303,6 @@ return {
         end
     },
     {
-        "gorbit99/codewindow.nvim",
-        config = function()
-            require("codewindow").setup({
-                z_index = 1,
-                auto_enable = true,
-                show_cursor = false,
-                screen_bounds = "background",
-                window_border = "none"
-            })
-
-            vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = require("onedark.colors").grey })
-        end
-    },
-    {
         "kevinhwang91/nvim-ufo",
         dependencies = {
             "kevinhwang91/promise-async",
@@ -336,5 +328,49 @@ return {
                 return { "treesitter", "indent" }
             end,
         }
+    },
+    {
+        "petertriho/nvim-scrollbar",
+        config = function()
+            local colors = require("onedark.colors")
+
+            require("scrollbar").setup({
+                handlers = {
+                    cursor = false,
+                    diagnostic = true,
+                    gitsigns = true,
+                    handle = true,
+                    search = true
+                },
+                handle = {
+                    color = colors.bg_highlight,
+                },
+                marks = {
+                    Search = { color = colors.orange },
+                    Error = { color = colors.error },
+                    Warn = { color = colors.warning },
+                    Info = { color = colors.info },
+                    Hint = { color = colors.hint },
+                    Misc = { color = colors.purple },
+                    GitAdd = { text = "│" },
+                    GitChange = { text = "│" },
+                    GitDelete = { text = "│" }
+                }
+            })
+        end
+    },
+    {
+        "kevinhwang91/nvim-hlslens",
+        dependencies = {
+            "petertriho/nvim-scrollbar"
+        },
+        config = function()
+            require("hlslens").setup({})
+
+            require("scrollbar.handlers.search").setup({
+                override_lens = function()
+                end,
+            })
+        end
     }
 }
