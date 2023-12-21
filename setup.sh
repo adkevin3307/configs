@@ -117,7 +117,7 @@ function install_editor()
         cp -vf $PWD/coc-settings.json ~/.vim
         cp -vf $PWD/.vimrc ~
     elif [[ $EDITOR == "NVIM" ]]; then
-        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
         chmod u+x nvim.appimage
         ./nvim.appimage --appimage-extract
         execute 'mv squashfs-root /'

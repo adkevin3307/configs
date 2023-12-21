@@ -152,9 +152,6 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        dependencies = {
-            "petertriho/nvim-scrollbar"
-        },
         event = {
             "BufReadPre",
             "BufNewFile"
@@ -183,8 +180,6 @@ return {
             keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", { silent = true })
-
-            require("scrollbar.handlers.gitsigns").setup({})
         end
     },
     {
@@ -330,46 +325,21 @@ return {
         }
     },
     {
-        "petertriho/nvim-scrollbar",
+        "kevinhwang91/nvim-hlslens",
         config = function()
-            local colors = require("onedark.colors")
-
-            require("scrollbar").setup({
-                handlers = {
-                    cursor = false,
-                    diagnostic = true,
-                    gitsigns = true,
-                    handle = true,
-                    search = true
-                },
-                handle = {
-                    color = colors.bg_highlight,
-                },
-                marks = {
-                    Search = { color = colors.orange },
-                    Error = { color = colors.error },
-                    Warn = { color = colors.warning },
-                    Info = { color = colors.info },
-                    Hint = { color = colors.hint },
-                    Misc = { color = colors.purple },
-                    GitAdd = { text = "│" },
-                    GitChange = { text = "│" },
-                    GitDelete = { text = "│" }
-                }
-            })
+            require("hlslens").setup({})
         end
     },
     {
-        "kevinhwang91/nvim-hlslens",
-        dependencies = {
-            "petertriho/nvim-scrollbar"
-        },
+        "lewis6991/satellite.nvim",
         config = function()
-            require("hlslens").setup({})
-
-            require("scrollbar.handlers.search").setup({
-                override_lens = function()
-                end,
+            require("satellite").setup({
+                winblend = 0,
+                handlers = {
+                    cursor = {
+                        enable = false
+                    }
+                }
             })
         end
     }
