@@ -6,17 +6,23 @@ return {
             "BufNewFile"
         },
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim"
+            {
+                "williamboman/mason.nvim",
+                config = function()
+                    require("mason").setup({})
+                end
+            },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                config = function()
+                    require("mason-lspconfig").setup({
+                        ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright" },
+                        automatic_installation = true
+                    })
+                end
+            }
         },
         config = function()
-            require("mason").setup({})
-
-            require("mason-lspconfig").setup({
-                ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright" },
-                automatic_installation = true
-            })
-
             require("lspconfig").clangd.setup({})
             require("lspconfig").yamlls.setup({})
             require("lspconfig").jsonls.setup({})
@@ -60,7 +66,7 @@ return {
                     text = "",
                     texthl = "DiagnosticSign" .. diag,
                     linehl = "",
-                    numhl = "DiagnosticSign" .. diag,
+                    numhl = "DiagnosticSign" .. diag
                 })
             end
         end

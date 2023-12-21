@@ -3,9 +3,13 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-
-            "gbprod/yanky.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
+            {
+                "gbprod/yanky.nvim",
+                config = function()
+                    require("yanky").setup({})
+                end
+            },
             {
                 "stevearc/aerial.nvim",
                 dependencies = {
@@ -63,10 +67,8 @@ return {
                 }
             })
 
-            require("yanky").setup({})
-
-            require("telescope").load_extension("yank_history")
             require("telescope").load_extension("file_browser")
+            require("telescope").load_extension("yank_history")
             require("telescope").load_extension("aerial")
 
             local keymap = vim.keymap.set
@@ -91,7 +93,10 @@ return {
         build = ":UpdateRemotePlugins",
         config = function()
             local wilder = require("wilder")
-            wilder.setup({ modes = { "/" } })
+
+            wilder.setup({
+                modes = { "/" }
+            })
 
             wilder.set_option("pipeline", {
                 wilder.branch(
@@ -105,8 +110,7 @@ return {
                 )
             })
 
-            wilder.set_option("renderer", wilder.popupmenu_renderer(
-            wilder.popupmenu_palette_theme({
+            wilder.set_option("renderer", wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
                 border = "rounded",
                 min_width = "30%",
                 max_width = "30%",
@@ -121,8 +125,7 @@ return {
                 highlights = {
                     accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
                 }
-            })
-            ))
+            })))
         end
     },
     {
@@ -131,7 +134,6 @@ return {
             "SmiteshP/nvim-navic",
             "nvim-tree/nvim-web-devicons"
         },
-        opts = {},
         config = function()
             require("barbecue").setup({
                 create_autocmd = false
@@ -150,10 +152,6 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        event = {
-            "BufReadPre",
-            "BufNewFile"
-        },
         config = function()
             require("gitsigns").setup({
                 signs = {
@@ -201,7 +199,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup {
-                ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "python", "bash" },
+                ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "python", "bash", "markdown" },
                 sync_install = false,
                 auto_install = true,
                 highlight = {
@@ -315,7 +313,6 @@ return {
                 end,
             },
         },
-        event = "BufReadPost",
         opts = {
             provider_selector = function()
                 return { "treesitter", "indent" }
