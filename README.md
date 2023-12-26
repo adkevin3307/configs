@@ -3,7 +3,7 @@
 ## Environment
 
 - `zsh >= 5.8`
-- `vim >= 8.2` / `nvim >= 0.9.4`
+- `vim >= 8.2` / `nvim >= 0.10.0 (nightly)`
 - `clang-format >= 10.0`
 
 ## Usage
@@ -21,7 +21,7 @@ List some of useful custom key mappings.
 - `<Leader>`: `\`
 - `<CR>`: `Enter`
 - `<TAB>`: `Tab`
-- `<space>`: `Space`
+- `<Spa>`: `Space`
 - `<F2>`: F2 key
 - `<F4>`: F4 key
 - `<F12>`: F12 key
@@ -58,6 +58,7 @@ List some of useful custom key mappings.
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
 | `<F2>`          | `N`        | rename selected word                    |
+| `<F3>`          | `N`        | multiple replacement                    |
 | `<F4>`          | `N`        | auto format                             |
 | `<F12>`         | `N`        | goto definition                         |
 | `<TAB>`         | `I`        | select next in auto complete prompt     |
@@ -70,9 +71,10 @@ List some of useful custom key mappings.
 | `<C-t>`         | `N`        | show tags in current file               |
 | `<C-y>`         | `N`        | show yank history                       |
 | `<C-d>`         | `N`        | show diagnostic                         |
-| `<C-b>`         | `N`        | open structure tree                     |
+| `<Spa><Spa>`    | `N`        | open structure tree                     |
 | `<Leader>n`     | `N`        | unset highlight                         |
-| `<Leader>cc`    | `N`        | toggle code comment                     |
+| `<Leader>cc`    | `N`        | toggle code comment (inline)            |
+| `<Leader>bc`    | `N`        | toggle code comment (block)             |
 | `<Leader>gg`    | `N`        | show git change                         |
 | `<Leader>gn`    | `N`        | goto next git change                    |
 | `<Leader>gp`    | `N`        | goto previous git change                |
@@ -123,28 +125,37 @@ List some of useful custom key mappings.
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [gbprod/yanky.nvim](https://github.com/gbprod/yanky.nvim)
 - [nvim-telescope/telescope-file-browser.nvim](https://github.com/nvim-telescope/telescope-file-browser.nvim)
+- [gbprod/yanky.nvim](https://github.com/gbprod/yanky.nvim)
+- [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [folke/noice.nvim](https://github.com/folke/noice.nvim)
+- [MunifTanjim/nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [roxma/nvim-yarp](https://github.com/roxma/nvim-yarp)
 - [roxma/vim-hug-neovim-rpc](https://github.com/roxma/vim-hug-neovim-rpc)
 - [utilyre/barbecue.nvim](https://github.com/utilyre/barbecue.nvim)
-- [dstein64/nvim-scrollview](https://github.com/dstein64/nvim-scrollview)
+- [SmiteshP/nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
 - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
 - [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
 - [nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
-- [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [AckslD/muren.nvim](https://github.com/AckslD/muren.nvim)
+- [kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
+- [kevinhwang91/promise-async](https://github.com/kevinhwang91/promise-async)
+- [luukvbaal/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
+- [kevinhwang91/nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
+- [lewis6991/satellite.nvim](https://github.com/lewis6991/satellite.nvim)
 - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 - [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 - [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)

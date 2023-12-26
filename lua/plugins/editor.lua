@@ -249,7 +249,7 @@ return {
             require("nvim-tree").setup({})
 
             local keymap = vim.keymap.set
-            keymap("n", "<C-a>", ":NvimTreeToggle<CR>", { silent = true })
+            keymap("n", "<Space><Space>", ":NvimTreeToggle<CR>", { silent = true })
         end,
     },
     {
