@@ -64,6 +64,7 @@ List some of useful custom key mappings.
 | `<TAB>`         | `I`        | select next in auto complete prompt     |
 | `<S-TAB>`       | `I`        | select previous in auto complete prompt |
 | `?`             | `N`        | show documentation on current word      |
+| `.`             | `N`        | search string in all files              |
 | `<C-f>`         | `N`        | show files                              |
 | `<C-g>`         | `N`        | show git commits                        |
 | `<C-p>`         | `N`        | show buffer list                        |

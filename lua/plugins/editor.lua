@@ -74,6 +74,8 @@ return {
             local keymap = vim.keymap.set
             local builtin = require("telescope.builtin")
 
+            keymap("n", ".", "*:Telescope grep_string<CR>", {})
+
             keymap("n", "<C-p>", builtin.buffers, {})
             keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
