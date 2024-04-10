@@ -300,6 +300,7 @@ return {
 
             local keymap = vim.keymap.set
             keymap("n", "<F3>", ":MurenToggle<CR>", { silent = true })
+            keymap("v", "<F3>", ":MurenToggle<CR>", { silent = true })
         end
     },
     {
