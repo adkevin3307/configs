@@ -75,7 +75,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git zsh-autosuggestions zsh-syntax-highlighting colored-man-pages)
+plugins=(sudo git zsh-autosuggestions zsh-syntax-highlighting colored-man-pages autoupdate)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,3 +107,6 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export UPDATE_ZSH_DAYS=7
+ZSH_CUSTOM_AUTOUPDATE_QUIET=true
