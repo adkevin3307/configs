@@ -83,6 +83,8 @@ return {
 
             keymap("n", ".", "*:Telescope grep_string<CR>", {})
 
+            keymap("n", "<F10>", builtin.lsp_references, {})
+            keymap("n", "<F12>", builtin.lsp_definitions, {})
             keymap("n", "<C-p>", builtin.buffers, {})
             keymap("n", "<C-s>", builtin.git_status, {})
             keymap("n", "<C-g>", builtin.git_bcommits, {})
