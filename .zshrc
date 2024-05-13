@@ -110,3 +110,7 @@ source $ZSH/oh-my-zsh.sh
 
 export UPDATE_ZSH_DAYS=7
 ZSH_CUSTOM_AUTOUPDATE_QUIET=true
+
+if [[ -d "$HOME/.local/bin" ]]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
