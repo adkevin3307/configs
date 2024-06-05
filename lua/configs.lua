@@ -34,6 +34,9 @@ keymap("i", "<C-j>", "<Down>")
 keymap("i", "<C-k>", "<Up>")
 keymap("i", "<C-l>", "<Right>")
 
+keymap("n", "<Leader>zc", ":%foldc<CR>", { silent = true })
+keymap("n", "<Leader>zo", ":%foldo<CR>", { silent = true })
+
 keymap("n", "<Leader>n", ":nohl<CR>", { silent = true })
 keymap("n", "<C-q>", ":bdelete<CR>", { silent = true })
 keymap("n", "*", "*``", { silent = true })
