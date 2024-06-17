@@ -361,5 +361,11 @@ return {
                 }
             })
         end
+    },
+    {
+        "aserowy/tmux.nvim",
+        config = function()
+            require("tmux").setup({})
+        end
     }
 }
