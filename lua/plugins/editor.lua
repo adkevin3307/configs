@@ -57,7 +57,8 @@ return {
                         }
                     })
                 end
-            }
+            },
+            "jemag/telescope-diff.nvim"
         },
         config = function()
             local actions = require("telescope.actions")
@@ -71,17 +72,28 @@ return {
                             ["<S-TAB>"] = actions.move_selection_previous
                         }
                     }
+                },
+                pickers = {
+                    git_status = {
+                        use_file_path = true
+                    },
+                    git_bcommits = {
+                        use_file_path = true
+                    }
                 }
             })
 
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("yank_history")
             require("telescope").load_extension("aerial")
+            require("telescope").load_extension("noice")
+            require("telescope").load_extension("diff")
 
             local keymap = vim.keymap.set
             local builtin = require("telescope.builtin")
 
             keymap("n", ".", "*:Telescope grep_string<CR>", {})
+            keymap("n", "<Leader>d", function() require("telescope").extensions.diff.diff_current({ hidden = true }) end, {})
 
             keymap("n", "<F10>", builtin.lsp_references, {})
             keymap("n", "<F12>", builtin.lsp_definitions, {})
