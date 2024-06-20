@@ -57,7 +57,7 @@ function install_packages()
 {
     prompt "Install Packages ..."
 
-    execute 'apt install -y zsh git bat htop tmux tree curl unzip gnupg ripgrep ca-certificates clang-format clangd python3-pip'
+    execute 'apt install -y zsh git bat htop tmux tree curl unzip gnupg ripgrep ca-certificates clang-format clangd python3-pip python3-venv'
     execute 'ln -s $(which batcat) /usr/bin/bat'
     execute 'python3 -m pip install black'
 

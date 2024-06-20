@@ -82,7 +82,7 @@ return {
                 },
                 config = function()
                     require("mason-lspconfig").setup({
-                        ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright" },
+                        ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
                         automatic_installation = true
                     })
 
