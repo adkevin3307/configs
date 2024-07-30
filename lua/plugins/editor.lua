@@ -367,5 +367,39 @@ return {
         config = function()
             require("tmux").setup({})
         end
+    },
+    {
+        "hkupty/iron.nvim",
+        config = function()
+            require("iron.core").setup({
+                config = {
+                    scratch_repl = true,
+                    repl_definition = {
+                        sh = {
+                            command = {"zsh"}
+                        },
+                        python = {
+                            command = {"ipython", "--no-autoindent"},
+                            format = require("iron.fts.common").bracketed_paste_python
+                        }
+                    },
+                    repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+                },
+                keymaps = {
+                    visual_send = "<Leader>rv",
+                    send_line = "<Leader>rl",
+                    send_paragraph = "<Leader>rp",
+                    interrupt = "<Leader>rc",
+                    exit = "<Leader>rq"
+                },
+                ignore_blank_lines = false
+            })
+
+            local keymap = vim.keymap.set
+
+            keymap("n", "<Leader>ro", ":IronRepl<CR>")
+            keymap("n", "<Leader>rh", ":IronHide<CR>")
+            keymap("n", "<Leader>rr", ":IronRestart<CR>")
+        end
     }
 }
