@@ -388,11 +388,12 @@ return {
                 keymaps = {
                     visual_send = "<Leader>rv",
                     send_line = "<Leader>rl",
+                    send_file = "<Leader>rf",
                     send_paragraph = "<Leader>rp",
                     interrupt = "<Leader>rc",
                     exit = "<Leader>rq"
                 },
-                ignore_blank_lines = false
+                ignore_blank_lines = true
             })
 
             local keymap = vim.keymap.set
