@@ -376,7 +376,7 @@ return {
                     scratch_repl = true,
                     repl_definition = {
                         sh = {
-                            command = {"zsh"}
+                            command = {"bash"}
                         },
                         python = {
                             command = {"ipython", "--no-autoindent"},
@@ -386,21 +386,19 @@ return {
                     repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
                 },
                 keymaps = {
-                    visual_send = "<Leader>rv",
-                    send_line = "<Leader>rl",
-                    send_file = "<Leader>rf",
-                    send_paragraph = "<Leader>rp",
-                    interrupt = "<Leader>rc",
-                    exit = "<Leader>rq"
+                    visual_send = "<Leader>s",
+                    send_line = "<Leader>s",
+                    send_file = "<F5>",
+                    interrupt = "<Leader>c",
+                    exit = "<Leader>q"
                 },
                 ignore_blank_lines = true
             })
 
             local keymap = vim.keymap.set
 
-            keymap("n", "<Leader>ro", ":IronRepl<CR>")
-            keymap("n", "<Leader>rh", ":IronHide<CR>")
-            keymap("n", "<Leader>rr", ":IronRestart<CR>")
+            keymap("n", "<Leader>z", ":IronRepl<CR>")
+            keymap("n", "<Leader>r", ":IronRestart<CR>")
         end
     }
 }
