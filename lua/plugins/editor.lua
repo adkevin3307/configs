@@ -15,10 +15,7 @@ return {
                 dependencies = {
                     "nvim-treesitter/nvim-treesitter",
                     "nvim-tree/nvim-web-devicons"
-                },
-                config = function()
-                    require("aerial").setup({})
-                end
+                }
             },
             {
                 "folke/noice.nvim",
@@ -33,30 +30,28 @@ return {
                         end
                     }
                 },
-                config = function()
-                    require("noice").setup({
-                        presets = {
-                            bottom_search = true,
-                            command_palette = true,
-                            long_message_to_split = true
-                        },
-                        messages = {
-                            view_search = false
-                        },
-                        lsp = {
-                            signature = {
-                                enabled = false
-                            }
-                        },
-                        views = {
-                            mini = {
-                                win_options = {
-                                    winblend = 0
-                                }
+                opts = {
+                    presets = {
+                        bottom_search = true,
+                        command_palette = true,
+                        long_message_to_split = true
+                    },
+                    messages = {
+                        view_search = false
+                    },
+                    lsp = {
+                        signature = {
+                            enabled = false
+                        }
+                    },
+                    views = {
+                        mini = {
+                            win_options = {
+                                winblend = 0
                             }
                         }
-                    })
-                end
+                    }
+                }
             },
             "jemag/telescope-diff.nvim"
         },
@@ -196,6 +191,7 @@ return {
             })
 
             local keymap = vim.keymap.set
+
             keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", { silent = true })
             keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", { silent = true })
@@ -221,7 +217,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         config = function()
-            require("nvim-treesitter.configs").setup {
+            require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown" },
                 sync_install = false,
                 auto_install = true,
@@ -229,7 +225,7 @@ return {
                     enable = true,
                     additional_vim_regex_highlighting = false
                 }
-            }
+            })
         end
     },
     {
@@ -280,42 +276,18 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
-        config = function()
-            require("todo-comments").setup({
-                gui_style = {
-                    fg = "BOLD",
-                    bg = "NONE"
-                },
-                highlight = {
-                    pattern = [[.*<(KEYWORDS)\s*]]
-                },
-                search = {
-                    pattern = [[\b(KEYWORDS)]]
-                }
-            })
-        end
-    },
-    {
-        "AckslD/muren.nvim",
-        config = function()
-            local _width = math.floor(vim.o.columns * 0.2)
-            local _height = math.floor(vim.o.lines * 0.25)
-
-            require("muren").setup({
-                keys = {
-                    close = "<ESC>"
-                },
-                patterns_width = _width,
-                patterns_height = _height,
-                options_width = _width,
-                options_height = _height,
-                preview_height = math.floor(vim.o.lines * 0.5)
-            })
-
-            local keymap = vim.keymap.set
-            keymap("n", "<F3>", ":MurenToggle<CR>", { silent = true })
-            keymap("v", "<F3>", ":MurenToggle<CR>", { silent = true })
-        end
+        opts = {
+            gui_style = {
+                fg = "BOLD",
+                bg = "NONE"
+            },
+            highlight = {
+                pattern = [[.*<(KEYWORDS)\s*]]
+            },
+            search = {
+                pattern = [[\b(KEYWORDS)]]
+            }
+        }
     },
     {
         "kevinhwang91/nvim-ufo",
@@ -351,21 +323,16 @@ return {
     },
     {
         "lewis6991/satellite.nvim",
-        config = function()
-            require("satellite").setup({
-                winblend = 0,
-                handlers = {
-                    cursor = {
-                        enable = false
-                    }
+        opts = {
+            winblend = 0,
+            handlers = {
+                cursor = {
+                    enable = false
                 }
-            })
-        end
+            }
+        }
     },
     {
         "aserowy/tmux.nvim",
-        config = function()
-            require("tmux").setup({})
-        end
     }
 }
