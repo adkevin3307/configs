@@ -35,7 +35,7 @@ return {
                 },
                 opts = {
                     presets = {
-                        bottom_search = true,
+                        bottom_search = false,
                         command_palette = true,
                         long_message_to_split = true
                     },
@@ -103,50 +103,6 @@ return {
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
             keymap("n", "<C-d>", function() builtin.diagnostics({ bufnr = 0 }) end, {})
-        end
-    },
-    {
-        "gelguy/wilder.nvim",
-        dependencies = {
-            "roxma/nvim-yarp",
-            "roxma/vim-hug-neovim-rpc"
-        },
-        build = ":UpdateRemotePlugins",
-        config = function()
-            local wilder = require("wilder")
-
-            wilder.setup({
-                modes = { "/" }
-            })
-
-            wilder.set_option("pipeline", {
-                wilder.branch(
-                wilder.python_file_finder_pipeline({
-                    file_command = { "find", ".", "-type", "f", "-printf", "%P\n" },
-                    dir_command = { "find", ".", "-type", "d", "-printf", "%P\n" },
-                    filters = { "fuzzy_filter", "difflib_sorter" }
-                }),
-                wilder.cmdline_pipeline(),
-                wilder.python_search_pipeline()
-                )
-            })
-
-            wilder.set_option("renderer", wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
-                border = "rounded",
-                min_width = "30%",
-                max_width = "30%",
-                min_height = 0,
-                max_height = "95%",
-                prompt_position = "top",
-                reverse = 0,
-
-                highlighter = wilder.basic_highlighter(),
-                left = { " ", wilder.popupmenu_devicons() },
-                right = { " ", wilder.popupmenu_scrollbar() },
-                highlights = {
-                    accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
-                }
-            })))
         end
     },
     {
@@ -272,7 +228,7 @@ return {
 
             local keymap = vim.keymap.set
             keymap("n", "<Space><Space>", ":NvimTreeToggle<CR>", { silent = true })
-        end,
+        end
     },
     {
         "folke/todo-comments.nvim",
@@ -315,7 +271,7 @@ return {
         opts = {
             provider_selector = function()
                 return { "treesitter", "indent" }
-            end,
+            end
         }
     },
     {
@@ -336,6 +292,44 @@ return {
         }
     },
     {
-        "aserowy/tmux.nvim",
+        "aserowy/tmux.nvim"
+    },
+    {
+        "amitds1997/remote-nvim.nvim",
+        version = "v0.3.9",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            require("remote-nvim").setup({
+                client_callback = function(port, workspace_config)
+                    local tmux = os.getenv("TMUX")
+                    local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+
+                    if tmux ~= nil and tmux ~= '' then
+                        cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+                    end
+
+                    vim.fn.jobstart(cmd, {
+                        detach = true,
+                        on_exit = function(job_id, exit_code, event_type)
+                            print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
+                        end,
+                    })
+                end,
+            })
+        end
+    },
+    {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = function()
+            require('toggleterm').setup({
+                open_mapping = '<C-\\>',
+                direction = 'float'
+            })
+        end
     }
 }
