@@ -90,7 +90,8 @@ return {
             local keymap = vim.keymap.set
             local builtin = require("telescope.builtin")
 
-            keymap("n", ".", "*:Telescope grep_string<CR>", {})
+            keymap("n", "<Leader>.", "*:Telescope grep_string<CR>", {})
+            keymap("n", "<Leader>r", ":Telescope live_grep<CR>", {})
             keymap("n", "<Leader>d", function() require("telescope").extensions.diff.diff_current({ hidden = true }) end, {})
 
             keymap("n", "<F10>", builtin.lsp_references, {})
