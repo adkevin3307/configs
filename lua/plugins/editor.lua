@@ -171,7 +171,7 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = "<CMD>TSUpdate",
+        build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown" },
