@@ -13,6 +13,7 @@ return {
                 dependencies = {
                     {
                         "williamboman/mason.nvim",
+                        build = ":MasonInstall black",
                         config = function()
                             require("mason").setup({})
                         end

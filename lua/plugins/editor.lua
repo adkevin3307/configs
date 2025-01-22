@@ -26,11 +26,9 @@ return {
                     "MunifTanjim/nui.nvim",
                     {
                         "rcarriga/nvim-notify",
-                        config = function()
-                            require("notify").setup({
-                                background_colour = "#000000"
-                            })
-                        end
+                        opts = {
+                            background_colour = "#000000"
+                        }
                     }
                 },
                 opts = {
@@ -130,32 +128,30 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup({
-                signs = {
-                    add          = { text = ' │' },
-                    change       = { text = ' │' },
-                    delete       = { text = ' │' },
-                    topdelete    = { text = ' │' },
-                    changedelete = { text = ' │' },
-                    untracked    = { text = ' │' },
-                },
-                watch_gitdir = {
-                    follow_files = true
-                },
-                attach_to_untracked = true,
-                current_line_blame = true,
-                current_line_blame_opts = {
-                    delay = 3000
-                }
-            })
-
-            local keymap = vim.keymap.set
-
-            keymap("n", "<Leader>gn", ":Gitsigns next_hunk<CR>", { silent = true })
-            keymap("n", "<Leader>gp", ":Gitsigns prev_hunk<CR>", { silent = true })
-            keymap("n", "<Leader>gg", ":Gitsigns preview_hunk<CR>", { silent = true })
-        end
+        event = { "BufEnter" },
+        opts = {
+            signs = {
+                add = { text = ' │' },
+                change = { text = ' │' },
+                delete = { text = ' │' },
+                topdelete = { text = ' │' },
+                changedelete = { text = ' │' },
+                untracked = { text = ' │' },
+            },
+            watch_gitdir = {
+                follow_files = true
+            },
+            attach_to_untracked = true,
+            current_line_blame = true,
+            current_line_blame_opts = {
+                delay = 3000
+            }
+        },
+        keys = {
+            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>", mode = { "n" } },
+            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>", mode = { "n" } },
+            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" } },
+        }
     },
     {
         "ntpeters/vim-better-whitespace",
@@ -165,17 +161,17 @@ return {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("ibl").setup({
-                scope = {
-                    show_start = false,
-                    show_end = false
-                }
-            })
-        end
+        main = "ibl",
+        opts = {
+            scope = {
+                show_start = false,
+                show_end = false
+            }
+        }
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        build = "<CMD>TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown" },
@@ -206,30 +202,19 @@ return {
         }
     },
     {
-        "vim-autoformat/vim-autoformat",
-        config = function()
-            local keymap = vim.keymap.set
-
-            keymap("n", "<F4>", ":Autoformat<CR>", { noremap = true })
-
-            vim.g.formatters_python = { "black" }
-            vim.g.formatdef_black = '"black - --line-length=200 --skip-string-normalization"'
-        end
-    },
-    {
         "stevearc/dressing.nvim"
     },
     {
-        "nvim-tree/nvim-tree.lua",
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
         },
-        config = function()
-            require("nvim-tree").setup({})
-
-            local keymap = vim.keymap.set
-            keymap("n", "<Space><Space>", ":NvimTreeToggle<CR>", { silent = true })
-        end
+        keys = {
+            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" } }
+        }
     },
     {
         "folke/todo-comments.nvim",
@@ -258,6 +243,7 @@ return {
                 "luukvbaal/statuscol.nvim",
                 config = function()
                     local builtin = require("statuscol.builtin")
+
                     require("statuscol").setup({
                         relculright = true,
                         segments = {
@@ -332,5 +318,21 @@ return {
                 direction = 'float'
             })
         end
+    },
+    {
+        'stevearc/conform.nvim',
+        keys = {
+            { '<F4>', function() require('conform').format() end, mode = { 'n', 'v' } }
+        },
+        opts = {
+            formatters_by_ft = {
+                python = { 'black' }
+            },
+            formatters = {
+                black = {
+                    prepend_args = { "--line-length", "200", "--skip-string-normalization" }
+                }
+            }
+        }
     }
 }
