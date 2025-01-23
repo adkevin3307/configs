@@ -23,15 +23,13 @@ return {
         "nvim-lualine/lualine.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
-            require("lualine").setup({
-                options = {
-                    theme = "onedark",
-                },
-                tabline = {
-                    lualine_a = { "buffers" },
-                },
-            })
-        end,
+        opts = {
+            options = {
+                theme = "onedark",
+            },
+            tabline = {
+                lualine_a = { "buffers" },
+            },
+        },
     },
 }

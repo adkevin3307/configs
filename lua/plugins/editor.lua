@@ -1,59 +1,61 @@
 return {
     {
+        "gbprod/yanky.nvim",
+        event = { "BufEnter" },
+        config = true,
+    },
+    {
+        "stevearc/aerial.nvim",
+        event = { "BufEnter" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = true,
+    },
+    {
+        "rcarriga/nvim-notify",
+        opts = {
+            background_colour = "#000000",
+        },
+    },
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        opts = {
+            presets = {
+                bottom_search = false,
+                command_palette = true,
+                long_message_to_split = true,
+            },
+            messages = {
+                view_search = false,
+            },
+            lsp = {
+                signature = {
+                    enabled = false,
+                },
+            },
+            views = {
+                mini = {
+                    win_options = {
+                        winblend = 0,
+                    },
+                },
+            },
+        },
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            {
-                "gbprod/yanky.nvim",
-                config = function()
-                    require("yanky").setup({})
-                end,
-            },
-            {
-                "stevearc/aerial.nvim",
-                dependencies = {
-                    "nvim-treesitter/nvim-treesitter",
-                    "nvim-tree/nvim-web-devicons",
-                },
-                config = function()
-                    require("aerial").setup({})
-                end,
-            },
-            {
-                "folke/noice.nvim",
-                dependencies = {
-                    "MunifTanjim/nui.nvim",
-                    {
-                        "rcarriga/nvim-notify",
-                        opts = {
-                            background_colour = "#000000",
-                        },
-                    },
-                },
-                opts = {
-                    presets = {
-                        bottom_search = false,
-                        command_palette = true,
-                        long_message_to_split = true,
-                    },
-                    messages = {
-                        view_search = false,
-                    },
-                    lsp = {
-                        signature = {
-                            enabled = false,
-                        },
-                    },
-                    views = {
-                        mini = {
-                            win_options = {
-                                winblend = 0,
-                            },
-                        },
-                    },
-                },
-            },
+            "gbprod/yanky.nvim",
+            "stevearc/aerial.nvim",
+            "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
         },
         config = function()
@@ -156,12 +158,14 @@ return {
     },
     {
         "ntpeters/vim-better-whitespace",
-        config = function()
+        event = { "BufEnter" },
+        init = function()
             vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
         end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        event = { "BufEnter" },
         main = "ibl",
         opts = {
             scope = {
@@ -172,21 +176,22 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "BufEnter" },
         build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown" },
-                sync_install = false,
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-            })
-        end,
+        main = "nvim-treesitter.configs",
+        opts = {
+            ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown" },
+            sync_install = false,
+            auto_install = true,
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+        },
     },
     {
         "numToStr/Comment.nvim",
+        event = { "BufEnter" },
         opts = {
             ignore = "^$",
             toggler = {
@@ -204,6 +209,7 @@ return {
     },
     {
         "stevearc/dressing.nvim",
+        event = "VeryLazy",
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -219,6 +225,7 @@ return {
     },
     {
         "folke/todo-comments.nvim",
+        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -236,25 +243,27 @@ return {
         },
     },
     {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            local builtin = require("statuscol.builtin")
+
+            require("statuscol").setup({
+                relculright = true,
+                segments = {
+                    { text = { "%s" }, click = "v:lua.ScSa" },
+                    { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+                    { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                },
+            })
+        end,
+    },
+    {
         "kevinhwang91/nvim-ufo",
+        event = { "BufEnter" },
         dependencies = {
             "kevinhwang91/promise-async",
             "nvim-treesitter/nvim-treesitter",
-            {
-                "luukvbaal/statuscol.nvim",
-                config = function()
-                    local builtin = require("statuscol.builtin")
-
-                    require("statuscol").setup({
-                        relculright = true,
-                        segments = {
-                            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-                            { text = { "%s" }, click = "v:lua.ScSa" },
-                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-                        },
-                    })
-                end,
-            },
+            "luukvbaal/statuscol.nvim",
         },
         opts = {
             provider_selector = function()
@@ -264,9 +273,8 @@ return {
     },
     {
         "kevinhwang91/nvim-hlslens",
-        config = function()
-            require("hlslens").setup({})
-        end,
+        event = { "BufEnter" },
+        config = true,
     },
     {
         "lewis6991/satellite.nvim",
@@ -290,65 +298,30 @@ return {
             "MunifTanjim/nui.nvim",
             "nvim-telescope/telescope.nvim",
         },
-        config = function()
-            require("remote-nvim").setup({
-                client_callback = function(port, workspace_config)
-                    local tmux = os.getenv("TMUX")
-                    local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+        opts = {
+            client_callback = function(port, workspace_config)
+                local tmux = os.getenv("TMUX")
+                local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
 
-                    if tmux ~= nil and tmux ~= "" then
-                        cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
-                    end
+                if tmux ~= nil and tmux ~= "" then
+                    cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+                end
 
-                    vim.fn.jobstart(cmd, {
-                        detach = true,
-                        on_exit = function(job_id, exit_code, event_type)
-                            print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
-                        end,
-                    })
-                end,
-            })
-        end,
+                vim.fn.jobstart(cmd, {
+                    detach = true,
+                    on_exit = function(job_id, exit_code, event_type)
+                        print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
+                    end,
+                })
+            end,
+        },
     },
     {
         "akinsho/toggleterm.nvim",
         version = "*",
-        config = function()
-            require("toggleterm").setup({
-                open_mapping = "<C-\\>",
-                direction = "float",
-            })
-        end,
-    },
-    {
-        "stevearc/conform.nvim",
-        keys = {
-            {
-                "<F4>",
-                function()
-                    require("conform").format()
-                end,
-                mode = { "n", "v" },
-            },
-        },
         opts = {
-            formatters_by_ft = {
-                lua = { "stylua" },
-                python = { "black" },
-                c = { "clang-format" },
-                cpp = { "clang-format" },
-                sh = { "shfmt" },
-                ["*"] = { "codespell" },
-                ["_"] = { "trim_whitespace" },
-            },
-            formatters = {
-                stylua = {
-                    prepend_args = { "--column-width", "200", "--indent-type", "Spaces" },
-                },
-                black = {
-                    prepend_args = { "--line-length", "200", "--skip-string-normalization" },
-                },
-            },
+            open_mapping = "<C-\\>",
+            direction = "float",
         },
     },
 }
