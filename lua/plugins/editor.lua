@@ -1,12 +1,10 @@
 return {
     {
         "gbprod/yanky.nvim",
-        event = { "BufEnter" },
         config = true,
     },
     {
         "stevearc/aerial.nvim",
-        event = { "BufEnter" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
@@ -131,7 +129,6 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        event = { "BufEnter" },
         opts = {
             signs = {
                 add = { text = " │" },
@@ -158,14 +155,12 @@ return {
     },
     {
         "ntpeters/vim-better-whitespace",
-        event = { "BufEnter" },
         init = function()
             vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
         end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = { "BufEnter" },
         main = "ibl",
         opts = {
             scope = {
@@ -176,7 +171,6 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufEnter" },
         build = ":TSUpdate",
         main = "nvim-treesitter.configs",
         opts = {
@@ -191,7 +185,6 @@ return {
     },
     {
         "numToStr/Comment.nvim",
-        event = { "BufEnter" },
         opts = {
             ignore = "^$",
             toggler = {
@@ -259,7 +252,6 @@ return {
     },
     {
         "kevinhwang91/nvim-ufo",
-        event = { "BufEnter" },
         dependencies = {
             "kevinhwang91/promise-async",
             "nvim-treesitter/nvim-treesitter",
@@ -273,7 +265,6 @@ return {
     },
     {
         "kevinhwang91/nvim-hlslens",
-        event = { "BufEnter" },
         config = true,
     },
     {
