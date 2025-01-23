@@ -85,9 +85,8 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh git bat htop tmux tree curl unzip gnupg ripgrep ca-certificates clang-format clangd python3-pip python3-venv'
+            execute 'apt install -y zsh git bat htop tmux tree curl unzip ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
-            execute 'python3 -m pip install black'
 
             execute 'mkdir -p /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key

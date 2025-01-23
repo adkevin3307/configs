@@ -8,17 +8,17 @@ return {
                 "gbprod/yanky.nvim",
                 config = function()
                     require("yanky").setup({})
-                end
+                end,
             },
             {
                 "stevearc/aerial.nvim",
                 dependencies = {
                     "nvim-treesitter/nvim-treesitter",
-                    "nvim-tree/nvim-web-devicons"
+                    "nvim-tree/nvim-web-devicons",
                 },
                 config = function()
                     require("aerial").setup({})
-                end
+                end,
             },
             {
                 "folke/noice.nvim",
@@ -27,34 +27,34 @@ return {
                     {
                         "rcarriga/nvim-notify",
                         opts = {
-                            background_colour = "#000000"
-                        }
-                    }
+                            background_colour = "#000000",
+                        },
+                    },
                 },
                 opts = {
                     presets = {
                         bottom_search = false,
                         command_palette = true,
-                        long_message_to_split = true
+                        long_message_to_split = true,
                     },
                     messages = {
-                        view_search = false
+                        view_search = false,
                     },
                     lsp = {
                         signature = {
-                            enabled = false
-                        }
+                            enabled = false,
+                        },
                     },
                     views = {
                         mini = {
                             win_options = {
-                                winblend = 0
-                            }
-                        }
-                    }
-                }
+                                winblend = 0,
+                            },
+                        },
+                    },
+                },
             },
-            "jemag/telescope-diff.nvim"
+            "jemag/telescope-diff.nvim",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -65,18 +65,18 @@ return {
                         i = {
                             ["<ESC>"] = actions.close,
                             ["<TAB>"] = actions.move_selection_next,
-                            ["<S-TAB>"] = actions.move_selection_previous
-                        }
-                    }
+                            ["<S-TAB>"] = actions.move_selection_previous,
+                        },
+                    },
                 },
                 pickers = {
                     git_status = {
-                        use_file_path = true
+                        use_file_path = true,
                     },
                     git_bcommits = {
-                        use_file_path = true
-                    }
-                }
+                        use_file_path = true,
+                    },
+                },
             })
 
             require("telescope").load_extension("file_browser")
@@ -90,7 +90,9 @@ return {
 
             keymap("n", "<Leader>.", "*:Telescope grep_string<CR>", {})
             keymap("n", "<Leader>r", ":Telescope live_grep<CR>", {})
-            keymap("n", "<Leader>d", function() require("telescope").extensions.diff.diff_current({ hidden = true }) end, {})
+            keymap("n", "<Leader>d", function()
+                require("telescope").extensions.diff.diff_current({ hidden = true })
+            end, {})
 
             keymap("n", "<F10>", builtin.lsp_references, {})
             keymap("n", "<F12>", builtin.lsp_definitions, {})
@@ -101,63 +103,62 @@ return {
             keymap("n", "<C-t>", ":Telescope aerial<CR>", {})
             keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
             keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
-            keymap("n", "<C-d>", function() builtin.diagnostics({ bufnr = 0 }) end, {})
-        end
+            keymap("n", "<C-d>", function()
+                builtin.diagnostics({ bufnr = 0 })
+            end, {})
+        end,
     },
     {
         "utilyre/barbecue.nvim",
         dependencies = {
             "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons",
         },
         config = function()
             require("barbecue").setup({
-                create_autocmd = false
+                create_autocmd = false,
             })
 
-            vim.api.nvim_create_autocmd(
-            { "WinResized", "BufWinEnter", "CursorHold", "InsertLeave" },
-            {
+            vim.api.nvim_create_autocmd({ "WinResized", "BufWinEnter", "CursorHold", "InsertLeave" }, {
                 group = vim.api.nvim_create_augroup("barbecue.updater", {}),
                 callback = function()
                     require("barbecue.ui").update()
-                end
-            }
-            )
-        end
+                end,
+            })
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",
         event = { "BufEnter" },
         opts = {
             signs = {
-                add = { text = ' │' },
-                change = { text = ' │' },
-                delete = { text = ' │' },
-                topdelete = { text = ' │' },
-                changedelete = { text = ' │' },
-                untracked = { text = ' │' },
+                add = { text = " │" },
+                change = { text = " │" },
+                delete = { text = " │" },
+                topdelete = { text = " │" },
+                changedelete = { text = " │" },
+                untracked = { text = " │" },
             },
             watch_gitdir = {
-                follow_files = true
+                follow_files = true,
             },
             attach_to_untracked = true,
             current_line_blame = true,
             current_line_blame_opts = {
-                delay = 3000
-            }
+                delay = 3000,
+            },
         },
         keys = {
             { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>", mode = { "n" } },
             { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>", mode = { "n" } },
             { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" } },
-        }
+        },
     },
     {
         "ntpeters/vim-better-whitespace",
         config = function()
             vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
-        end
+        end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -165,9 +166,9 @@ return {
         opts = {
             scope = {
                 show_start = false,
-                show_end = false
-            }
-        }
+                show_end = false,
+            },
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -179,60 +180,60 @@ return {
                 auto_install = true,
                 highlight = {
                     enable = true,
-                    additional_vim_regex_highlighting = false
-                }
+                    additional_vim_regex_highlighting = false,
+                },
             })
-        end
+        end,
     },
     {
         "numToStr/Comment.nvim",
         opts = {
             ignore = "^$",
             toggler = {
-                line = "<Leader>cc"
+                line = "<Leader>cc",
             },
             opleader = {
                 line = "<Leader>cc",
-                block = "<Leader>bc"
+                block = "<Leader>bc",
             },
             mapping = {
                 basic = false,
-                extra = false
-            }
-        }
+                extra = false,
+            },
+        },
     },
     {
-        "stevearc/dressing.nvim"
+        "stevearc/dressing.nvim",
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-          "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
         },
         keys = {
-            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" } }
-        }
+            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" } },
+        },
     },
     {
         "folke/todo-comments.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
         },
         opts = {
             gui_style = {
                 fg = "BOLD",
-                bg = "NONE"
+                bg = "NONE",
             },
             highlight = {
-                pattern = [[.*<(KEYWORDS)\s*]]
+                pattern = [[.*<(KEYWORDS)\s*]],
             },
             search = {
-                pattern = [[\b(KEYWORDS)]]
-            }
-        }
+                pattern = [[\b(KEYWORDS)]],
+            },
+        },
     },
     {
         "kevinhwang91/nvim-ufo",
@@ -258,14 +259,14 @@ return {
         opts = {
             provider_selector = function()
                 return { "treesitter", "indent" }
-            end
-        }
+            end,
+        },
     },
     {
         "kevinhwang91/nvim-hlslens",
         config = function()
             require("hlslens").setup({})
-        end
+        end,
     },
     {
         "lewis6991/satellite.nvim",
@@ -273,13 +274,13 @@ return {
             winblend = 0,
             handlers = {
                 cursor = {
-                    enable = false
-                }
-            }
-        }
+                    enable = false,
+                },
+            },
+        },
     },
     {
-        "aserowy/tmux.nvim"
+        "aserowy/tmux.nvim",
     },
     {
         "amitds1997/remote-nvim.nvim",
@@ -295,7 +296,7 @@ return {
                     local tmux = os.getenv("TMUX")
                     local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
 
-                    if tmux ~= nil and tmux ~= '' then
+                    if tmux ~= nil and tmux ~= "" then
                         cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
                     end
 
@@ -307,32 +308,47 @@ return {
                     })
                 end,
             })
-        end
+        end,
     },
     {
-        'akinsho/toggleterm.nvim',
+        "akinsho/toggleterm.nvim",
         version = "*",
         config = function()
-            require('toggleterm').setup({
-                open_mapping = '<C-\\>',
-                direction = 'float'
+            require("toggleterm").setup({
+                open_mapping = "<C-\\>",
+                direction = "float",
             })
-        end
+        end,
     },
     {
-        'stevearc/conform.nvim',
+        "stevearc/conform.nvim",
         keys = {
-            { '<F4>', function() require('conform').format() end, mode = { 'n', 'v' } }
+            {
+                "<F4>",
+                function()
+                    require("conform").format()
+                end,
+                mode = { "n", "v" },
+            },
         },
         opts = {
             formatters_by_ft = {
-                python = { 'black' }
+                lua = { "stylua" },
+                python = { "black" },
+                c = { "clang-format" },
+                cpp = { "clang-format" },
+                sh = { "shfmt" },
+                ["*"] = { "codespell" },
+                ["_"] = { "trim_whitespace" },
             },
             formatters = {
+                stylua = {
+                    prepend_args = { "--column-width", "200", "--indent-type", "Spaces" },
+                },
                 black = {
-                    prepend_args = { "--line-length", "200", "--skip-string-normalization" }
-                }
-            }
-        }
-    }
+                    prepend_args = { "--line-length", "200", "--skip-string-normalization" },
+                },
+            },
+        },
+    },
 }

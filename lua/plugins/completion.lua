@@ -3,7 +3,7 @@ return {
         "ray-x/lsp_signature.nvim",
         config = function()
             require("lsp_signature").setup({})
-        end
+        end,
     },
     {
         "neovim/nvim-lspconfig",
@@ -13,10 +13,10 @@ return {
                 dependencies = {
                     {
                         "williamboman/mason.nvim",
-                        build = ":MasonInstall black",
+                        build = ":MasonInstall stylua black clang-format shfmt",
                         config = function()
                             require("mason").setup({})
-                        end
+                        end,
                     },
                     {
                         "hrsh7th/nvim-cmp",
@@ -26,7 +26,7 @@ return {
                             "hrsh7th/cmp-path",
 
                             "L3MON4D3/LuaSnip",
-                            "saadparwaiz1/cmp_luasnip"
+                            "saadparwaiz1/cmp_luasnip",
                         },
                         config = function()
                             local has_words_before = function()
@@ -41,12 +41,12 @@ return {
 
                             cmp.setup({
                                 completion = {
-                                    completeopt = "menu,menuone.preview.noselect"
+                                    completeopt = "menu,menuone.preview.noselect",
                                 },
                                 snippet = {
                                     expand = function(args)
                                         luasnip.lsp_expand(args.body)
-                                    end
+                                    end,
                                 },
                                 mapping = {
                                     ["<TAB>"] = function(fallback)
@@ -69,36 +69,36 @@ return {
                                     end,
                                     ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s" }),
                                     ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
-                                    ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" })
+                                    ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
                                 },
                                 sources = {
                                     { name = "nvim_lsp" },
                                     { name = "luasnip" },
                                     { name = "buffer" },
-                                    { name = "path" }
-                                }
+                                    { name = "path" },
+                                },
                             })
-                        end
-                    }
+                        end,
+                    },
                 },
                 config = function()
                     require("mason-lspconfig").setup({
                         ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
-                        automatic_installation = true
+                        automatic_installation = true,
                     })
 
                     require("mason-lspconfig").setup_handlers({
                         function(server_name)
                             local capabilities = require("cmp_nvim_lsp").default_capabilities()
                             require("lspconfig")[server_name].setup({ capabilities = capabilities })
-                        end
+                        end,
                     })
-                end
-            }
+                end,
+            },
         },
         config = function()
             vim.diagnostic.config({
-                virtual_text = false
+                virtual_text = false,
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -108,7 +108,7 @@ return {
 
                     keymap("n", "<F2>", vim.lsp.buf.rename, opts)
                     keymap("n", "?", vim.lsp.buf.hover, opts)
-                end
+                end,
             })
 
             vim.api.nvim_create_autocmd("CursorHold", {
@@ -124,7 +124,7 @@ return {
                     }
 
                     vim.diagnostic.open_float(nil, opts)
-                end
+                end,
             })
 
             for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
@@ -132,9 +132,9 @@ return {
                     text = "",
                     texthl = "DiagnosticSign" .. diag,
                     linehl = "",
-                    numhl = "DiagnosticSign" .. diag
+                    numhl = "DiagnosticSign" .. diag,
                 })
             end
-        end
-    }
+        end,
+    },
 }

@@ -4,34 +4,34 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            require("onedark").setup {
-                style = 'dark',
+            require("onedark").setup({
+                style = "dark",
                 transparent = true,
                 term_colors = true,
                 code_style = {
-                    comments = "none"
+                    comments = "none",
                 },
                 highlights = {
-                    CursorLineNR = { fg = "#ff8800" }
-                }
-            }
+                    CursorLineNR = { fg = "#ff8800" },
+                },
+            })
 
             require("onedark").load()
-        end
+        end,
     },
     {
         "nvim-lualine/lualine.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            require("lualine").setup {
+            require("lualine").setup({
                 options = {
-                    theme = "onedark"
+                    theme = "onedark",
                 },
                 tabline = {
-                    lualine_a = { "buffers" }
-                }
-            }
-        end
-    }
+                    lualine_a = { "buffers" },
+                },
+            })
+        end,
+    },
 }
