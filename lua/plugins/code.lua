@@ -81,6 +81,9 @@ return {
             },
         },
         opts = {
+            default_format_ops = {
+                timeout_ms = 3000,
+            },
             formatters_by_ft = {
                 sh = { "shfmt" },
                 lua = { "stylua" },

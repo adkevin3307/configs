@@ -13,7 +13,7 @@ require("lazy").setup({
         { import = "plugins" },
         { import = "plugins.theme" },
         { import = "plugins.editor" },
-        { import = "plugins.completion" },
+        { import = "plugins.code" },
     },
     install = { missing = true, colorscheme = { "onedark" } },
 })
