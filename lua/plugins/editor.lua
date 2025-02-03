@@ -149,8 +149,8 @@ return {
             },
         },
         keys = {
-            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>", mode = { "n" } },
-            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>", mode = { "n" } },
+            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" } },
+            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" } },
             { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" } },
         },
     },
@@ -200,10 +200,6 @@ return {
                 extra = false,
             },
         },
-    },
-    {
-        "stevearc/dressing.nvim",
-        event = "VeryLazy",
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -266,7 +262,12 @@ return {
     },
     {
         "kevinhwang91/nvim-hlslens",
+        lazy = false,
         config = true,
+        keys = {
+            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n" } },
+            { "<Leader>n", "<CMD>nohlsearch<CR>", mode = { "n" } },
+        },
     },
     {
         "lewis6991/satellite.nvim",
@@ -314,6 +315,36 @@ return {
         opts = {
             open_mapping = "<C-\\>",
             direction = "float",
+        },
+    },
+    {
+        "RRethy/vim-illuminate",
+        lazy = false,
+        opts = {
+            delay = 200,
+            large_file_cutoff = 2000,
+            large_file_overrids = {
+                providers = { "lsp" },
+            },
+        },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+        end,
+        keys = {
+            {
+                "<Leader>wn",
+                function()
+                    require("illuminate").goto_next_reference()
+                end,
+                mode = { "n" },
+            },
+            {
+                "<Leader>wp",
+                function()
+                    require("illuminate").goto_prev_reference()
+                end,
+                mode = { "n" },
+            },
         },
     },
 }
