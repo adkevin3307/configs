@@ -84,29 +84,64 @@ return {
             require("telescope").load_extension("aerial")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
-
-            local keymap = vim.keymap.set
-            local builtin = require("telescope.builtin")
-
-            keymap("n", "<Leader>.", "*:Telescope grep_string<CR>", {})
-            keymap("n", "<Leader>r", ":Telescope live_grep<CR>", {})
-            keymap("n", "<Leader>d", function()
-                require("telescope").extensions.diff.diff_current({ hidden = true })
-            end, {})
-
-            keymap("n", "<F10>", builtin.lsp_references, {})
-            keymap("n", "<F12>", builtin.lsp_definitions, {})
-            keymap("n", "<C-p>", builtin.buffers, {})
-            keymap("n", "<C-s>", builtin.git_status, {})
-            keymap("n", "<C-g>", builtin.git_bcommits, {})
-            keymap("n", "<C-n>", ":Telescope notify<CR>", {})
-            keymap("n", "<C-t>", ":Telescope aerial<CR>", {})
-            keymap("n", "<C-y>", ":Telescope yank_history<CR>", {})
-            keymap("n", "<C-f>", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", {})
-            keymap("n", "<C-d>", function()
-                builtin.diagnostics({ bufnr = 0 })
-            end, {})
         end,
+        keys = {
+            { "<Leader>.", "*<CMD>Telescope grep_string<CR>", mode = { "n" } },
+            { "<Leader>r", "<CMD>Telescope live_grep<CR>", mode = { "n" } },
+            {
+                "<Leader>d",
+                function()
+                    require("telescope").extensions.diff.diff_current({ hidden = true })
+                end,
+                mode = { "n" },
+            },
+            {
+                "<F10>",
+                function()
+                    require("telescope.builtin").lsp_references()
+                end,
+                mode = { "n" },
+            },
+            {
+                "<F12>",
+                function()
+                    require("telescope.builtin").lsp_definitions()
+                end,
+                mode = { "n" },
+            },
+            {
+                "<C-\\>",
+                function()
+                    require("telescope.builtin").buffers()
+                end,
+                mode = { "n" },
+            },
+            {
+                "<C-d>",
+                function()
+                    require("telescope.builtin").diagnostics({ bufnr = 0 })
+                end,
+                mode = { "n" },
+            },
+            {
+                "<C-s>",
+                function()
+                    require("telescope.builtin").git_status()
+                end,
+                mode = { "n" },
+            },
+            {
+                "<C-g>",
+                function()
+                    require("telescope.builtin").git_bcommits()
+                end,
+                mode = { "n" },
+            },
+            { "<C-n>", "<CMD>Telescope notify<CR>", mode = { "n" } },
+            { "<C-t>", "<CMD>Telescope aerial<CR>", mode = { "n" } },
+            { "<C-y>", "<CMD>Telescope yank_history<CR>", mode = { "n" } },
+            { "<C-f>", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" } },
+        },
     },
     {
         "utilyre/barbecue.nvim",
@@ -313,7 +348,7 @@ return {
         "akinsho/toggleterm.nvim",
         version = "*",
         opts = {
-            open_mapping = "<C-\\>",
+            open_mapping = "<Leader>\\",
             direction = "float",
         },
     },
