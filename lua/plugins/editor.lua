@@ -395,4 +395,25 @@ return {
             },
         },
     },
+    {
+        "linux-cultist/venv-selector.nvim",
+        event = "VeryLazy",
+        branch = "regexp",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = {
+            settings = {
+                options = {
+                    enable_cached_venvs = false,
+                    cached_venv_automatic_activation = false,
+                    notify_user_on_venv_activation = true,
+                },
+            },
+        },
+        keys = {
+            { "<Leader>v", "<CMD>VenvSelect<CR>", mode = { "n" } },
+        },
+    },
 }
