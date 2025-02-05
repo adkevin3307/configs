@@ -16,18 +16,13 @@ opt.shortmess:append({ c = true })
 opt.signcolumn = "yes"
 opt.cursorline = true
 
-opt.foldcolumn = "1" -- '0' is not bad
-opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldcolumn = "1"
+opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 local keymap = vim.keymap.set
-
-keymap("n", "<C-h>", "<Left>")
-keymap("n", "<C-j>", "<Down>")
-keymap("n", "<C-k>", "<Up>")
-keymap("n", "<C-l>", "<Right>")
 
 keymap("i", "<C-h>", "<Left>")
 keymap("i", "<C-j>", "<Down>")

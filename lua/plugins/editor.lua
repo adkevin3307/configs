@@ -66,6 +66,8 @@ return {
                             ["<ESC>"] = actions.close,
                             ["<TAB>"] = actions.move_selection_next,
                             ["<S-TAB>"] = actions.move_selection_previous,
+                            ["<C-k>"] = actions.preview_scrolling_up,
+                            ["<C-j>"] = actions.preview_scrolling_down,
                         },
                     },
                 },
@@ -226,6 +228,9 @@ return {
             toggler = {
                 line = "<Leader>cc",
             },
+            opleader = {
+                line = "<Leader>cc",
+            },
             mapping = {
                 basic = false,
                 extra = false,
@@ -384,6 +389,10 @@ return {
         opts = {
             preset = "helix",
             defaults = {},
+            keys = {
+                scroll_up = "<C-k>",
+                scroll_down = "<C-j>",
+            },
         },
         keys = {
             {
@@ -391,7 +400,7 @@ return {
                 function()
                     require("which-key").show({ keys = "<c-w>", loop = true })
                 end,
-                desc = "Buffer Keymaps (which-key)",
+                mode = { "n" },
             },
         },
     },
@@ -415,5 +424,9 @@ return {
         keys = {
             { "<Leader>v", "<CMD>VenvSelect<CR>", mode = { "n" } },
         },
+    },
+    {
+        "adkevin3307/floating-help",
+        config = true,
     },
 }
