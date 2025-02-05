@@ -226,10 +226,6 @@ return {
             toggler = {
                 line = "<Leader>cc",
             },
-            opleader = {
-                line = "<Leader>cc",
-                block = "<Leader>bc",
-            },
             mapping = {
                 basic = false,
                 extra = false,
@@ -379,6 +375,23 @@ return {
                     require("illuminate").goto_prev_reference()
                 end,
                 mode = { "n" },
+            },
+        },
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            preset = "helix",
+            defaults = {},
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ keys = "<c-w>", loop = true })
+                end,
+                desc = "Buffer Keymaps (which-key)",
             },
         },
     },
