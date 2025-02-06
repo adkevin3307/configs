@@ -311,7 +311,7 @@ return {
     },
     {
         "amitds1997/remote-nvim.nvim",
-        version = "v0.3.9",
+        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
@@ -337,7 +337,6 @@ return {
     },
     {
         "akinsho/toggleterm.nvim",
-        version = "*",
         opts = {
             open_mapping = "<Leader>\\",
             insert_mappings = false,
