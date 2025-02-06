@@ -64,6 +64,7 @@ return {
                     mappings = {
                         i = {
                             ["<ESC>"] = actions.close,
+                            ["<C-q>"] = actions.close,
                             ["<TAB>"] = actions.move_selection_next,
                             ["<S-TAB>"] = actions.move_selection_previous,
                             ["<C-k>"] = actions.preview_scrolling_up,
@@ -89,13 +90,22 @@ return {
             require("telescope").load_extension("diff")
         end,
         keys = {
-            { "<Leader>*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
-            { "<Leader>r", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Telescope live_grep" },
-            { "<Leader>y", "<CMD>Telescope yank_history<CR>", mode = { "n" }, desc = "Telescope yank_history" },
-            { "<Leader>t", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope aerial" },
-            { "<Leader>n", "<CMD>Telescope notify<CR>", mode = { "n" }, desc = "Telescope notify" },
+            { "<Leader>t*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
+            { "<Leader>tr", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Telescope live_grep" },
+            { "<Leader>tt", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope aerial" },
+            { "<Leader>tn", "<CMD>Telescope notify<CR>", mode = { "n" }, desc = "Telescope notify" },
+            { "<Leader>ty", "<CMD>Telescope yank_history<CR>", mode = { "n" }, desc = "Telescope yank_history" },
+            { "<Leader>tf", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
             {
-                "<Leader>d",
+                "<Leader>tp",
+                function()
+                    require("telescope.builtin").buffers()
+                end,
+                mode = { "n" },
+                desc = "Telescope buffers",
+            },
+            {
+                "<Leader>td",
                 function()
                     require("telescope.builtin").diagnostics({ bufnr = 0 })
                 end,
@@ -103,7 +113,7 @@ return {
                 desc = "Telescope diagnostics",
             },
             {
-                "<Leader>fd",
+                "<Leader>tc",
                 function()
                     require("telescope").extensions.diff.diff_current({ hidden = true })
                 end,
@@ -142,15 +152,6 @@ return {
                 mode = { "n" },
                 desc = "Telescope lsp_definitions",
             },
-            {
-                "<C-\\>",
-                function()
-                    require("telescope.builtin").buffers()
-                end,
-                mode = { "n" },
-                desc = "Telescope buffers",
-            },
-            { "<C-f>", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
         },
     },
     {
@@ -391,6 +392,7 @@ return {
                 { "<Leader>c", group = "code" },
                 { "<Leader>w", group = "word" },
                 { "<Leader>b", group = "buffer" },
+                { "<Leader>t", group = "telescope" },
             },
         },
         keys = {
