@@ -1,15 +1,17 @@
 # Configs
 
-## Environment
+> Configs for basic environment
+
+## Requirements
 
 - `zsh >= 5.8`
 - `vim >= 8.2` / `nvim >= 0.10.0`
-- `clang-format >= 10.0`
 
 ## Usage
 
-- `Ubuntu` users can use `setup.sh` directly
-- Remember to open sth. with `editor (vim / nvim)` first, go get a coffee and wait
+- `Ubuntu` / `Arch` users can use `setup.sh` directly
+- Remember to open sth. with `editor (vim / nvim)` first, then go get a coffee and wait
+- Warnings: currently, `vim` is suspend, please use `nvim` if possible
 
 ## Key Mapping
 
@@ -18,19 +20,15 @@ List some of useful custom key mappings.
 - `<A>`: `Alt`
 - `<C>`: `Ctrl`
 - `<S>`: `Shift`
-- `<Leader>`: `\`
 - `<CR>`: `Enter`
 - `<TAB>`: `Tab`
-- `<Spa>`: `Space`
 - `<F2>`: F2 key
 - `<F4>`: F4 key
 - `<F10>`: F10 key
 - `<F12>`: F12 key
 - `N` / `I` / `V`: Normal / Insert / Visual mode
 
-### vim
-
-> TBD
+### vim [SUSPEND]
 
 |       Key       |    Mode    |               Description               |
 | --------------- | ---------- | --------------------------------------- |
@@ -58,38 +56,8 @@ List some of useful custom key mappings.
 
 ### nvim
 
-|       Key       |    Mode    |               Description               |
-| --------------- | ---------- | --------------------------------------- |
-| `<F2>`          | `N`        | rename selected word                    |
-| `<F3>`          | `N`        | multiple replacement                    |
-| `<F4>`          | `N`        | auto format                             |
-| `<F10>`         | `N`        | goto references                         |
-| `<F12>`         | `N`        | goto definition                         |
-| `<TAB>`         | `I`        | select next in auto complete prompt     |
-| `<S-TAB>`       | `I`        | select previous in auto complete prompt |
-| `?`             | `N`        | show documentation on current word      |
-| `.`             | `N`        | search string in all files              |
-| `<C-j>`         | `I`        | scroll docs down                        |
-| `<C-k>`         | `I`        | scroll docs up                          |
-| `<C-f>`         | `N`        | show files                              |
-| `<C-s>`         | `N`        | show git status                         |
-| `<C-g>`         | `N`        | show git commits                        |
-| `<C-p>`         | `N`        | show buffer list                        |
-| `<C-q>`         | `N`        | close current buffer                    |
-| `<C-t>`         | `N`        | show tags in current file               |
-| `<C-y>`         | `N`        | show yank history                       |
-| `<C-d>`         | `N`        | show diagnostic                         |
-| `<C-n>`         | `N`        | show notify                             |
-| `<Spa><Spa>`    | `N`        | open structure tree                     |
-| `<Leader>n`     | `N`        | unset highlight                         |
-| `<Leader>d`     | `N`        | diff w/ current file                    |
-| `<Leader>zo`    | `N`        | open all folds                          |
-| `<Leader>zc`    | `N`        | close all folds (first level)           |
-| `<Leader>cc`    | `N`        | toggle code comment (inline)            |
-| `<Leader>bc`    | `N`        | toggle code comment (block)             |
-| `<Leader>gg`    | `N`        | show git change                         |
-| `<Leader>gn`    | `N`        | goto next git change                    |
-| `<Leader>gp`    | `N`        | goto previous git change                |
+- The `<Leader>` is `<Space>`
+- Refer to `<Leader>?` for more information
 
 ### tmux
 
@@ -113,7 +81,7 @@ List some of useful custom key mappings.
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-### vim
+### vim [SUSPEND]
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
@@ -131,7 +99,7 @@ List some of useful custom key mappings.
 - [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
 - [sillybun/vim-repl](https://github.com/sillybun/vim-repl)
 
-### nvim
+### nvim [TODO]
 
 - [navarasu/onedark.nvim](https://github.com/navarasu/onedark.nvim)
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)

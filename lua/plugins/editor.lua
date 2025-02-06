@@ -88,14 +88,42 @@ return {
             require("telescope").load_extension("diff")
         end,
         keys = {
-            { "<Leader>.", "*<CMD>Telescope grep_string<CR>", mode = { "n" } },
-            { "<Leader>r", "<CMD>Telescope live_grep<CR>", mode = { "n" } },
+            { "<Leader>*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
+            { "<Leader>r", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Telescope live_grep" },
+            { "<Leader>y", "<CMD>Telescope yank_history<CR>", mode = { "n" }, desc = "Telescope yank_history" },
+            { "<Leader>t", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope aerial" },
+            { "<Leader>n", "<CMD>Telescope notify<CR>", mode = { "n" }, desc = "Telescope notify" },
             {
                 "<Leader>d",
+                function()
+                    require("telescope.builtin").diagnostics({ bufnr = 0 })
+                end,
+                mode = { "n" },
+                desc = "Telescope diagnostics",
+            },
+            {
+                "<Leader>fd",
                 function()
                     require("telescope").extensions.diff.diff_current({ hidden = true })
                 end,
                 mode = { "n" },
+                desc = "Telescope diff_current",
+            },
+            {
+                "<Leader>gs",
+                function()
+                    require("telescope.builtin").git_status()
+                end,
+                mode = { "n" },
+                desc = "Telescope git_status",
+            },
+            {
+                "<Leader>gb",
+                function()
+                    require("telescope.builtin").git_bcommits()
+                end,
+                mode = { "n" },
+                desc = "Telescope git_bcommits",
             },
             {
                 "<F10>",
@@ -103,6 +131,7 @@ return {
                     require("telescope.builtin").lsp_references()
                 end,
                 mode = { "n" },
+                desc = "Telescope lsp_references",
             },
             {
                 "<F12>",
@@ -110,6 +139,7 @@ return {
                     require("telescope.builtin").lsp_definitions()
                 end,
                 mode = { "n" },
+                desc = "Telescope lsp_definitions",
             },
             {
                 "<C-\\>",
@@ -117,32 +147,9 @@ return {
                     require("telescope.builtin").buffers()
                 end,
                 mode = { "n" },
+                desc = "Telescope buffers",
             },
-            {
-                "<C-d>",
-                function()
-                    require("telescope.builtin").diagnostics({ bufnr = 0 })
-                end,
-                mode = { "n" },
-            },
-            {
-                "<C-s>",
-                function()
-                    require("telescope.builtin").git_status()
-                end,
-                mode = { "n" },
-            },
-            {
-                "<C-g>",
-                function()
-                    require("telescope.builtin").git_bcommits()
-                end,
-                mode = { "n" },
-            },
-            { "<C-n>", "<CMD>Telescope notify<CR>", mode = { "n" } },
-            { "<C-t>", "<CMD>Telescope aerial<CR>", mode = { "n" } },
-            { "<C-y>", "<CMD>Telescope yank_history<CR>", mode = { "n" } },
-            { "<C-f>", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" } },
+            { "<C-f>", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
         },
     },
     {
@@ -186,14 +193,16 @@ return {
             },
         },
         keys = {
-            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" } },
-            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" } },
-            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" } },
+            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Gitsigns next_hunk" },
+            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Gitsigns prev_hunk" },
+            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Gitsigns preview_hunk" },
         },
     },
     {
         "ntpeters/vim-better-whitespace",
         init = function()
+            vim.g.better_whitespace_operator = ""
+
             vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
         end,
     },
@@ -246,26 +255,7 @@ return {
             "MunifTanjim/nui.nvim",
         },
         keys = {
-            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" } },
-        },
-    },
-    {
-        "folke/todo-comments.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        opts = {
-            gui_style = {
-                fg = "BOLD",
-                bg = "NONE",
-            },
-            highlight = {
-                pattern = [[.*<(KEYWORDS)\s*]],
-            },
-            search = {
-                pattern = [[\b(KEYWORDS)]],
-            },
+            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" }, desc = "Neotree toggle" },
         },
     },
     {
@@ -301,8 +291,8 @@ return {
         lazy = false,
         config = true,
         keys = {
-            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n" } },
-            { "<Leader>n", "<CMD>nohlsearch<CR>", mode = { "n" } },
+            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n" }, desc = "Search" },
+            { "<C-n>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "No highlight search" },
         },
     },
     {
@@ -350,6 +340,7 @@ return {
         version = "*",
         opts = {
             open_mapping = "<Leader>\\",
+            insert_mappings = false,
             direction = "float",
         },
     },
@@ -373,6 +364,7 @@ return {
                     require("illuminate").goto_next_reference()
                 end,
                 mode = { "n" },
+                desc = "Illuminate goto_next_reference",
             },
             {
                 "<Leader>wp",
@@ -380,6 +372,7 @@ return {
                     require("illuminate").goto_prev_reference()
                 end,
                 mode = { "n" },
+                desc = "Illuminate goto_prev_reference",
             },
         },
     },
@@ -393,14 +386,21 @@ return {
                 scroll_up = "<C-k>",
                 scroll_down = "<C-j>",
             },
+            spec = {
+                { "<Leader>g", group = "git" },
+                { "<Leader>c", group = "code" },
+                { "<Leader>w", group = "word" },
+                { "<Leader>b", group = "buffer" },
+            },
         },
         keys = {
             {
                 "<leader>?",
                 function()
-                    require("which-key").show({ keys = "<c-w>", loop = true })
+                    require("which-key").show({ loop = true })
                 end,
                 mode = { "n" },
+                desc = "Help",
             },
         },
     },
@@ -420,9 +420,6 @@ return {
                     notify_user_on_venv_activation = true,
                 },
             },
-        },
-        keys = {
-            { "<Leader>v", "<CMD>VenvSelect<CR>", mode = { "n" } },
         },
     },
     {

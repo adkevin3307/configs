@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local opt = vim.opt
 
 opt.smartindent = true
@@ -29,5 +31,5 @@ keymap("i", "<C-j>", "<Down>")
 keymap("i", "<C-k>", "<Up>")
 keymap("i", "<C-l>", "<Right>")
 
-keymap("n", "<C-q>", "<CMD>bdelete<CR>", { silent = true })
+keymap("n", "<C-q>", "<CMD>bdelete<CR>", { silent = true, desc = "Buffer delete" })
 keymap("t", "<ESC>", "<ESC><C-\\><C-n>")

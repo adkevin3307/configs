@@ -71,15 +71,6 @@ return {
     },
     {
         "stevearc/conform.nvim",
-        keys = {
-            {
-                "<F4>",
-                function()
-                    require("conform").format()
-                end,
-                mode = { "n", "v" },
-            },
-        },
         opts = {
             default_format_ops = {
                 timeout_ms = 3000,
@@ -100,6 +91,16 @@ return {
                 black = {
                     prepend_args = { "--line-length", "200", "--skip-string-normalization" },
                 },
+            },
+        },
+        keys = {
+            {
+                "<F4>",
+                function()
+                    require("conform").format()
+                end,
+                mode = { "n", "v" },
+                desc = "LSP format",
             },
         },
     },
@@ -129,8 +130,10 @@ return {
                     local keymap = vim.keymap.set
                     local opts = { buffer = ev.buf }
 
-                    keymap("n", "<F2>", vim.lsp.buf.rename, opts)
-                    keymap("n", "?", vim.lsp.buf.hover, opts)
+                    keymap("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
+                    keymap("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
+
+                    vim.keymap.del("n", "K", opts)
                 end,
             })
 
@@ -175,5 +178,5 @@ return {
             "stevearc/conform.nvim",
         },
         config = true,
-    }
+    },
 }

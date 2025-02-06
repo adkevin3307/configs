@@ -53,10 +53,10 @@ return {
             },
         },
         keys = {
-            { "<Tab>", "<CMD>BufferLineCycleNext<CR>", mode = { "n" } },
-            { "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", mode = { "n" } },
-            { "<Leader>bn", "<CMD>BufferLineMoveNext<CR>", mode = { "n" } },
-            { "<Leader>bp", "<CMD>BufferLineMovePrev<CR>", mode = { "n" } },
+            { "<Tab>", "<CMD>BufferLineCycleNext<CR>", mode = { "n" }, desc = "Next buffer" },
+            { "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", mode = { "n" }, desc = "Prev buffer" },
+            { "<Leader>bn", "<CMD>BufferLineMoveNext<CR>", mode = { "n" }, desc = "Move buffer next" },
+            { "<Leader>bp", "<CMD>BufferLineMovePrev<CR>", mode = { "n" }, desc = "Move buffer prev" },
         },
     },
     {
