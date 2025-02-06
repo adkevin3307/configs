@@ -1,5 +1,12 @@
 return {
     {
+        "aserowy/tmux.nvim",
+    },
+    {
+        "adkevin3307/floating-help",
+        config = true,
+    },
+    {
         "gbprod/yanky.nvim",
         config = true,
     },
@@ -10,6 +17,15 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = true,
+    },
+    {
+        "olimorris/persisted.nvim",
+        opts = {
+            use_git_branch = true,
+        },
+        keys = {
+            { "<Leader>ss", "<CMD>SessionSave<CR>", mode = { "n" }, desc = "Save session" },
+        },
     },
     {
         "rcarriga/nvim-notify",
@@ -51,8 +67,9 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            "gbprod/yanky.nvim",
+            "olimorris/persisted.nvim",
             "stevearc/aerial.nvim",
+            "gbprod/yanky.nvim",
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
         },
@@ -85,6 +102,7 @@ return {
 
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("yank_history")
+            require("telescope").load_extension("persisted")
             require("telescope").load_extension("aerial")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
@@ -120,6 +138,7 @@ return {
                 mode = { "n" },
                 desc = "Telescope diff_current",
             },
+            { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Telescope load session" },
             {
                 "<Leader>gs",
                 function()
@@ -309,35 +328,6 @@ return {
         },
     },
     {
-        "aserowy/tmux.nvim",
-    },
-    {
-        "amitds1997/remote-nvim.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            "nvim-telescope/telescope.nvim",
-        },
-        opts = {
-            client_callback = function(port, workspace_config)
-                local tmux = os.getenv("TMUX")
-                local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
-
-                if tmux ~= nil and tmux ~= "" then
-                    cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
-                end
-
-                vim.fn.jobstart(cmd, {
-                    detach = true,
-                    on_exit = function(job_id, exit_code, event_type)
-                        print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
-                    end,
-                })
-            end,
-        },
-    },
-    {
         "akinsho/toggleterm.nvim",
         opts = {
             open_mapping = "<Leader>\\",
@@ -378,35 +368,6 @@ return {
         },
     },
     {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            preset = "helix",
-            defaults = {},
-            keys = {
-                scroll_up = "<C-k>",
-                scroll_down = "<C-j>",
-            },
-            spec = {
-                { "<Leader>g", group = "git" },
-                { "<Leader>c", group = "code" },
-                { "<Leader>w", group = "word" },
-                { "<Leader>b", group = "buffer" },
-                { "<Leader>t", group = "telescope" },
-            },
-        },
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ loop = true })
-                end,
-                mode = { "n" },
-                desc = "Help",
-            },
-        },
-    },
-    {
         "linux-cultist/venv-selector.nvim",
         event = "VeryLazy",
         branch = "regexp",
@@ -425,7 +386,59 @@ return {
         },
     },
     {
-        "adkevin3307/floating-help",
-        config = true,
+        "amitds1997/remote-nvim.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = {
+            client_callback = function(port, workspace_config)
+                local tmux = os.getenv("TMUX")
+                local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+
+                if tmux ~= nil and tmux ~= "" then
+                    cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+                end
+
+                vim.fn.jobstart(cmd, {
+                    detach = true,
+                    on_exit = function(job_id, exit_code, event_type)
+                        print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
+                    end,
+                })
+            end,
+        },
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            preset = "helix",
+            defaults = {},
+            keys = {
+                scroll_up = "<C-k>",
+                scroll_down = "<C-j>",
+            },
+            spec = {
+                { "<Leader>g", group = "git" },
+                { "<Leader>c", group = "code" },
+                { "<Leader>w", group = "word" },
+                { "<Leader>b", group = "buffer" },
+                { "<Leader>s", group = "session" },
+                { "<Leader>t", group = "telescope" },
+            },
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ loop = true })
+                end,
+                mode = { "n" },
+                desc = "Help",
+            },
+        },
     },
 }
