@@ -43,7 +43,7 @@ return {
             })
 
             vim.api.nvim_create_autocmd("User", {
-                pattern = { "PersistedLoadPost", "PersistedTelescopeLoadPost" },
+                pattern = { "PersistedLoadPost" },
                 callback = function()
                     vim.notify("Session loaded")
                 end,
