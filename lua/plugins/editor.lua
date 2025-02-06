@@ -138,14 +138,14 @@ return {
                 mode = { "n" },
                 desc = "Telescope diff_current",
             },
-            { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Telescope load session" },
+            { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             {
                 "<Leader>gs",
                 function()
                     require("telescope.builtin").git_status()
                 end,
                 mode = { "n" },
-                desc = "Telescope git_status",
+                desc = "Git status",
             },
             {
                 "<Leader>gb",
@@ -153,7 +153,7 @@ return {
                     require("telescope.builtin").git_bcommits()
                 end,
                 mode = { "n" },
-                desc = "Telescope git_bcommits",
+                desc = "Git bcommits",
             },
             {
                 "<F10>",
@@ -161,7 +161,7 @@ return {
                     require("telescope.builtin").lsp_references()
                 end,
                 mode = { "n" },
-                desc = "Telescope lsp_references",
+                desc = "LSP references",
             },
             {
                 "<F12>",
@@ -169,7 +169,7 @@ return {
                     require("telescope.builtin").lsp_definitions()
                 end,
                 mode = { "n" },
-                desc = "Telescope lsp_definitions",
+                desc = "LSP definitions",
             },
         },
     },
@@ -214,9 +214,9 @@ return {
             },
         },
         keys = {
-            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Gitsigns next_hunk" },
-            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Gitsigns prev_hunk" },
-            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Gitsigns preview_hunk" },
+            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Git hunk next" },
+            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Git hunk prev" },
+            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Git hunk preview" },
         },
     },
     {
@@ -313,7 +313,7 @@ return {
         config = true,
         keys = {
             { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n" }, desc = "Search" },
-            { "<C-n>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "No highlight search" },
+            { "<C-n>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Turn off matched highlight" },
         },
     },
     {
@@ -350,20 +350,20 @@ return {
         end,
         keys = {
             {
-                "<Leader>wn",
+                "<Leader>cn",
                 function()
                     require("illuminate").goto_next_reference()
                 end,
                 mode = { "n" },
-                desc = "Illuminate goto_next_reference",
+                desc = "Next hover word",
             },
             {
-                "<Leader>wp",
+                "<Leader>cp",
                 function()
                     require("illuminate").goto_prev_reference()
                 end,
                 mode = { "n" },
-                desc = "Illuminate goto_prev_reference",
+                desc = "Prev hover word",
             },
         },
     },
@@ -424,7 +424,6 @@ return {
             spec = {
                 { "<Leader>g", group = "git" },
                 { "<Leader>c", group = "code" },
-                { "<Leader>w", group = "word" },
                 { "<Leader>b", group = "buffer" },
                 { "<Leader>s", group = "session" },
                 { "<Leader>t", group = "telescope" },
