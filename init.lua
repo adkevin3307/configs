@@ -15,5 +15,8 @@ require("lazy").setup({
         { import = "plugins.editor" },
         { import = "plugins.code" },
     },
-    install = { missing = true, colorscheme = { "onedark" } },
+    install = {
+        missing = true,
+        colorscheme = { "onedark" },
+    },
 })
