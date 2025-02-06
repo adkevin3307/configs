@@ -68,6 +68,7 @@ return {
                             ["<S-TAB>"] = actions.move_selection_previous,
                             ["<C-k>"] = actions.preview_scrolling_up,
                             ["<C-j>"] = actions.preview_scrolling_down,
+                            ["<C-u>"] = false,
                         },
                     },
                 },
