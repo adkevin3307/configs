@@ -24,6 +24,31 @@ return {
         opts = {
             use_git_branch = true,
         },
+        config = function(_, opts)
+            local persisted = require("persisted")
+
+            persisted.branch = function()
+                local branch = vim.fn.systemlist("git branch --show-current")[1]
+
+                return vim.v.shell_error == 0 and branch or nil
+            end
+
+            persisted.setup(opts)
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = { "PersistedSavePost" },
+                callback = function()
+                    vim.notify("Session saved")
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = { "PersistedLoadPost", "PersistedTelescopeLoadPost" },
+                callback = function()
+                    vim.notify("Session loaded")
+                end,
+            })
+        end,
         keys = {
             { "<Leader>ss", "<CMD>SessionSave<CR>", mode = { "n" }, desc = "Save session" },
         },
