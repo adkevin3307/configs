@@ -1,6 +1,7 @@
 return {
     {
         "aserowy/tmux.nvim",
+        config = true,
     },
     {
         "adkevin3307/floating-help",
