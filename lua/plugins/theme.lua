@@ -23,7 +23,9 @@ return {
         "akinsho/bufferline.nvim",
         lazy = false,
         priority = 1000,
-        dependencies = "nvim-tree/nvim-web-devicons",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
         opts = {
             options = {
                 left_mouse_command = "buffer %d",
@@ -38,10 +40,11 @@ return {
                 always_show_bufferline = true,
                 diagnostics_indicator = function(_, _, diagnostics_dict)
                     local s = ""
+                    local symbol = { ["error"] = " ", ["warning"] = " ", ["info"] = " ", ["hint"] = " " }
 
-                    for diagnostic, symbol in pairs({ ["error"] = " ", ["warning"] = " ", ["info"] = " " }) do
+                    for _, diagnostic in ipairs({ "error", "warning", "info", "hint" }) do
                         if diagnostics_dict[diagnostic] then
-                            s = " " .. s .. symbol .. diagnostics_dict[diagnostic]
+                            s = " " .. s .. diagnostics_dict[diagnostic] .. symbol[diagnostic]
                         end
                     end
 

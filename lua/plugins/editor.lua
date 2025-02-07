@@ -1,5 +1,13 @@
 return {
     {
+        "stevearc/dressing.nvim",
+        opts = {
+            input = {
+                enabled = false,
+            },
+        },
+    },
+    {
         "aserowy/tmux.nvim",
         opts = {
             navigation = {
