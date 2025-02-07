@@ -149,7 +149,9 @@ return {
                         scope = "cursor",
                     }
 
-                    vim.diagnostic.open_float(nil, opts)
+                    if vim.diagnostic.is_enabled() then
+                        vim.diagnostic.open_float(nil, opts)
+                    end
                 end,
             })
 
@@ -170,6 +172,24 @@ return {
                 end,
             })
         end,
+        keys = {
+            {
+                "<F3>",
+                function()
+                    if vim.diagnostic.is_enabled() then
+                        vim.diagnostic.disable()
+
+                        vim.notify("Diagnostic disabled")
+                    else
+                        vim.diagnostic.enable()
+
+                        vim.notify("Diagnostic enabled")
+                    end
+                end,
+                mode = { "n" },
+                desc = "Toggle diagnostic",
+            },
+        },
     },
     {
         "zapling/mason-conform.nvim",
