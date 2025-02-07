@@ -1,7 +1,14 @@
 return {
     {
         "aserowy/tmux.nvim",
-        config = true,
+        opts = {
+            navigation = {
+                enable_default_keybindings = false,
+            },
+            resize = {
+                enable_default_keybindings = false,
+            },
+        },
     },
     {
         "adkevin3307/floating-help",
@@ -395,7 +402,6 @@ return {
     },
     {
         "linux-cultist/venv-selector.nvim",
-        event = "VeryLazy",
         branch = "regexp",
         dependencies = {
             "neovim/nvim-lspconfig",
@@ -410,10 +416,10 @@ return {
                 },
             },
         },
+        cmd = { "VenvSelect" },
     },
     {
         "amitds1997/remote-nvim.nvim",
-        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
@@ -436,6 +442,7 @@ return {
                 })
             end,
         },
+        cmd = { "RemoteStart" },
     },
     {
         "folke/which-key.nvim",
