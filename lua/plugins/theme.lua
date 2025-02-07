@@ -49,7 +49,7 @@ return {
                 end,
 
                 separator_style = { "", "" },
-                sort_by = "insert_after_current",
+                sort_by = "insert_at_end",
             },
         },
         keys = {
