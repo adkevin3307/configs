@@ -38,6 +38,13 @@ return {
         "olimorris/persisted.nvim",
         opts = {
             use_git_branch = true,
+            telescope = {
+                mappings = {
+                    copy_session = "<A-c>",
+                    change_branch = "<A-b>",
+                    delete_session = "<A-d>",
+                },
+            },
         },
         config = function(_, opts)
             local persisted = require("persisted")
@@ -127,6 +134,8 @@ return {
                             ["<S-TAB>"] = actions.move_selection_previous,
                             ["<C-k>"] = actions.preview_scrolling_up,
                             ["<C-j>"] = actions.preview_scrolling_down,
+                            ["<C-h>"] = actions.preview_scrolling_left,
+                            ["<C-l>"] = actions.preview_scrolling_right,
                             ["<C-u>"] = false,
                         },
                     },
