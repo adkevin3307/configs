@@ -278,16 +278,6 @@ return {
         end,
     },
     {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {
-            scope = {
-                show_start = false,
-                show_end = false,
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         main = "nvim-treesitter.configs",
@@ -362,7 +352,7 @@ return {
         lazy = false,
         config = true,
         keys = {
-            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n" }, desc = "Search" },
+            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
             { "<C-n>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Turn off matched highlight" },
         },
     },
@@ -382,6 +372,7 @@ return {
         opts = {
             open_mapping = "<Leader>\\",
             insert_mappings = false,
+            terminal_mappings = false,
             direction = "float",
         },
     },
@@ -487,6 +478,14 @@ return {
                 end,
                 mode = { "n" },
                 desc = "Help",
+            },
+        },
+    },
+    {
+        "folke/snacks.nvim",
+        opts = {
+            indent = {
+                enabled = true,
             },
         },
     },
