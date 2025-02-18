@@ -243,6 +243,19 @@ return {
         end,
     },
     {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
+            indent = {
+                char = "▏",
+            },
+        },
+    },
+    {
         "lewis6991/gitsigns.nvim",
         lazy = false,
         opts = {
@@ -478,19 +491,6 @@ return {
                 end,
                 mode = { "n" },
                 desc = "Help",
-            },
-        },
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {
-            scope = {
-                show_start = false,
-                show_end = false,
-            },
-            indent = {
-                char = "▏",
             },
         },
     },
