@@ -73,7 +73,7 @@ return {
         "stevearc/conform.nvim",
         opts = {
             default_format_ops = {
-                timeout_ms = 3000,
+                timeout_ms = 5000,
             },
             formatters_by_ft = {
                 sh = { "shfmt" },
@@ -97,7 +97,7 @@ return {
             {
                 "<F4>",
                 function()
-                    require("conform").format()
+                    require("conform").format({ async = true })
                 end,
                 mode = { "n", "v" },
                 desc = "LSP format",
