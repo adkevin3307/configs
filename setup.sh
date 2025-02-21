@@ -85,7 +85,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh git bat htop tmux tree curl unzip ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh git bat htop tmux tree curl unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -p /etc/apt/keyrings'
@@ -99,7 +99,7 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh git bat btop tmux tree curl unzip ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'pacman -S zsh git bat btop tmux tree curl unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
 
             ;;
         *)
