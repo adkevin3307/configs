@@ -1,10 +1,9 @@
 return {
     {
-        "stevearc/dressing.nvim",
+        "folke/snacks.nvim",
         opts = {
-            input = {
-                enabled = false,
-            },
+            input = { enabled = true },
+            picker = { enabled = true },
         },
     },
     {
