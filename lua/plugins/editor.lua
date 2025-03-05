@@ -382,9 +382,8 @@ return {
     {
         "akinsho/toggleterm.nvim",
         opts = {
-            open_mapping = "<Leader>\\",
+            open_mapping = "<C-\\>",
             insert_mappings = false,
-            terminal_mappings = false,
             direction = "float",
         },
     },
