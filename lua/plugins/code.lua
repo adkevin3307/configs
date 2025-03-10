@@ -81,8 +81,7 @@ return {
                 python = { "black" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
-                ["*"] = { "codespell" },
-                ["_"] = { "trim_whitespace" },
+                ["_"] = { "codespell", "trim_whitespace" },
             },
             formatters = {
                 stylua = {
