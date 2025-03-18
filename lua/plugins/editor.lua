@@ -110,6 +110,39 @@ return {
         },
     },
     {
+        "lewis6991/gitsigns.nvim",
+        lazy = false,
+        opts = {
+            signs = {
+                add = { text = " │" },
+                change = { text = " │" },
+                delete = { text = " │" },
+                topdelete = { text = " │" },
+                changedelete = { text = " │" },
+                untracked = { text = " │" },
+            },
+            watch_gitdir = {
+                follow_files = true,
+            },
+            attach_to_untracked = true,
+            current_line_blame = true,
+            current_line_blame_opts = {
+                delay = 3000,
+            },
+        },
+        keys = {
+            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Git hunk next" },
+            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Git hunk prev" },
+            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Git hunk preview" },
+        },
+    },
+    {
+        "radyz/telescope-gitsigns",
+        dependencies = {
+            "lewis6991/gitsigns.nvim",
+        },
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -119,6 +152,7 @@ return {
             "gbprod/yanky.nvim",
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
+            "radyz/telescope-gitsigns",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -155,6 +189,7 @@ return {
             require("telescope").load_extension("aerial")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
+            require("telescope").load_extension("git_signs")
         end,
         keys = {
             { "<Leader>t*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
@@ -188,14 +223,7 @@ return {
                 desc = "Telescope diff_current",
             },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
-            {
-                "<Leader>gs",
-                function()
-                    require("telescope.builtin").git_status()
-                end,
-                mode = { "n" },
-                desc = "Git status",
-            },
+            { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
             {
                 "<Leader>gb",
                 function()
@@ -252,33 +280,6 @@ return {
             indent = {
                 char = "▏",
             },
-        },
-    },
-    {
-        "lewis6991/gitsigns.nvim",
-        lazy = false,
-        opts = {
-            signs = {
-                add = { text = " │" },
-                change = { text = " │" },
-                delete = { text = " │" },
-                topdelete = { text = " │" },
-                changedelete = { text = " │" },
-                untracked = { text = " │" },
-            },
-            watch_gitdir = {
-                follow_files = true,
-            },
-            attach_to_untracked = true,
-            current_line_blame = true,
-            current_line_blame_opts = {
-                delay = 3000,
-            },
-        },
-        keys = {
-            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Git hunk next" },
-            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Git hunk prev" },
-            { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Git hunk preview" },
         },
     },
     {
