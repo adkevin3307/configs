@@ -162,7 +162,7 @@ return {
             { "<Leader>tt", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope aerial" },
             { "<Leader>tn", "<CMD>Telescope notify<CR>", mode = { "n" }, desc = "Telescope notify" },
             { "<Leader>ty", "<CMD>Telescope yank_history<CR>", mode = { "n" }, desc = "Telescope yank_history" },
-            { "<Leader>tf", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
+            { "<Leader>tf", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true no_ignore=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
             {
                 "<Leader>tp",
                 function()
