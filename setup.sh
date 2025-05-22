@@ -85,7 +85,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh git bat htop tmux tree curl unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git bat htop tmux tree curl unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -p /etc/apt/keyrings'
@@ -99,7 +99,10 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh git bat btop tmux tree curl unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'pacman -S zsh gcc git bat btop tmux tree curl unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'sed -i s/#en_US.UTF-8/en_US.UTF-8/g /etc/locale.gen'
+            execute 'locale-gen'
+            execute 'localectl set-locale LANG=en_US.UTF-8'
 
             ;;
         *)
