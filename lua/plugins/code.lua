@@ -112,10 +112,12 @@ return {
         opts = {
             ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
             automatic_installation = true,
+            automatic_enable = true,
         },
     },
     {
         "neovim/nvim-lspconfig",
+        lazy = false,
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
         },
@@ -162,14 +164,6 @@ return {
                     numhl = "DiagnosticSign" .. diag,
                 })
             end
-
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-                    require("lspconfig")[server_name].setup({ capabilities = capabilities })
-                end,
-            })
         end,
         keys = {
             {
