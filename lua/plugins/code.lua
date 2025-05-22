@@ -85,7 +85,7 @@ return {
             },
             formatters = {
                 stylua = {
-                    prepend_args = { "--column-width", "200", "--indent-type", "Spaces" },
+                    prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
                 },
                 black = {
                     prepend_args = { "--line-length", "200", "--skip-string-normalization" },
