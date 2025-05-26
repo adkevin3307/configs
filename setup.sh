@@ -99,10 +99,9 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh gcc git bat btop tmux tree curl unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
-            execute 'sed -i s/#en_US.UTF-8/en_US.UTF-8/g /etc/locale.gen'
-            execute 'locale-gen'
+            execute 'pacman -S zsh gcc git bat btop tmux tree curl unzip man-db fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
             execute 'localectl set-locale LANG=en_US.UTF-8'
+            execute 'mandb'
 
             ;;
         *)
