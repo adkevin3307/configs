@@ -1,5 +1,9 @@
 return {
     {
+        "folke/lazydev.nvim",
+        config = true,
+    },
+    {
         "williamboman/mason.nvim",
         config = true,
     },
