@@ -99,7 +99,7 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh gcc git bat btop tmux tree curl diffutils unzip man-db fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'pacman -S zsh gcc git bat fzf btop tmux tree curl diffutils unzip man-db fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
             execute 'localectl set-locale LANG=en_US.UTF-8'
             execute 'mandb'
 
