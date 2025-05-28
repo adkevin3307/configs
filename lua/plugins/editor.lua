@@ -143,6 +143,17 @@ return {
         },
     },
     {
+        "akinsho/git-conflict.nvim",
+        opts = {
+            default_mappings = false,
+            default_commands = false,
+        },
+    },
+    {
+        "Snikimonkd/telescope-git-conflicts.nvim",
+        config = function() end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -153,6 +164,7 @@ return {
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
             "radyz/telescope-gitsigns",
+            "Snikimonkd/telescope-git-conflicts.nvim",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -190,6 +202,7 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
             require("telescope").load_extension("git_signs")
+            require("telescope").load_extension("conflicts")
         end,
         keys = {
             { "<Leader>t*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
@@ -224,6 +237,7 @@ return {
             },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
+            { "<Leader>gc", "<CMD>Telescope conflicts<CR>", mode = { "n" }, desc = "Git conflicts" },
             {
                 "<Leader>gb",
                 function()
