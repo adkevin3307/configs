@@ -86,6 +86,7 @@ return {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
                 vue = { "prettier" },
+                css = { "prettier" },
                 html = { "prettier" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
