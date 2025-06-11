@@ -85,14 +85,21 @@ return {
                 python = { "black" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
+                vue = { "prettier" },
+                html = { "prettier" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
                 ["_"] = { "trim_whitespace" },
             },
             formatters = {
                 stylua = {
-                    prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
+                    prepend_args = { "--column-width", "200", "--indent-type", "Spaces" },
                 },
                 black = {
                     prepend_args = { "--line-length", "200", "--skip-string-normalization" },
+                },
+                prettier = {
+                    prepend_args = { "--print-width", "200", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
                 },
             },
         },
@@ -114,7 +121,7 @@ return {
             "hrsh7th/nvim-cmp",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
             automatic_installation = true,
             automatic_enable = true,
         },
@@ -143,7 +150,6 @@ return {
             })
 
             vim.api.nvim_create_autocmd("CursorHold", {
-                buffer = bufnr,
                 callback = function()
                     local opts = {
                         focusable = false,
@@ -174,7 +180,7 @@ return {
                 "<F3>",
                 function()
                     if vim.diagnostic.is_enabled() then
-                        vim.diagnostic.disable()
+                        vim.diagnostic.enable(false)
 
                         vim.notify("Diagnostic disabled")
                     else
