@@ -80,15 +80,16 @@ function basic_update_upgrade()
 function install_packages()
 {
     OS=$1
+    DIRECTORY=$2
 
     prompt "Install Packages ..."
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git bat htop tmux tree curl unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
 
-            execute 'mkdir -p /etc/apt/keyrings'
+            execute 'mkdir -vp /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
             execute 'gpg -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
             rm nodesource-repo.gpg.key
@@ -99,12 +100,15 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh gcc git bat fzf btop tmux tree curl diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'pacman -S zsh gcc git lazygit bat fzf btop tmux tree wget curl diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
 
             ;;
         *)
             ;;
     esac
+
+    mkdir -vp ~/.local/bin
+    cp -vf ${DIRECTORY}/git-graph ~/.local/bin
 
     prompt "Install Packages Done\n"
 }
@@ -166,7 +170,7 @@ function install_editor()
                     ;;
             esac
 
-            mkdir -p ~/.vim
+            mkdir -vp ~/.vim
             cp -vf $DIRECTORY/coc-settings.json ~/.vim
             cp -vf $DIRECTORY/.vimrc ~
 
@@ -190,7 +194,7 @@ function install_editor()
                     ;;
             esac
 
-            mkdir -p ~/.config/nvim
+            mkdir -vp ~/.config/nvim
             cp -vf $DIRECTORY/init.lua ~/.config/nvim
             cp -vrf $DIRECTORY/lua ~/.config/nvim
 
@@ -237,8 +241,10 @@ prompt "Repository Path: $DIRECTORY, OS: $OS\n"
 
 get_permission
 basic_update_upgrade $OS
-install_packages $OS
+
+install_packages $OS $DIRECTORY
 
 install_omz $DIRECTORY
 install_tmux $DIRECTORY
+
 install_editor $OS $DIRECTORY $EDITOR
