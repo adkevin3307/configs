@@ -110,6 +110,9 @@ function install_packages()
     mkdir -vp ~/.local/bin
     cp -vf ${DIRECTORY}/git-graph ~/.local/bin
 
+    mkdir -vp ~/.config/lazygit
+    cp -vf ${DIRECTORY}/config.yml ~/.config/lazygit
+
     prompt "Install Packages Done\n"
 }
 
