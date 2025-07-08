@@ -1,0 +1,17 @@
+gui:
+  screenMode: half
+
+  theme:
+    selectedLineBgColor:
+      - '#414559'
+
+  authorColors:
+    '*': '#bbbbbb'
+
+keybinding:
+  universal:
+    scrollUpMain: ','
+    scrollDownMain: '.'
+
+    prevPage: '<pgup>'
+    nextPage: '<pgdown>'
