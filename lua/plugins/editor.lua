@@ -449,11 +449,14 @@ return {
             "nvim-telescope/telescope.nvim",
         },
         opts = {
-            settings = {
-                options = {
-                    enable_cached_venvs = false,
-                    cached_venv_automatic_activation = false,
-                    notify_user_on_venv_activation = true,
+            options = {
+                enable_cached_venvs = false,
+                cached_venv_automatic_activation = false,
+                notify_user_on_venv_activation = true,
+            },
+            search = {
+                uv = {
+                    command = "fd /bin/python$ ~/.cache/uv/virtualenvs --full-path",
                 },
             },
         },
