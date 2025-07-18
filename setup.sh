@@ -86,7 +86,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
@@ -100,7 +100,7 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh gcc git lazygit bat fzf btop tmux tree wget curl diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
+            execute 'pacman -S zsh gcc git lazygit bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm --noconfirm'
 
             ;;
         *)
