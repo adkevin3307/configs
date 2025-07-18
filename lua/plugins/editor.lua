@@ -399,10 +399,14 @@ return {
     },
     {
         "akinsho/toggleterm.nvim",
+        lazy = false,
         opts = {
             open_mapping = "<C-\\>",
             insert_mappings = false,
             direction = "float",
+        },
+        keys = {
+            { "<Leader>t\\", "<CMD>TermSelect<CR>", mode = { "n" }, desc = "Select terminal" },
         },
     },
     {
