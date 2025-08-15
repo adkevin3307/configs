@@ -154,6 +154,38 @@ return {
         config = function() end,
     },
     {
+        "ryanmsnyder/toggleterm-manager.nvim",
+        dependencies = {
+            {
+                "akinsho/toggleterm.nvim",
+                opts = {
+                    open_mapping = "<C-\\>",
+                    insert_mappings = false,
+                    direction = "float",
+                },
+            },
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            local function create()
+                vim.cmd("TermNew")
+            end
+
+            local actions = require("toggleterm-manager").actions
+
+            require("toggleterm-manager").setup({
+                mappings = {
+                    i = {
+                        ["<CR>"] = { action = actions.toggle_term, exit_on_action = true },
+                        ["<A-c>"] = { action = create, exit_on_action = false },
+                        ["<A-d>"] = { action = actions.delete_term, exit_on_action = false },
+                        ["<A-r>"] = { action = actions.rename_term, exit_on_action = false },
+                    },
+                },
+            })
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -246,6 +278,7 @@ return {
                 mode = { "n" },
                 desc = "Git bcommits",
             },
+            { "<Leader>t\\", "<CMD>Telescope toggleterm_manager<CR>", mode = { "n" }, desc = "Telescope terminal" },
             {
                 "<F10>",
                 function()
@@ -395,18 +428,6 @@ return {
                     enable = false,
                 },
             },
-        },
-    },
-    {
-        "akinsho/toggleterm.nvim",
-        lazy = false,
-        opts = {
-            open_mapping = "<C-\\>",
-            insert_mappings = false,
-            direction = "float",
-        },
-        keys = {
-            { "<Leader>t\\", "<CMD>TermSelect<CR>", mode = { "n" }, desc = "Select terminal" },
         },
     },
     {

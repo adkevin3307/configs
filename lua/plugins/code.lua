@@ -82,6 +82,8 @@ return {
             formatters_by_ft = {
                 sh = { "shfmt" },
                 lua = { "stylua" },
+                json = { "prettier" },
+                yaml = { "yamlfmt" },
                 python = { "black" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
@@ -101,6 +103,9 @@ return {
                 },
                 prettier = {
                     prepend_args = { "--print-width", "200", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
+                },
+                yamlfmt = {
+                    prepend_args = { "-formatter", "retain_line_breaks_single=true" },
                 },
             },
         },
