@@ -162,6 +162,7 @@ return {
                     open_mapping = "<C-\\>",
                     insert_mappings = false,
                     direction = "float",
+                    auto_scroll = false,
                 },
             },
             "nvim-telescope/telescope.nvim",
@@ -186,6 +187,15 @@ return {
         end,
     },
     {
+        "folke/todo-comments.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        opts = {
+            signs = false,
+        },
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -197,6 +207,7 @@ return {
             "jemag/telescope-diff.nvim",
             "radyz/telescope-gitsigns",
             "Snikimonkd/telescope-git-conflicts.nvim",
+            "folke/todo-comments.nvim",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -239,7 +250,7 @@ return {
         keys = {
             { "<Leader>t*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
             { "<Leader>tr", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Telescope live_grep" },
-            { "<Leader>tt", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope aerial" },
+            { "<Leader>to", "<CMD>Telescope aerial<CR>", mode = { "n" }, desc = "Telescope outline" },
             { "<Leader>tn", "<CMD>Telescope notify<CR>", mode = { "n" }, desc = "Telescope notify" },
             { "<Leader>ty", "<CMD>Telescope yank_history<CR>", mode = { "n" }, desc = "Telescope yank_history" },
             { "<Leader>tf", "<CMD>Telescope file_browser path=%:p:h select_buffer=true hidden=true no_ignore=true<CR>", mode = { "n" }, desc = "Telescope file_browser" },
@@ -267,6 +278,8 @@ return {
                 mode = { "n" },
                 desc = "Telescope diff_current",
             },
+            { "<Leader>t\\", "<CMD>Telescope toggleterm_manager<CR>", mode = { "n" }, desc = "Telescope terminal" },
+            { "<Leader>tt", "<CMD>TodoTelescope<CR>", mode = { "n" }, desc = "Telescope todo" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
             { "<Leader>gc", "<CMD>Telescope conflicts<CR>", mode = { "n" }, desc = "Git conflicts" },
@@ -278,7 +291,6 @@ return {
                 mode = { "n" },
                 desc = "Git bcommits",
             },
-            { "<Leader>t\\", "<CMD>Telescope toggleterm_manager<CR>", mode = { "n" }, desc = "Telescope terminal" },
             {
                 "<F10>",
                 function()
@@ -464,7 +476,7 @@ return {
     },
     {
         "linux-cultist/venv-selector.nvim",
-        branch = "regexp",
+        branch = "main",
         dependencies = {
             "neovim/nvim-lspconfig",
             "nvim-telescope/telescope.nvim",
