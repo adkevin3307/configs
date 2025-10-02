@@ -8,6 +8,10 @@ gui:
   authorColors:
     '*': '#bbbbbb'
 
+git:
+  log:
+    showWholeGraph: true
+
 keybinding:
   universal:
     scrollUpMain: ','
