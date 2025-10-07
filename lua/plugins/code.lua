@@ -96,13 +96,13 @@ return {
             },
             formatters = {
                 stylua = {
-                    prepend_args = { "--column-width", "200", "--indent-type", "Spaces" },
+                    prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
                 },
                 black = {
-                    prepend_args = { "--line-length", "200", "--skip-string-normalization" },
+                    prepend_args = { "--line-length", "250", "--skip-string-normalization" },
                 },
                 prettier = {
-                    prepend_args = { "--print-width", "200", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
+                    prepend_args = { "--print-width", "250", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
                 },
                 yamlfmt = {
                     prepend_args = { "-formatter", "retain_line_breaks_single=true" },
