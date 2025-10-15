@@ -146,12 +146,12 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(ev)
                     local keymap = vim.keymap.set
-                    local opts = { buffer = ev.buf }
 
                     keymap("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
                     keymap("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
 
-                    vim.keymap.del("n", "K", opts)
+                    keymap("n", "K", "", { buffer = ev.buf })
+                    vim.keymap.del("n", "K", { buffer = ev.buf })
                 end,
             })
 
