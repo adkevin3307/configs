@@ -12,7 +12,18 @@ return {
                     comments = "none",
                 },
                 highlights = {
-                    CursorLineNR = { fg = "#ff8800" },
+                    CursorLineNR = { fg = "#ff8800", fmt = "none" },
+                    ["@constructor"] = { fmt = "none" },
+                    illuminatedWord = { fmt = "none" },
+                    illuminatedCurWord = { fmt = "none" },
+                    IlluminatedWordText = { fmt = "none" },
+                    IlluminatedWordRead = { fmt = "none" },
+                    IlluminatedWordWrite = { fmt = "none" },
+                    ErrorMsg = { fmt = "none" },
+                    WarningMsg = { fmt = "none" },
+                    MoreMsg = { fmt = "none" },
+                    TelescopeMatching = { fmt = "none" },
+                    SnacksDashboardSpecial = { fmt = "none" },
                 },
             })
 
@@ -26,35 +37,43 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {
-            options = {
-                left_mouse_command = "buffer %d",
-                right_mouse_command = "buffer %d",
-                middle_mouse_command = "bdelete %d",
+        config = function()
+            local bufferline = require("bufferline")
 
-                indicator = {
-                    style = "underline",
-                },
+            bufferline.setup({
+                options = {
+                    left_mouse_command = "buffer %d",
+                    right_mouse_command = "buffer %d",
+                    middle_mouse_command = "bdelete %d",
 
-                diagnostics = "nvim_lsp",
-                always_show_bufferline = true,
-                diagnostics_indicator = function(_, _, diagnostics_dict)
-                    local s = ""
-                    local symbol = { ["error"] = " ", ["warning"] = " ", ["info"] = " ", ["hint"] = " " }
+                    indicator = {
+                        style = "underline",
+                    },
 
-                    for _, diagnostic in ipairs({ "error", "warning", "info", "hint" }) do
-                        if diagnostics_dict[diagnostic] then
-                            s = " " .. s .. diagnostics_dict[diagnostic] .. symbol[diagnostic]
+                    style_preset = {
+                        bufferline.style_preset.no_bold,
+                    },
+
+                    diagnostics = "nvim_lsp",
+                    always_show_bufferline = true,
+                    diagnostics_indicator = function(_, _, diagnostics_dict)
+                        local s = ""
+                        local symbol = { ["error"] = " ", ["warning"] = " ", ["info"] = " ", ["hint"] = " " }
+
+                        for _, diagnostic in ipairs({ "error", "warning", "info", "hint" }) do
+                            if diagnostics_dict[diagnostic] then
+                                s = " " .. s .. diagnostics_dict[diagnostic] .. symbol[diagnostic]
+                            end
                         end
-                    end
 
-                    return s
-                end,
+                        return s
+                    end,
 
-                separator_style = { "", "" },
-                sort_by = "insert_at_end",
-            },
-        },
+                    separator_style = { "", "" },
+                    sort_by = "insert_at_end",
+                },
+            })
+        end,
         keys = {
             { "<Tab>", "<CMD>BufferLineCycleNext<CR>", mode = { "n" }, desc = "Next buffer" },
             { "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", mode = { "n" }, desc = "Prev buffer" },

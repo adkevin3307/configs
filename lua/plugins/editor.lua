@@ -433,6 +433,7 @@ return {
     },
     {
         "lewis6991/satellite.nvim",
+        enabled = false,
         opts = {
             winblend = 0,
             handlers = {
