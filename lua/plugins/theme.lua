@@ -7,7 +7,7 @@ return {
             require("onedark").setup({
                 style = "dark",
                 transparent = true,
-                term_colors = true,
+                term_colors = false,
                 code_style = {
                     comments = "none",
                 },
@@ -15,6 +15,24 @@ return {
                     CursorLineNR = { fg = "#ff8800", fmt = "none" },
 
                     ["@constructor"] = { fmt = "none" },
+
+                    ["@markup.heading"] = { fmt = "none" },
+                    ["@markup.strong"] = { fmt = "none" },
+                    ["@markup.heading.1.markdown"] = { fmt = "none" },
+                    ["@markup.heading.2.markdown"] = { fmt = "none" },
+                    ["@markup.heading.3.markdown"] = { fmt = "none" },
+                    ["@markup.heading.4.markdown"] = { fmt = "none" },
+                    ["@markup.heading.5.markdown"] = { fmt = "none" },
+                    ["@markup.heading.6.markdown"] = { fmt = "none" },
+                    ["@markup.heading.1.marker.markdown"] = { fmt = "none" },
+                    ["@markup.heading.2.marker.markdown"] = { fmt = "none" },
+                    ["@markup.heading.3.marker.markdown"] = { fmt = "none" },
+                    ["@markup.heading.4.marker.markdown"] = { fmt = "none" },
+                    ["@markup.heading.5.marker.markdown"] = { fmt = "none" },
+                    ["@markup.heading.6.marker.markdown"] = { fmt = "none" },
+
+                    ["@text.strong"] = { fmt = "none" },
+                    ["@text.title"] = { fmt = "none" },
 
                     NeoTreeRootName = { fmt = "none" },
                     NeoTreeGitConflict = { fmt = "none" },
@@ -34,8 +52,19 @@ return {
 
                     SnacksDashboardFooter = { fmt = "none" },
                     SnacksDashboardSpecial = { fmt = "none" },
+                    SnacksPickerMatch = { fmt = "none" },
+
+                    FocusedSymbol = { fmt = "none" },
+                    AerialLine = { fmt = "none" },
 
                     cppStatement = { fmt = "none" },
+
+                    markdownH1 = { fmt = "none" },
+                    markdownH2 = { fmt = "none" },
+                    markdownH3 = { fmt = "none" },
+                    markdownH4 = { fmt = "none" },
+                    markdownH5 = { fmt = "none" },
+                    markdownH6 = { fmt = "none" },
                 },
             })
 
