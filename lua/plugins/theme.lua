@@ -13,17 +13,29 @@ return {
                 },
                 highlights = {
                     CursorLineNR = { fg = "#ff8800", fmt = "none" },
+
                     ["@constructor"] = { fmt = "none" },
+
+                    NeoTreeRootName = { fmt = "none" },
+                    NeoTreeGitConflict = { fmt = "none" },
+                    NeoTreeGitUntracked = { fmt = "none" },
+
                     illuminatedWord = { fmt = "none" },
                     illuminatedCurWord = { fmt = "none" },
                     IlluminatedWordText = { fmt = "none" },
                     IlluminatedWordRead = { fmt = "none" },
                     IlluminatedWordWrite = { fmt = "none" },
+
                     ErrorMsg = { fmt = "none" },
                     WarningMsg = { fmt = "none" },
                     MoreMsg = { fmt = "none" },
+
                     TelescopeMatching = { fmt = "none" },
+
+                    SnacksDashboardFooter = { fmt = "none" },
                     SnacksDashboardSpecial = { fmt = "none" },
+
+                    cppStatement = { fmt = "none" },
                 },
             })
 
