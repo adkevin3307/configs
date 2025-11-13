@@ -14,6 +14,8 @@ return {
                 highlights = {
                     CursorLineNR = { fg = "#ff8800", fmt = "none" },
 
+                    ["@spell"] = { fg = "none", bg = "none", sp = "none", fmt = "none" },
+
                     ["@constructor"] = { fmt = "none" },
 
                     ["@markup.heading"] = { fmt = "none" },
