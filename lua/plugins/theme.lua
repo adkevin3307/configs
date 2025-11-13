@@ -65,6 +65,8 @@ return {
                     markdownH4 = { fmt = "none" },
                     markdownH5 = { fmt = "none" },
                     markdownH6 = { fmt = "none" },
+
+                    IblScope = { fg = "#848b98", fmt = "nocombine" },
                 },
             })
 
