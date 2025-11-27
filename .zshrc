@@ -94,7 +94,7 @@ elif [[ $(command -v vim) ]]; then
     export EDITOR="vim"
 fi
 
-export FZF_CTRL_R_OPTS="--no-bold"
+export FZF_CTRL_R_OPTS="--no-bold --tmux"
 
 # User configuration
 
