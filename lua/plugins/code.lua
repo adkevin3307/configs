@@ -4,7 +4,7 @@ return {
         config = true,
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = true,
     },
     {
@@ -92,6 +92,7 @@ return {
                 html = { "prettier" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
+                nginx = { "nginxfmt" },
                 ["_"] = { "trim_whitespace" },
             },
             formatters = {
@@ -121,23 +122,8 @@ return {
         },
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-            "hrsh7th/nvim-cmp",
-        },
-        opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
-            automatic_installation = true,
-            automatic_enable = true,
-        },
-    },
-    {
         "neovim/nvim-lspconfig",
         lazy = false,
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-        },
         config = function()
             vim.diagnostic.config({
                 virtual_text = false,
@@ -201,9 +187,20 @@ return {
         },
     },
     {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
+            automatic_enable = true,
+        },
+    },
+    {
         "zapling/mason-conform.nvim",
         dependencies = {
-            "williamboman/mason.nvim",
+            "mason-org/mason.nvim",
             "stevearc/conform.nvim",
         },
         config = true,
