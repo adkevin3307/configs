@@ -1,0 +1,266 @@
+#!/bin/bash -e
+
+function handler() {
+    echo "Processing the Ctrl+C, trying to kill ssh agent"
+    ssh-agent -k
+
+    exit 1
+}
+
+function HELP() {
+    echo -e "Manipulate Docker image & container."
+    echo -e ""
+    echo -e "\033[93mUSAGE:\033[0m"
+    echo -e "    docker-cli [OPTIONS] [COMMANDS] -- [Docker OPTIONS]"
+    echo -e ""
+    echo -e "\033[93mOPTIONS:\033[0m"
+    echo -e "    \033[92m--workdir <WORKDIR>\033[0m"
+    echo -e "    \tSpecific workdir by <WORKDIR>. Default: \`pwd\`."
+    echo -e "    \033[92m--development <DEVELOPMENT>\033[0m"
+    echo -e "    \tSpecific development folder by <DEVELOPMENT>. Default: \"development\"."
+    echo -e "    \033[92m--id <ID>\033[0m"
+    echo -e "    \tSpecific id by <ID>. Default: \`id -un\`."
+    echo -e "    \033[92m--project <PROJECT>\033[0m"
+    echo -e "    \tSpecific project name by <PROJECT>. Default: \"project\"."
+    echo -e "    \033[92m--tag <tag>\033[0m"
+    echo -e "    \tSpecific image tag by <TAG>. Default: \"<ID>/<PROJECT>:latest\""
+    echo -e "    \033[92m--name <NAME>\033[0m"
+    echo -e "    \tSpecific container name by <NAME>. Default: \"<ID>_<PROJECT>\""
+    echo -e "    \033[92m--network <NETWORK>\033[0m"
+    echo -e "    \tSpecific container network by <NETWORK>. Auto create if not exist. Only use at not compose."
+    echo -e "    \033[92m--compose\033[0m"
+    echo -e "    \tUse docker compose or not."
+    echo -e "    \033[92m-h, --help\033[0m"
+    echo -e "    \tPrint this help message."
+    echo -e ""
+    echo -e "\033[93mCOMMANDS:\033[0m"
+    echo -e "    \033[92mbuild\033[0m"
+    echo -e "    \tBuild the image(s)."
+    echo -e "    \033[92mrun\033[0m"
+    echo -e "    \tRun the container(s)."
+    echo -e "    \033[92mstop\033[0m"
+    echo -e "    \tStop the container(s)."
+    echo -e "    \033[92mclean\033[0m"
+    echo -e "    \tClean the image(s)."
+    echo -e "    \033[92mlogs\033[0m"
+    echo -e "    \tShow the container(s) logs."
+}
+
+trap handler SIGINT
+
+BUILD=0
+RUN=0
+STOP=0
+CLEAN=0
+LOGS=0
+
+COMPOSE=0
+
+DIRECTORY=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
+while [[ "$#" > 0 && ! "$1" == "--" ]]; do
+    case $1 in
+    -h | --help)
+        HELP
+
+        exit 0
+
+        ;;
+    --workdir)
+        WORKDIR=$2
+
+        shift
+        shift
+        ;;
+    --development)
+        DEVELOPMENT=$2
+
+        shift
+        shift
+        ;;
+    --id)
+        ID=$2
+
+        shift
+        shift
+        ;;
+    --project)
+        PROJECT=$2
+
+        shift
+        shift
+        ;;
+    --tag)
+        TAG=$2
+
+        shift
+        shift
+        ;;
+    --name)
+        NAME=$2
+
+        shift
+        shift
+        ;;
+    --network)
+        NETWORK=$2
+
+        shift
+        shift
+        ;;
+    --compose)
+        COMPOSE=1
+
+        shift
+        ;;
+    build)
+        BUILD=1
+
+        shift
+        ;;
+    run)
+        RUN=1
+
+        shift
+        ;;
+    stop)
+        STOP=1
+
+        shift
+        ;;
+    clean)
+        CLEAN=1
+
+        shift
+        ;;
+    logs)
+        LOGS=1
+
+        shift
+        ;;
+    *)
+        shift
+        ;;
+    esac
+done
+
+if [[ "$1" == '--' ]]; then
+    shift
+fi
+
+if [[ -z ${WORKDIR} ]]; then
+    WORKDIR="$(pwd)"
+
+    echo "Set default workdir to ${WORKDIR} ..."
+fi
+
+if [[ -z ${DEVELOPMENT} ]]; then
+    DEVELOPMENT="development"
+
+    echo "Set default development to ${DEVELOPMENT} ..."
+fi
+
+if [[ -z ${ID} ]]; then
+    ID="$(id -un)"
+
+    echo "Set default id to ${ID} ..."
+fi
+
+if [[ -z ${PROJECT} ]]; then
+    PROJECT="project"
+
+    echo "Set default project to ${PROJECT} ..."
+fi
+
+if [[ -z ${TAG} ]]; then
+    TAG="${ID}/${PROJECT}:latest"
+
+    echo "Set default tag to ${TAG} ..."
+fi
+
+if [[ -z ${NAME} ]]; then
+    NAME="${ID}_${PROJECT}"
+
+    echo "Set default name to ${NAME} ..."
+fi
+
+if [[ -e ${WORKDIR}/${DEVELOPMENT}/.env ]]; then
+    source ${WORKDIR}/${DEVELOPMENT}/.env
+fi
+
+if [[ ${BUILD} == 1 ]]; then
+    echo "starting ssh agent ..."
+    eval $(ssh-agent) && echo "adding your private keys ..."
+    ssh-add && echo "start building ... $SSH_AUTH_SOCK"
+
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml build --no-cache --pull
+    else
+        ARGS=""
+
+        if [[ -e ${WORKDIR}/${DEVELOPMENT}/.env ]]; then
+            while IFS="=" read -r KEY VALUE; do
+                if [[ ! -z ${KEY} && ${KEY} != \#* ]]; then
+                    ARGS+=" --build-arg ${KEY}=${VALUE}"
+
+                    if [[ ${KEY} == "WORKSPACE" ]]; then
+                        ARGS+=" --build-arg BASENAME=$(basename ${VALUE})"
+                    fi
+                fi
+            done <${WORKDIR}/${DEVELOPMENT}/.env
+        fi
+
+        docker build --ssh default --file ${WORKDIR}/${DEVELOPMENT}/Dockerfile ${ARGS} --no-cache --pull --tag ${TAG} ${WORKDIR}
+    fi
+
+    ssh-agent -k
+fi
+
+if [[ ${RUN} == 1 ]]; then
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml up -d
+    else
+        ARGS=""
+
+        if [[ ! -z ${NETWORK} ]]; then
+            if [[ -z "$(docker network ls -q --filter name=${NETWORK})" ]]; then
+                docker network create ${NETWORK}
+            fi
+
+            ARGS+=" --network ${NETWORK}"
+        fi
+
+        docker run -itd ${ARGS} \
+            -v ${WORKDIR}:${WORKSPACE} \
+            $@ --name ${NAME} ${TAG}
+    fi
+fi
+
+if [[ ${STOP} == 1 ]]; then
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml stop
+    else
+        docker stop ${NAME}
+    fi
+fi
+
+if [[ ${CLEAN} == 1 ]]; then
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml down --remove-orphans --volumes --rmi local
+    else
+        docker rm ${NAME}
+        docker rmi ${TAG}
+
+        if [[ ! -z ${NETWORK} ]]; then
+            docker network rm ${NETWORK}
+        fi
+    fi
+fi
+
+if [[ ${LOGS} == 1 ]]; then
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml logs --follow
+    else
+        docker logs --follow ${NAME}
+    fi
+fi
