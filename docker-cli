@@ -38,6 +38,8 @@ function HELP() {
     echo -e "    \tBuild the image(s)."
     echo -e "    \033[92mrun\033[0m"
     echo -e "    \tRun the container(s)."
+    echo -e "    \033[92mrestart\033[0m"
+    echo -e "    \tRestart the container(s)."
     echo -e "    \033[92mstop\033[0m"
     echo -e "    \tStop the container(s)."
     echo -e "    \033[92mclean\033[0m"
@@ -50,13 +52,12 @@ trap handler SIGINT
 
 BUILD=0
 RUN=0
+RESTART=0
 STOP=0
 CLEAN=0
 LOGS=0
 
 COMPOSE=0
-
-DIRECTORY=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 while [[ "$#" > 0 && ! "$1" == "--" ]]; do
     case $1 in
@@ -120,6 +121,11 @@ while [[ "$#" > 0 && ! "$1" == "--" ]]; do
         ;;
     run)
         RUN=1
+
+        shift
+        ;;
+    restart)
+        RESTART=1
 
         shift
         ;;
@@ -233,6 +239,14 @@ if [[ ${RUN} == 1 ]]; then
         docker run -itd ${ARGS} \
             -v ${WORKDIR}:${WORKSPACE} \
             $@ --name ${NAME} ${TAG}
+    fi
+fi
+
+if [[ ${RESTART} == 1 ]]; then
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml restart
+    else
+        docker restart ${NAME}
     fi
 fi
 
