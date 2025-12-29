@@ -193,7 +193,7 @@ return {
             "neovim/nvim-lspconfig",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "ty", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
             automatic_enable = true,
         },
     },
