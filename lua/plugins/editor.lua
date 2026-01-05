@@ -1,5 +1,22 @@
 return {
     {
+        "mg979/vim-visual-multi",
+        init = function()
+            vim.g.VM_default_mappings = 0
+            vim.g.VM_mouse_mappings = 1
+
+            vim.g.VM_maps = {
+                ["Add Cursor At Pos"] = "<C-Space>",
+                ["Add Cursor Up"] = "<C-Up>",
+                ["Add Cursor Down"] = "<C-Down>",
+                ["Find Under"] = "*",
+                ["Find Subword Under"] = "*",
+                ["Undo"] = 'u',
+                ["Redo"] = '<C-r>',
+            }
+        end,
+    },
+    {
         "folke/snacks.nvim",
         opts = {
             input = { enabled = true },
@@ -428,8 +445,15 @@ return {
         lazy = false,
         config = true,
         keys = {
-            { "*", "<CMD>let @/= '\\<' . expand('<cword>') . '\\>' <BAR> set hlsearch <CR><CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "<C-n>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Turn off matched highlight" },
+            {
+                "<Leader>h",
+                function()
+                    vim.v.hlsearch = vim.v.hlsearch ~= 1
+                    vim.notify((vim.v.hlsearch == 1 and "Enable" or "Disable") .. " highlight search")
+                end,
+                mode = { "n" },
+                desc = "Toggle highlight search",
+            },
         },
     },
     {
