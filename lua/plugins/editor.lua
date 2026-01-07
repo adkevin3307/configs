@@ -1,22 +1,5 @@
 return {
     {
-        "mg979/vim-visual-multi",
-        init = function()
-            vim.g.VM_default_mappings = 0
-            vim.g.VM_mouse_mappings = 1
-
-            vim.g.VM_maps = {
-                ["Add Cursor At Pos"] = "<C-Space>",
-                ["Add Cursor Up"] = "<C-Up>",
-                ["Add Cursor Down"] = "<C-Down>",
-                ["Find Under"] = "*",
-                ["Find Subword Under"] = "*",
-                ["Undo"] = 'u',
-                ["Redo"] = '<C-r>',
-            }
-        end,
-    },
-    {
         "folke/snacks.nvim",
         opts = {
             input = { enabled = true },
@@ -443,17 +426,16 @@ return {
     {
         "kevinhwang91/nvim-hlslens",
         lazy = false,
+        dependencies = {
+            "haya14busa/vim-asterisk",
+        },
         config = true,
         keys = {
-            {
-                "<Leader>h",
-                function()
-                    vim.v.hlsearch = vim.v.hlsearch ~= 1
-                    vim.notify((vim.v.hlsearch == 1 and "Enable" or "Disable") .. " highlight search")
-                end,
-                mode = { "n" },
-                desc = "Toggle highlight search",
-            },
+            { "*", "<PLUG>(asterisk-z*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "#", "<PLUG>(asterisk-z#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "g*", "<PLUG>(asterisk-gz*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "g#", "<PLUG>(asterisk-gz#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "<ESC><ESC>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Disable highlight search" },
         },
     },
     {
