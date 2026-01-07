@@ -197,6 +197,27 @@ return {
         },
     },
     {
+        "linux-cultist/venv-selector.nvim",
+        branch = "main",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = {
+            options = {
+                enable_cached_venvs = false,
+                cached_venv_automatic_activation = false,
+                notify_user_on_venv_activation = true,
+            },
+            search = {
+                uv = {
+                    command = "fd /bin/python$ ~/.cache/uv/virtualenvs --full-path",
+                },
+            },
+        },
+        cmd = { "VenvSelect" },
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -209,6 +230,7 @@ return {
             "radyz/telescope-gitsigns",
             "Snikimonkd/telescope-git-conflicts.nvim",
             "folke/todo-comments.nvim",
+            "linux-cultist/venv-selector.nvim",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -281,6 +303,7 @@ return {
             },
             { "<Leader>t\\", "<CMD>Telescope toggleterm_manager<CR>", mode = { "n" }, desc = "Telescope terminal" },
             { "<Leader>tt", "<CMD>TodoTelescope<CR>", mode = { "n" }, desc = "Telescope todo" },
+            { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
             { "<Leader>gc", "<CMD>Telescope conflicts<CR>", mode = { "n" }, desc = "Git conflicts" },
@@ -481,27 +504,6 @@ return {
                 desc = "Prev hover word",
             },
         },
-    },
-    {
-        "linux-cultist/venv-selector.nvim",
-        branch = "main",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "nvim-telescope/telescope.nvim",
-        },
-        opts = {
-            options = {
-                enable_cached_venvs = false,
-                cached_venv_automatic_activation = false,
-                notify_user_on_venv_activation = true,
-            },
-            search = {
-                uv = {
-                    command = "fd /bin/python$ ~/.cache/uv/virtualenvs --full-path",
-                },
-            },
-        },
-        cmd = { "VenvSelect" },
     },
     {
         "amitds1997/remote-nvim.nvim",
