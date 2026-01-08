@@ -462,18 +462,6 @@ return {
         },
     },
     {
-        "lewis6991/satellite.nvim",
-        enabled = false,
-        opts = {
-            winblend = 0,
-            handlers = {
-                cursor = {
-                    enable = false,
-                },
-            },
-        },
-    },
-    {
         "RRethy/vim-illuminate",
         lazy = false,
         opts = {
