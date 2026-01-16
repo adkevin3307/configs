@@ -458,7 +458,7 @@ return {
             { "#", "<PLUG>(asterisk-z#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
             { "g*", "<PLUG>(asterisk-gz*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
             { "g#", "<PLUG>(asterisk-gz#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "<ESC><ESC>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Disable highlight search" },
+            { "<Leader><ESC>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Disable highlight search" },
         },
     },
     {
