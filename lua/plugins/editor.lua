@@ -230,6 +230,7 @@ return {
             "radyz/telescope-gitsigns",
             "Snikimonkd/telescope-git-conflicts.nvim",
             "folke/todo-comments.nvim",
+            "debugloop/telescope-undo.nvim",
             "linux-cultist/venv-selector.nvim",
         },
         config = function()
@@ -259,6 +260,15 @@ return {
                         use_file_path = true,
                     },
                 },
+                extensions = {
+                    undo = {
+                        mappings = {
+                            i = {
+                                ["<CR>"] = require("telescope-undo.actions").restore,
+                            },
+                        },
+                    },
+                },
             })
 
             require("telescope").load_extension("file_browser")
@@ -269,6 +279,7 @@ return {
             require("telescope").load_extension("diff")
             require("telescope").load_extension("git_signs")
             require("telescope").load_extension("conflicts")
+            require("telescope").load_extension("undo")
         end,
         keys = {
             { "<Leader>t*", "*<CMD>Telescope grep_string<CR>", mode = { "n" }, desc = "Telescope grep_string" },
@@ -303,6 +314,7 @@ return {
             },
             { "<Leader>t\\", "<CMD>Telescope toggleterm_manager<CR>", mode = { "n" }, desc = "Telescope terminal" },
             { "<Leader>tt", "<CMD>TodoTelescope<CR>", mode = { "n" }, desc = "Telescope todo" },
+            { "<Leader>tu", "<CMD>Telescope undo<CR>", mode = { "n" }, desc = "Telescope undo" },
             { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
