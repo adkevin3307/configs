@@ -129,6 +129,10 @@ return {
                 virtual_text = false,
             })
 
+            vim.lsp.config("ts_ls", {
+                filetypes = { "typescript", "javascript", "vue" },
+            })
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(ev)
                     local keymap = vim.keymap.set
@@ -193,7 +197,7 @@ return {
             "neovim/nvim-lspconfig",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls", "cssls", "html" },
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls" },
             automatic_enable = true,
         },
     },
