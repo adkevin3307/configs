@@ -122,13 +122,34 @@ return {
         },
     },
     {
+        "zapling/mason-conform.nvim",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "stevearc/conform.nvim",
+        },
+        config = true,
+    },
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy",
+        priority = 1000,
+        config = function()
+            require("tiny-inline-diagnostic").setup({
+                options = {
+                    show_diags_only_under_cursor = true,
+                    show_source = {
+                        enabled = true,
+                    },
+                },
+            })
+
+            vim.diagnostic.config({ virtual_text = false })
+        end,
+    },
+    {
         "neovim/nvim-lspconfig",
         lazy = false,
         config = function()
-            vim.diagnostic.config({
-                virtual_text = false,
-            })
-
             vim.lsp.config("ts_ls", {
                 filetypes = { "typescript", "javascript", "vue" },
             })
@@ -142,23 +163,6 @@ return {
 
                     keymap("n", "K", "", { buffer = ev.buf })
                     vim.keymap.del("n", "K", { buffer = ev.buf })
-                end,
-            })
-
-            vim.api.nvim_create_autocmd("CursorHold", {
-                callback = function()
-                    local opts = {
-                        focusable = false,
-                        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                        border = "single",
-                        source = "always",
-                        prefix = "",
-                        scope = "cursor",
-                    }
-
-                    if vim.diagnostic.is_enabled() then
-                        vim.diagnostic.open_float(nil, opts)
-                    end
                 end,
             })
 
@@ -200,13 +204,5 @@ return {
             ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls" },
             automatic_enable = true,
         },
-    },
-    {
-        "zapling/mason-conform.nvim",
-        dependencies = {
-            "mason-org/mason.nvim",
-            "stevearc/conform.nvim",
-        },
-        config = true,
     },
 }
