@@ -1,9 +1,5 @@
 return {
     {
-        "folke/lazydev.nvim",
-        config = true,
-    },
-    {
         "mason-org/mason.nvim",
         config = true,
     },
@@ -131,8 +127,7 @@ return {
     },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
-        event = "VeryLazy",
-        priority = 1000,
+        lazy = false,
         config = function()
             require("tiny-inline-diagnostic").setup({
                 options = {
@@ -145,6 +140,9 @@ return {
 
             vim.diagnostic.config({ virtual_text = false })
         end,
+        keys = {
+            { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
+        },
     },
     {
         "neovim/nvim-lspconfig",
@@ -175,24 +173,6 @@ return {
                 })
             end
         end,
-        keys = {
-            {
-                "<F3>",
-                function()
-                    if vim.diagnostic.is_enabled() then
-                        vim.diagnostic.enable(false)
-
-                        vim.notify("Diagnostic disabled")
-                    else
-                        vim.diagnostic.enable()
-
-                        vim.notify("Diagnostic enabled")
-                    end
-                end,
-                mode = { "n" },
-                desc = "Toggle diagnostic",
-            },
-        },
     },
     {
         "mason-org/mason-lspconfig.nvim",
