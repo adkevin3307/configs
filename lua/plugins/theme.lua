@@ -168,7 +168,11 @@ return {
                 terminal = { a = { fg = colors.bg, bg = colors.cyan } },
             }
 
-            require("lualine").setup({ options = { theme = onedark } })
+            require("lualine").setup({
+                options = {
+                    theme = "auto",
+                },
+            })
         end,
     },
 }
