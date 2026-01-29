@@ -179,7 +179,11 @@ if [[ -z ${PROJECT} ]]; then
 fi
 
 if [[ -z ${TAG} ]]; then
-    TAG="${ID}/${PROJECT}:latest"
+    if [[ ${COMPOSE} == 1 ]]; then
+        TAG="${ID}/${PROJECT}"
+    else
+        TAG="${ID}/${PROJECT}:latest"
+    fi
 
     echo "Set default tag to ${TAG} ..."
 fi
