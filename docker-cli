@@ -44,11 +44,7 @@ function HELP() {
     echo -e "    \tStop the container(s)."
     echo -e "    \033[92mclean\033[0m"
     echo -e "    \tClean the image(s)."
-    echo -e "    \033[92mlogs\033[0m"
-    echo -e "    \tShow the container(s) logs."
 }
-
-trap handler SIGINT
 
 BUILD=0
 RUN=0
@@ -58,6 +54,8 @@ CLEAN=0
 LOGS=0
 
 COMPOSE=0
+
+COMMANDS=""
 
 while [[ "$#" > 0 && ! "$1" == "--" ]]; do
     case $1 in
@@ -139,12 +137,12 @@ while [[ "$#" > 0 && ! "$1" == "--" ]]; do
 
         shift
         ;;
-    logs)
-        LOGS=1
-
-        shift
-        ;;
     *)
+        if [[ -z ${COMMANDS} ]]; then
+            COMMANDS="$1"
+        else
+            COMMANDS+=" $1"
+        fi
         shift
         ;;
     esac
@@ -199,6 +197,8 @@ if [[ -e ${WORKDIR}/${DEVELOPMENT}/.env ]]; then
 fi
 
 if [[ ${BUILD} == 1 ]]; then
+    trap handler SIGINT
+
     echo "starting ssh agent ..."
     eval $(ssh-agent) && echo "adding your private keys ..."
     ssh-add && echo "start building ... $SSH_AUTH_SOCK"
@@ -275,10 +275,10 @@ if [[ ${CLEAN} == 1 ]]; then
     fi
 fi
 
-if [[ ${LOGS} == 1 ]]; then
+if [[ ! -z ${COMMANDS} ]]; then
     if [[ ${COMPOSE} == 1 ]]; then
-        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml logs --follow
+        TAG=${TAG} NAME=${NAME} docker compose --file ${WORKDIR}/${DEVELOPMENT}/compose.yaml ${COMMANDS} $@
     else
-        docker logs --follow ${NAME}
+        docker ${COMMANDS} $@
     fi
 fi
