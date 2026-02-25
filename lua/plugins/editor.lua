@@ -145,9 +145,17 @@ return {
     },
     {
         "akinsho/git-conflict.nvim",
+        lazy = false,
+        version = "*",
         opts = {
             default_mappings = false,
-            default_commands = false,
+            default_commands = true,
+        },
+        keys = {
+            { "<Leader>gxc", "<CMD>GitConflictChooseOurs<CR>", mode = { "n" }, desc = "Git conflict current" },
+            { "<Leader>gxi", "<CMD>GitConflictChooseTheirs<CR>", mode = { "n" }, desc = "Git conflict incoming" },
+            { "<Leader>gxb", "<CMD>GitConflictChooseBoth<CR>", mode = { "n" }, desc = "Git conflict both" },
+            { "<Leader>gxn", "<CMD>GitConflictChooseNone<CR>", mode = { "n" }, desc = "Git conflict none" },
         },
     },
     {
