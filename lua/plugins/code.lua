@@ -6,7 +6,9 @@ return {
     },
     {
         "MeanderingProgrammer/treesitter-modules.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
         opts = {
             ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown", "vue", "html", "css", "javascript", "dockerfile" },
             sync_install = false,
@@ -182,14 +184,28 @@ return {
                 end,
             })
 
-            for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
-                vim.fn.sign_define("DiagnosticSign" .. diag, {
-                    text = "",
-                    texthl = "DiagnosticSign" .. diag,
-                    linehl = "",
-                    numhl = "DiagnosticSign" .. diag,
-                })
-            end
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
+                    },
+                    linehl = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
+                    },
+                    numhl = {
+                        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                    },
+                },
+            })
         end,
     },
     {
