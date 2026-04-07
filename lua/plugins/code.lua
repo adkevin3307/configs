@@ -3,30 +3,19 @@ return {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = ":TSUpdate",
-        init = function()
-            local treesitter = require("nvim-treesitter")
-            treesitter.install({ "c", "cpp", "lua", "python", "dockerfile", "bash", "json", "yaml" })
-
-            vim.api.nvim_create_autocmd("FileType", {
-                callback = function(args)
-                    local buf = args.buf
-                    local filetype = args.match
-
-                    local language = vim.treesitter.language.get_lang(filetype) or filetype
-
-                    if not vim.treesitter.language.add(language) and vim.tbl_contains(treesitter.get_available(), language) then
-                        treesitter.install({ language })
-                    end
-
-                    if vim.treesitter.language.add(language) then
-                        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-                        vim.wo.foldmethod = "expr"
-
-                        vim.treesitter.start(buf, language)
-                    end
-                end,
-            })
-        end,
+    },
+    {
+        "MeanderingProgrammer/treesitter-modules.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown", "vue", "html", "css", "javascript", "dockerfile" },
+            sync_install = false,
+            auto_install = true,
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+        },
     },
     {
         "mason-org/mason.nvim",
