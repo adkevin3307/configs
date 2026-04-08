@@ -191,7 +191,7 @@ function install_editor()
 
                     ;;
                 arch)
-                    execute 'pacman -S neovim python-pynvim --noconfirm'
+                    execute 'pacman -S neovim python-pynvim tree-sitter-cli --noconfirm'
 
                     ;;
                 *)
