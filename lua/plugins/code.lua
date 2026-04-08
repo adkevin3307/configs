@@ -33,9 +33,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
         },
         config = function()
             local has_words_before = function()
@@ -46,22 +43,18 @@ return {
             end
 
             local cmp = require("cmp")
-            local luasnip = require("luasnip")
 
             cmp.setup({
-                completion = {
-                    completeopt = "menu,menuone.preview.noselect",
-                },
                 snippet = {
                     expand = function(args)
-                        luasnip.lsp_expand(args.body)
+                        vim.snippet.expand(args.body)
                     end,
                 },
                 mapping = {
                     ["<TAB>"] = function(fallback)
                         if not cmp.select_next_item() then
                             if vim.bo.buftype ~= "prompt" and has_words_before() then
-                                cmp.complete_common_string()
+                                cmp.complete()
                             else
                                 fallback()
                             end
@@ -70,7 +63,7 @@ return {
                     ["<S-TAB>"] = function(fallback)
                         if not cmp.select_prev_item() then
                             if vim.bo.buftype ~= "prompt" and has_words_before() then
-                                cmp.complete_common_string()
+                                cmp.complete()
                             else
                                 fallback()
                             end
@@ -82,7 +75,6 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
                 },
