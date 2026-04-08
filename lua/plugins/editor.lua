@@ -160,39 +160,6 @@ return {
         config = function() end,
     },
     {
-        "ryanmsnyder/toggleterm-manager.nvim",
-        dependencies = {
-            {
-                "akinsho/toggleterm.nvim",
-                opts = {
-                    open_mapping = "<C-\\>",
-                    insert_mappings = false,
-                    direction = "float",
-                    auto_scroll = false,
-                },
-            },
-            "nvim-telescope/telescope.nvim",
-        },
-        config = function()
-            local function create()
-                vim.cmd("TermNew")
-            end
-
-            local actions = require("toggleterm-manager").actions
-
-            require("toggleterm-manager").setup({
-                mappings = {
-                    i = {
-                        ["<CR>"] = { action = actions.toggle_term, exit_on_action = true },
-                        ["<A-c>"] = { action = create, exit_on_action = false },
-                        ["<A-d>"] = { action = actions.delete_term, exit_on_action = false },
-                        ["<A-r>"] = { action = actions.rename_term, exit_on_action = false },
-                    },
-                },
-            })
-        end,
-    },
-    {
         "folke/todo-comments.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -204,10 +171,6 @@ return {
     {
         "linux-cultist/venv-selector.nvim",
         branch = "main",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "nvim-telescope/telescope.nvim",
-        },
         opts = {
             options = {
                 enable_cached_venvs = false,
@@ -349,6 +312,39 @@ return {
                 desc = "LSP definitions",
             },
         },
+    },
+    {
+        "ryanmsnyder/toggleterm-manager.nvim",
+        dependencies = {
+            {
+                "akinsho/toggleterm.nvim",
+                opts = {
+                    open_mapping = "<C-\\>",
+                    insert_mappings = false,
+                    direction = "float",
+                    auto_scroll = false,
+                },
+            },
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            local function create()
+                vim.cmd("TermNew")
+            end
+
+            local actions = require("toggleterm-manager").actions
+
+            require("toggleterm-manager").setup({
+                mappings = {
+                    i = {
+                        ["<CR>"] = { action = actions.toggle_term, exit_on_action = true },
+                        ["<A-c>"] = { action = create, exit_on_action = false },
+                        ["<A-d>"] = { action = actions.delete_term, exit_on_action = false },
+                        ["<A-r>"] = { action = actions.rename_term, exit_on_action = false },
+                    },
+                },
+            })
+        end,
     },
     {
         "utilyre/barbecue.nvim",
