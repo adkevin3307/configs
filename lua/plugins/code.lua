@@ -31,6 +31,7 @@ return {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
         },
@@ -75,6 +76,7 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
+                    { name = "nvim_lua" },
                     { name = "buffer" },
                     { name = "path" },
                 },
@@ -162,6 +164,20 @@ return {
         config = function()
             vim.lsp.config("ts_ls", {
                 filetypes = { "typescript", "javascript", "vue" },
+            })
+
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                        workspance = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
+                        },
+                    },
+                },
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {

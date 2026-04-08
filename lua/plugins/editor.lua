@@ -18,10 +18,6 @@ return {
         },
     },
     {
-        "adkevin3307/floating-help",
-        config = true,
-    },
-    {
         "gbprod/yanky.nvim",
         config = true,
     },
