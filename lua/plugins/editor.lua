@@ -473,24 +473,6 @@ return {
         config = function(_, opts)
             require("illuminate").configure(opts)
         end,
-        keys = {
-            {
-                "<Leader>cn",
-                function()
-                    require("illuminate").goto_next_reference()
-                end,
-                mode = { "n" },
-                desc = "Next hover word",
-            },
-            {
-                "<Leader>cp",
-                function()
-                    require("illuminate").goto_prev_reference()
-                end,
-                mode = { "n" },
-                desc = "Prev hover word",
-            },
-        },
     },
     {
         "amitds1997/remote-nvim.nvim",
