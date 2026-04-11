@@ -1,17 +1,5 @@
 return {
     {
-        "folke/lazydev.nvim",
-        ft = "lua",
-        opts = {
-            library = {
-                {
-                    path = "${3rd}/luv/library",
-                    words = { "vim%.uv" },
-                },
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = ":TSUpdate",
@@ -32,12 +20,45 @@ return {
         },
     },
     {
-        "mason-org/mason.nvim",
-        config = true,
+        "ray-x/lsp_signature.nvim",
+        opts = {
+            hint_prefix = {
+                above = "↙ ",
+                current = "← ",
+                below = "↖ ",
+            },
+        },
     },
     {
-        "ray-x/lsp_signature.nvim",
-        config = true,
+        "rachartier/tiny-inline-diagnostic.nvim",
+        lazy = false,
+        config = function()
+            require("tiny-inline-diagnostic").setup({
+                options = {
+                    show_diags_only_under_cursor = true,
+                    show_source = {
+                        enabled = true,
+                    },
+                },
+            })
+
+            vim.diagnostic.config({ virtual_text = false })
+        end,
+        keys = {
+            { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
+        },
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                {
+                    path = "${3rd}/luv/library",
+                    words = { "vim%.uv" },
+                },
+            },
+        },
     },
     {
         "hrsh7th/nvim-cmp",
@@ -84,9 +105,8 @@ return {
                             end
                         end
                     end,
-                    ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s" }),
-                    ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
-                    ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
+                    ["<C-j>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
                 },
                 sources = {
                     { name = "lazydev" },
@@ -97,6 +117,10 @@ return {
                 },
             })
         end,
+    },
+    {
+        "mason-org/mason.nvim",
+        config = true,
     },
     {
         "stevearc/conform.nvim",
@@ -153,25 +177,6 @@ return {
             "stevearc/conform.nvim",
         },
         config = true,
-    },
-    {
-        "rachartier/tiny-inline-diagnostic.nvim",
-        lazy = false,
-        config = function()
-            require("tiny-inline-diagnostic").setup({
-                options = {
-                    show_diags_only_under_cursor = true,
-                    show_source = {
-                        enabled = true,
-                    },
-                },
-            })
-
-            vim.diagnostic.config({ virtual_text = false })
-        end,
-        keys = {
-            { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
-        },
     },
     {
         "neovim/nvim-lspconfig",
