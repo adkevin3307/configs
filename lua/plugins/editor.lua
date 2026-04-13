@@ -141,23 +141,16 @@ return {
         },
     },
     {
-        "akinsho/git-conflict.nvim",
-        lazy = false,
-        version = "*",
+        "niekdomi/conflict.nvim",
         opts = {
-            default_mappings = false,
-            default_commands = true,
+            default_mappings = {
+                current = "<Leader>gxc",
+                incoming = "<Leader>gxi",
+                both = "<Leader>gxb",
+                none = "<Leader>gxn",
+            },
+            disable_diagnostics = false,
         },
-        keys = {
-            { "<Leader>gxc", "<CMD>GitConflictChooseOurs<CR>", mode = { "n" }, desc = "Git conflict current" },
-            { "<Leader>gxi", "<CMD>GitConflictChooseTheirs<CR>", mode = { "n" }, desc = "Git conflict incoming" },
-            { "<Leader>gxb", "<CMD>GitConflictChooseBoth<CR>", mode = { "n" }, desc = "Git conflict both" },
-            { "<Leader>gxn", "<CMD>GitConflictChooseNone<CR>", mode = { "n" }, desc = "Git conflict none" },
-        },
-    },
-    {
-        "Snikimonkd/telescope-git-conflicts.nvim",
-        config = function() end,
     },
     {
         "folke/todo-comments.nvim",
@@ -196,7 +189,8 @@ return {
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
             "radyz/telescope-gitsigns",
-            "Snikimonkd/telescope-git-conflicts.nvim",
+            "niekdomi/conflict.nvim",
+            -- "Snikimonkd/telescope-git-conflicts.nvim",
             "folke/todo-comments.nvim",
             "debugloop/telescope-undo.nvim",
             "linux-cultist/venv-selector.nvim",
@@ -246,7 +240,7 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
             require("telescope").load_extension("git_signs")
-            require("telescope").load_extension("conflicts")
+            require("telescope").load_extension("git_conflict")
             require("telescope").load_extension("undo")
         end,
         keys = {
@@ -286,7 +280,7 @@ return {
             { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
-            { "<Leader>gc", "<CMD>Telescope conflicts<CR>", mode = { "n" }, desc = "Git conflicts" },
+            { "<Leader>gc", "<CMD>Telescope git_conflict<CR>", mode = { "n" }, desc = "Git conflicts" },
             {
                 "<Leader>gb",
                 function()
