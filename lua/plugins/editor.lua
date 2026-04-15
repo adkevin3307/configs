@@ -190,7 +190,6 @@ return {
             "jemag/telescope-diff.nvim",
             "radyz/telescope-gitsigns",
             "niekdomi/conflict.nvim",
-            -- "Snikimonkd/telescope-git-conflicts.nvim",
             "folke/todo-comments.nvim",
             "debugloop/telescope-undo.nvim",
             "linux-cultist/venv-selector.nvim",

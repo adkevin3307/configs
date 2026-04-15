@@ -61,62 +61,102 @@ return {
         },
     },
     {
-        "hrsh7th/nvim-cmp",
+        "saghen/blink.cmp",
+        version = "1.*",
         dependencies = {
             "folke/lazydev.nvim",
-
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
+            "folke/noice.nvim",
         },
-        config = function()
-            local has_words_before = function()
-                local unpack = unpack or table.unpack
+        opts = {
+            cmdline = {
+                enabled = false,
+            },
+            keymap = {
+                preset = "none",
+                ["UP"] = {},
+                ["DOWN"] = {},
+                ["<TAB>"] = {
+                    function(cmp)
+                        local has_words_before = function()
+                            local unpack = unpack or table.unpack
 
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-            end
-
-            local cmp = require("cmp")
-
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        vim.snippet.expand(args.body)
-                    end,
-                },
-                mapping = {
-                    ["<TAB>"] = function(fallback)
-                        if not cmp.select_next_item() then
-                            if vim.bo.buftype ~= "prompt" and has_words_before() then
-                                cmp.complete()
-                            else
-                                fallback()
-                            end
+                            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
                         end
-                    end,
-                    ["<S-TAB>"] = function(fallback)
-                        if not cmp.select_prev_item() then
-                            if vim.bo.buftype ~= "prompt" and has_words_before() then
-                                cmp.complete()
-                            else
-                                fallback()
-                            end
+
+                        if not cmp.is_visible() and has_words_before() then
+                            return cmp.show()
                         end
+
+                        return cmp.select_next()
                     end,
-                    ["<C-j>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+                    "fallback",
                 },
-                sources = {
-                    { name = "lazydev" },
-                    { name = "nvim_lsp" },
-                    { name = "nvim_lua" },
-                    { name = "buffer" },
-                    { name = "path" },
+                ["<S-TAB>"] = {
+                    function(cmp)
+                        local has_words_before = function()
+                            local unpack = unpack or table.unpack
+
+                            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+                        end
+
+                        if not cmp.is_visible() and has_words_before() then
+                            return cmp.show()
+                        end
+
+                        return cmp.select_prev()
+                    end,
+                    "fallback",
                 },
-            })
-        end,
+                ["<C-j>"] = { "scroll_documentation_down", "fallback" },
+                ["<C-k>"] = { "scroll_documentation_up", "fallback" },
+            },
+            appearance = {
+                nerd_font_variant = "Nerd Font Mono",
+            },
+            completion = {
+                list = {
+                    selection = {
+                        preselect = false,
+                        auto_insert = true,
+                    },
+                },
+                menu = {
+                    max_height = vim.o.lines + 1,
+                },
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 0,
+                    window = {
+                        max_height = math.floor(vim.o.lines * 0.6),
+                    },
+                },
+                ghost_text = {
+                    enabled = true,
+                    show_with_selection = false,
+                    show_without_selection = true,
+                    show_with_menu = true,
+                    show_without_menu = true,
+                },
+            },
+            sources = {
+                default = { "lazydev", "lsp", "path", "buffer", "snippets" },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        score_offset = 100,
+                    },
+                },
+            },
+            fuzzy = {
+                implementation = "prefer_rust",
+            },
+        },
+        opts_extend = {
+            "sources.default",
+        },
     },
     {
         "mason-org/mason.nvim",
