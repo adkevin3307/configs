@@ -71,6 +71,9 @@ return {
             cmdline = {
                 enabled = false,
             },
+            term = {
+                enabled = false,
+            },
             keymap = {
                 preset = "none",
                 ["UP"] = {},
@@ -124,6 +127,13 @@ return {
                 },
                 menu = {
                     max_height = vim.o.lines + 1,
+                    draw = {
+                        columns = {
+                            { "kind_icon" },
+                            { "label", "label_description", gap = 1 },
+                            { "kind", gap = 5 },
+                        },
+                    },
                 },
                 documentation = {
                     auto_show = true,
@@ -133,11 +143,7 @@ return {
                     },
                 },
                 ghost_text = {
-                    enabled = true,
-                    show_with_selection = false,
-                    show_without_selection = true,
-                    show_with_menu = true,
-                    show_without_menu = true,
+                    enabled = false,
                 },
             },
             sources = {
