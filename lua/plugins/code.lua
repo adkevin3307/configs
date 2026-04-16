@@ -66,6 +66,8 @@ return {
         dependencies = {
             "folke/lazydev.nvim",
             "folke/noice.nvim",
+
+            "rafamadriz/friendly-snippets",
         },
         opts = {
             cmdline = {
@@ -74,10 +76,11 @@ return {
             term = {
                 enabled = false,
             },
+            signature = {
+                enabled = false,
+            },
             keymap = {
                 preset = "none",
-                ["UP"] = {},
-                ["DOWN"] = {},
                 ["<TAB>"] = {
                     function(cmp)
                         local has_words_before = function()
@@ -112,11 +115,12 @@ return {
                     end,
                     "fallback",
                 },
+                ["<CR>"] = { "accept", "fallback" },
                 ["<C-j>"] = { "scroll_documentation_down", "fallback" },
                 ["<C-k>"] = { "scroll_documentation_up", "fallback" },
-            },
-            appearance = {
-                nerd_font_variant = "Nerd Font Mono",
+                ["<C-n>"] = { "snippet_forward", "fallback" },
+                ["<C-p>"] = { "snippet_backward", "fallback" },
+                ["<C-e>"] = { "hide", "fallback" },
             },
             completion = {
                 list = {
@@ -132,6 +136,7 @@ return {
                             { "kind_icon" },
                             { "label", "label_description", gap = 1 },
                             { "kind", gap = 5 },
+                            { "source_id", gap = 1 },
                         },
                     },
                 },
@@ -146,6 +151,12 @@ return {
                     enabled = false,
                 },
             },
+            fuzzy = {
+                implementation = "prefer_rust_with_warning",
+            },
+            appearance = {
+                nerd_font_variant = "mono",
+            },
             sources = {
                 default = { "lazydev", "lsp", "path", "buffer", "snippets" },
                 providers = {
@@ -155,9 +166,6 @@ return {
                         score_offset = 100,
                     },
                 },
-            },
-            fuzzy = {
-                implementation = "prefer_rust",
             },
         },
         opts_extend = {
