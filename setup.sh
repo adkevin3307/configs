@@ -107,10 +107,6 @@ function install_packages()
             ;;
     esac
 
-    mkdir -vp ~/.local/bin
-    cp -vf ${DIRECTORY}/git-graph ~/.local/bin
-    cp -vf ${DIRECTORY}/docker-cli ~/.local/bin
-
     mkdir -vp ~/.config/lazygit
     cp -vf ${DIRECTORY}/config.yml ~/.config/lazygit
 
