@@ -1,35 +1,31 @@
 vim.g.mapleader = " "
 
-local opt = vim.opt
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.number = true
+vim.opt.mouse = "a"
+vim.opt.wrap = false
 
-opt.smartindent = true
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.number = true
-opt.mouse = "a"
-opt.wrap = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 100
+vim.opt.shortmess:append({ c = true })
 
-opt.backup = false
-opt.writebackup = false
-opt.updatetime = 100
-opt.shortmess:append({ c = true })
+vim.opt.signcolumn = "yes"
+vim.opt.cursorline = true
 
-opt.signcolumn = "yes"
-opt.cursorline = true
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-opt.foldcolumn = "1"
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldenable = true
-opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-j>", "<Down>")
+vim.keymap.set("i", "<C-k>", "<Up>")
+vim.keymap.set("i", "<C-l>", "<Right>")
 
-local keymap = vim.keymap.set
-
-keymap("i", "<C-h>", "<Left>")
-keymap("i", "<C-j>", "<Down>")
-keymap("i", "<C-k>", "<Up>")
-keymap("i", "<C-l>", "<Right>")
-
-keymap("n", "<C-q>", "<CMD>bdelete<CR>", { silent = true, desc = "Buffer delete" })
-keymap("t", "<ESC>", "<ESC><C-\\><C-n>")
+vim.keymap.set("n", "<C-q>", "<CMD>bdelete<CR>", { silent = true, desc = "Buffer delete" })
+vim.keymap.set("t", "<ESC>", "<ESC><C-\\><C-n>")

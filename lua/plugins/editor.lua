@@ -239,7 +239,6 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
             require("telescope").load_extension("git_signs")
-            require("telescope").load_extension("git_conflict")
             require("telescope").load_extension("undo")
         end,
         keys = {
@@ -279,7 +278,49 @@ return {
             { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
-            { "<Leader>gc", "<CMD>Telescope git_conflict<CR>", mode = { "n" }, desc = "Git conflicts" },
+            {
+                "<Leader>gc",
+                function()
+                    local pickers = require("telescope.pickers")
+                    local finders = require("telescope.finders")
+                    local config = require("telescope.config").values
+                    local actions = require("telescope.actions")
+                    local actions_state = require("telescope.actions.state")
+
+                    local git_conflict_picker = function(opts)
+                        opts = opts or {}
+
+                        local files = require("conflict").get_conflicted_files()
+
+                        if #files == 0 then
+                            vim.notify("No conflicted files found", vim.log.levels.INFO)
+
+                            return
+                        end
+
+                        pickers
+                            .new(opts, {
+                                prompt_title = "Git Conflicts",
+                                finder = finders.new_table({ results = files }),
+                                sorter = config.generic_sorter(opts),
+                                previewer = config.file_previewer(opts),
+                                attach_mappings = function(prompt_bufnr)
+                                    actions.select_default:replace(function()
+                                        local entry = actions_state.get_selected_entry()
+                                        actions.close(prompt_bufnr)
+                                        vim.cmd.edit(entry[1])
+                                    end)
+                                    return true
+                                end,
+                            })
+                            :find()
+                    end
+
+                    git_conflict_picker()
+                end,
+                mode = { "n" },
+                desc = "Git conflicts",
+            },
             {
                 "<Leader>gb",
                 function()
