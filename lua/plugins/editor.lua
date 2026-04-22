@@ -287,36 +287,31 @@ return {
                     local actions = require("telescope.actions")
                     local actions_state = require("telescope.actions.state")
 
-                    local git_conflict_picker = function(opts)
-                        opts = opts or {}
+                    local files = require("conflict").get_conflicted_files()
 
-                        local files = require("conflict").get_conflicted_files()
+                    if #files == 0 then
+                        vim.notify("No conflicted files found", vim.log.levels.INFO)
 
-                        if #files == 0 then
-                            vim.notify("No conflicted files found", vim.log.levels.INFO)
-
-                            return
-                        end
-
-                        pickers
-                            .new(opts, {
-                                prompt_title = "Git Conflicts",
-                                finder = finders.new_table({ results = files }),
-                                sorter = config.generic_sorter(opts),
-                                previewer = config.file_previewer(opts),
-                                attach_mappings = function(prompt_bufnr)
-                                    actions.select_default:replace(function()
-                                        local entry = actions_state.get_selected_entry()
-                                        actions.close(prompt_bufnr)
-                                        vim.cmd.edit(entry[1])
-                                    end)
-                                    return true
-                                end,
-                            })
-                            :find()
+                        return
                     end
 
-                    git_conflict_picker()
+                    pickers
+                        .new({}, {
+                            prompt_title = "Git Conflicts",
+                            finder = finders.new_table({ results = files }),
+                            sorter = config.generic_sorter({}),
+                            previewer = config.file_previewer({}),
+                            attach_mappings = function(prompt_bufnr)
+                                actions.select_default:replace(function()
+                                    local entry = actions_state.get_selected_entry()
+
+                                    actions.close(prompt_bufnr)
+                                    vim.cmd.edit(entry[1])
+                                end)
+                                return true
+                            end,
+                        })
+                        :find()
                 end,
                 mode = { "n" },
                 desc = "Git conflicts",
