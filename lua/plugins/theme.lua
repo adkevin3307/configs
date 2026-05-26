@@ -36,6 +36,9 @@ return {
                     ["@text.strong"] = { fmt = "none" },
                     ["@text.title"] = { fmt = "none" },
 
+                    FloatBorder = { bg = "none" },
+                    NormalFloat = { bg = "none" },
+
                     NeoTreeRootName = { fmt = "none" },
                     NeoTreeGitConflict = { fmt = "none" },
                     NeoTreeGitUntracked = { fmt = "none" },

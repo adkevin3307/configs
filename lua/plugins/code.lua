@@ -27,13 +27,8 @@ return {
                 current = "← ",
                 below = "↖ ",
             },
+            move_signature_window_key = { "<M-j>", "<M-k>", "<M-h>", "<M-l>" },
         },
-        config = function(_, opts)
-            require("lsp_signature").setup(opts)
-
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
-        end,
     },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
@@ -190,11 +185,11 @@ return {
             vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "NONE", fg = "#545b68" })
 
             vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "NONE", fg = "#626262" })
 
             vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "NONE", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "NONE", fg = "#626262" })
         end,
     },
     {
@@ -281,12 +276,10 @@ return {
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(ev)
-                    local keymap = vim.keymap.set
+                    vim.keymap.set("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
+                    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
 
-                    keymap("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
-                    keymap("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
-
-                    keymap("n", "K", "", { buffer = ev.buf })
+                    vim.keymap.set("n", "K", "", { buffer = ev.buf })
                     vim.keymap.del("n", "K", { buffer = ev.buf })
                 end,
             })
