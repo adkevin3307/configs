@@ -28,6 +28,12 @@ return {
                 below = "↖ ",
             },
         },
+        config = function(_, opts)
+            require("lsp_signature").setup(opts)
+
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+        end,
     },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
@@ -62,13 +68,17 @@ return {
     },
     {
         "saghen/blink.cmp",
-        version = "1.*",
         dependencies = {
+            "saghen/blink.lib",
+
             "folke/lazydev.nvim",
             "folke/noice.nvim",
 
             "rafamadriz/friendly-snippets",
         },
+        build = function()
+            require("blink.cmp").build()
+        end,
         opts = {
             cmdline = {
                 enabled = false,
@@ -85,8 +95,8 @@ return {
                     function(cmp)
                         local has_words_before = function()
                             local unpack = unpack or table.unpack
-
                             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+
                             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
                         end
 
@@ -102,8 +112,8 @@ return {
                     function(cmp)
                         local has_words_before = function()
                             local unpack = unpack or table.unpack
-
                             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+
                             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
                         end
 
@@ -130,6 +140,7 @@ return {
                     },
                 },
                 menu = {
+                    border = "rounded",
                     max_height = vim.o.lines + 1,
                     draw = {
                         columns = {
@@ -142,8 +153,9 @@ return {
                 },
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 0,
+                    auto_show_delay_ms = 10,
                     window = {
+                        border = "rounded",
                         max_height = math.floor(vim.o.lines * 0.6),
                     },
                 },
@@ -168,9 +180,22 @@ return {
                 },
             },
         },
-        opts_extend = {
-            "sources.default",
-        },
+        config = function(_, opts)
+            require("blink.cmp").setup(opts)
+
+            vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { bg = "NONE", fg = "#545b68" })
+
+            vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "NONE", fg = "#545b68" })
+
+            vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "NONE" })
+
+            vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "NONE" })
+        end,
     },
     {
         "mason-org/mason.nvim",
