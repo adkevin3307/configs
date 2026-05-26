@@ -135,7 +135,6 @@ return {
         priority = 1000,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            "navarasu/onedark.nvim",
         },
         opts = {
             options = {
