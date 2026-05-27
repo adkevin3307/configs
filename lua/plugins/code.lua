@@ -20,17 +20,6 @@ return {
         },
     },
     {
-        "ray-x/lsp_signature.nvim",
-        opts = {
-            hint_prefix = {
-                above = "↙ ",
-                current = "← ",
-                below = "↖ ",
-            },
-            move_signature_window_key = { "<M-j>", "<M-k>", "<M-h>", "<M-l>" },
-        },
-    },
-    {
         "rachartier/tiny-inline-diagnostic.nvim",
         lazy = false,
         config = function()
@@ -81,9 +70,6 @@ return {
             term = {
                 enabled = false,
             },
-            signature = {
-                enabled = false,
-            },
             keymap = {
                 preset = "none",
                 ["<TAB>"] = {
@@ -121,11 +107,11 @@ return {
                     "fallback",
                 },
                 ["<CR>"] = { "accept", "fallback" },
-                ["<C-j>"] = { "scroll_documentation_down", "fallback" },
-                ["<C-k>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-j>"] = { "scroll_documentation_down", "scroll_signature_down", "fallback" },
+                ["<C-k>"] = { "scroll_documentation_up", "scroll_signature_up", "fallback" },
                 ["<C-n>"] = { "snippet_forward", "fallback" },
                 ["<C-p>"] = { "snippet_backward", "fallback" },
-                ["<C-e>"] = { "hide", "fallback" },
+                ["<C-e>"] = { "hide", "hide_signature", "fallback" },
             },
             completion = {
                 list = {
@@ -156,6 +142,19 @@ return {
                 },
                 ghost_text = {
                     enabled = false,
+                },
+            },
+            signature = {
+                enabled = true,
+                trigger = {
+                    show_on_insert = true,
+                    show_on_keyword = true,
+                },
+                window = {
+                    border = "rounded",
+                    max_height = math.floor(vim.o.lines * 0.6),
+                    show_documentation = true,
+                    treesitter_highlighting = true,
                 },
             },
             fuzzy = {
@@ -190,6 +189,9 @@ return {
             vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
             vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "NONE", fg = "#626262" })
             vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "NONE", fg = "#626262" })
+
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "NONE", fg = "#626262" })
         end,
     },
     {
