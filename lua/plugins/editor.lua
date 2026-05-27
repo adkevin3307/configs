@@ -104,8 +104,26 @@ return {
                         winblend = 0,
                     },
                 },
+                hover = {
+                    size = {
+                        max_height = math.floor(vim.o.lines * 0.6),
+                    },
+                    win_options = {
+                        winblend = 0,
+                        winhighlight = {
+                            Normal = "HoverFloat",
+                            FloatBorder = "HoverFloatBorder",
+                        },
+                    },
+                },
             },
         },
+        config = function(_, opts)
+            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "NONE" })
+            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "NONE", fg = "#626262" })
+
+            require("noice").setup(opts)
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",

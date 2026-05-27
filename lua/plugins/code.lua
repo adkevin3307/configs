@@ -194,7 +194,11 @@ return {
     },
     {
         "mason-org/mason.nvim",
-        config = true,
+        opts = {
+            ui = {
+                height = 0.8,
+            },
+        },
     },
     {
         "stevearc/conform.nvim",
