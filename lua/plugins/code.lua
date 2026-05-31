@@ -61,7 +61,7 @@ return {
             "rafamadriz/friendly-snippets",
         },
         build = function()
-            require("blink.cmp").build():wait(60000)
+            require("blink.cmp").build():pwait()
         end,
         opts = {
             cmdline = {
@@ -175,7 +175,9 @@ return {
             },
         },
         config = function(_, opts)
-            require("blink.cmp").setup(opts)
+            local cmp = require("blink.cmp")
+
+            cmp.setup(opts)
 
             vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "NONE" })
             vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "NONE" })
@@ -192,6 +194,14 @@ return {
 
             vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "NONE" })
             vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "NONE", fg = "#626262" })
+
+            vim.api.nvim_create_autocmd("CursorMovedI", {
+                callback = function()
+                    if not cmp.is_signature_visible() then
+                        cmp.show_signature()
+                    end
+                end,
+            })
         end,
     },
     {
