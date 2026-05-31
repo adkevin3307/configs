@@ -4,13 +4,13 @@
 
 ## Requirements
 
-- `zsh >= 5.8`
-- `vim >= 8.2` / `nvim >= 0.10.0`
+- `zsh >= 5.9`
+- `vim >= 8.2` / `nvim >= 0.12.2`
 
 ## Usage
 
 - `Ubuntu` / `Arch` users can use `setup.sh` directly
-- Remember to open sth. with `editor (vim / nvim)` first, then go get a coffee and wait
+- After `setup.sh`, remember to open editor `vim / nvim`, then go get a coffee and wait
 - Warnings: currently, `vim` is suspend, please use `nvim` if possible
 
 ## Key Mapping
@@ -70,10 +70,17 @@ List some of useful custom key mappings.
 | `<S-Left>`      | select left pane              |
 | `<S-Right>`     | select right pane             |
 | `<Leader>/`     | search in buffer              |
+| `<Leader>t`     | tmuxioner for session         |
+| `<Leader>\`     | popup window                  |
+| `<Leader>s`     | store current session         |
+| `<Leader>T`     | show clock                    |
+| `<Leader>?`     | for more information          |
 
 ## Reference
 
 ### zsh
+
+> Check `.zshrc` for more settings and information
 
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 - [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k)
@@ -83,71 +90,23 @@ List some of useful custom key mappings.
 
 ### vim [SUSPEND]
 
-- [vim-plug](https://github.com/junegunn/vim-plug)
-- [joshdick/onedark.vim](https://github.com/joshdick/onedark.vim)
-- [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
-- [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
-- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
-- [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
-- [vim-python/python-syntax](https://github.com/vim-python/python-syntax)
-- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
-- [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
-- [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-- [kkoomen/vim-doge](https://github.com/kkoomen/vim-doge)
-- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
-- [djoshea/vim-autoread](https://github.com/djoshea/vim-autoread)
-- [liuchengxu/vim-clap](https://github.com/liuchengxu/vim-clap)
-- [sillybun/vim-repl](https://github.com/sillybun/vim-repl)
+> Check `.vimrc` for more settings information
 
-### nvim [TODO]
+### nvim
 
-- [navarasu/onedark.nvim](https://github.com/navarasu/onedark.nvim)
-- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [nvim-telescope/telescope-file-browser.nvim](https://github.com/nvim-telescope/telescope-file-browser.nvim)
-- [gbprod/yanky.nvim](https://github.com/gbprod/yanky.nvim)
-- [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [folke/noice.nvim](https://github.com/folke/noice.nvim)
-- [MunifTanjim/nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
-- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
-- [roxma/nvim-yarp](https://github.com/roxma/nvim-yarp)
-- [roxma/vim-hug-neovim-rpc](https://github.com/roxma/vim-hug-neovim-rpc)
-- [utilyre/barbecue.nvim](https://github.com/utilyre/barbecue.nvim)
-- [SmiteshP/nvim-navic](https://github.com/SmiteshP/nvim-navic)
-- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [ntpeters/vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)
-- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [vim-autoformat/vim-autoformat](https://github.com/vim-autoformat/vim-autoformat)
-- [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
-- [nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
-- [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [AckslD/muren.nvim](https://github.com/AckslD/muren.nvim)
-- [kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
-- [kevinhwang91/promise-async](https://github.com/kevinhwang91/promise-async)
-- [luukvbaal/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
-- [kevinhwang91/nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
-- [lewis6991/satellite.nvim](https://github.com/lewis6991/satellite.nvim)
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
-- [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-- [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
-- [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
-- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
-- [ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
+> Check `lua/plugins/*.lua` for more settings and information
 
 ### tmux
 
+> Check `.tmux.conf` for more settings and information
+
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
-- [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tumx-sensible)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
+- [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tumx-sensible)
 - [tmux-plugins/tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 - [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
+- [adkevin3307/tmuxioner](https://github.com/adkevin3307/tmuxioner)
+- [omerxx/tmux-floax](https://github.com/omerxx/tmux-floax)
+- [tmux-plugins/tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+- [tmux-plugins/tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)
 
