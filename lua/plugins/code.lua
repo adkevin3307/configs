@@ -272,10 +272,6 @@ return {
         "neovim/nvim-lspconfig",
         lazy = false,
         config = function()
-            vim.lsp.config("ts_ls", {
-                filetypes = { "typescript", "javascript", "vue" },
-            })
-
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
@@ -331,7 +327,7 @@ return {
             "neovim/nvim-lspconfig",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls", "vue_ls" },
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
             automatic_enable = true,
         },
     },
