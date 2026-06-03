@@ -14,6 +14,9 @@ return {
                 highlights = {
                     CursorLineNR = { fg = "#ff8800", fmt = "none" },
 
+                    NormalFloat = { bg = "none" },
+                    FloatBorder = { bg = "none", fg = "#545b68" },
+
                     ["@spell"] = { fg = "none", bg = "none", sp = "none", fmt = "none" },
 
                     ["@constructor"] = { fmt = "none" },

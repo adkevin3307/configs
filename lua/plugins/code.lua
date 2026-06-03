@@ -179,21 +179,21 @@ return {
 
             cmp.setup(opts)
 
-            vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { bg = "NONE", fg = "#545b68" })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { bg = "none", fg = "#545b68" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "NONE", fg = "#545b68" })
+            vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "none", fg = "#545b68" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "NONE", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "none", fg = "#626262" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "NONE", fg = "#626262" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "NONE", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none", fg = "#626262" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "NONE", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = "#626262" })
 
             vim.api.nvim_create_autocmd("CursorMovedI", {
                 callback = function()
@@ -211,6 +211,13 @@ return {
                 height = 0.8,
             },
         },
+        config = function(_, opts)
+            require("mason").setup(opts)
+
+            local colors = require("onedark.colors")
+
+            vim.api.nvim_set_hl(0, "MasonNormal", { bg = colors.bg1 })
+        end,
     },
     {
         "stevearc/conform.nvim",
