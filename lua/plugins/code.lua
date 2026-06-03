@@ -196,6 +196,7 @@ return {
             vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = "#626262" })
 
             vim.api.nvim_create_autocmd("CursorMovedI", {
+                pattern = "*",
                 callback = function()
                     if not cmp.is_signature_visible() then
                         cmp.show_signature()
@@ -209,14 +210,18 @@ return {
         opts = {
             ui = {
                 height = 0.8,
+                border = "rounded",
             },
         },
         config = function(_, opts)
             require("mason").setup(opts)
 
-            local colors = require("onedark.colors")
-
-            vim.api.nvim_set_hl(0, "MasonNormal", { bg = colors.bg1 })
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "mason",
+                callback = function()
+                    vim.opt_local.cursorline = false
+                end,
+            })
         end,
     },
     {

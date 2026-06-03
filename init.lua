@@ -19,9 +19,16 @@ require("lazy").setup({
         missing = true,
         colorscheme = { "onedark" },
     },
+    ui = {
+        border = "rounded",
+    },
 })
 
-vim.api.nvim_set_hl(0, "LazyNormal", { bg = "#31353f" })
+vim.api.nvim_set_hl(0, "LazyButton", { link = "CursorLine" })
+vim.api.nvim_set_hl(0, "LazyButton", { bg = "none" })
+
+vim.api.nvim_set_hl(0, "LazyProp", { link = "Conceal" })
+vim.api.nvim_set_hl(0, "LazyProp", { bg = "none" })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
@@ -42,9 +49,6 @@ vim.api.nvim_create_autocmd("FileType", {
             })
 
             vim.opt_local.winbar = ""
-            vim.opt.winhl = "Normal:Floating"
-
-            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
         end
     end,
 })
