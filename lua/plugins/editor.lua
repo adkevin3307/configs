@@ -54,14 +54,14 @@ return {
             persisted.setup(opts)
 
             vim.api.nvim_create_autocmd("User", {
-                pattern = { "PersistedSavePost" },
+                pattern = "PersistedSavePost",
                 callback = function()
                     vim.notify("Session saved")
                 end,
             })
 
             vim.api.nvim_create_autocmd("User", {
-                pattern = { "PersistedLoadPost" },
+                pattern = "PersistedLoadPost",
                 callback = function()
                     vim.notify("Session loaded")
                 end,
@@ -119,8 +119,8 @@ return {
             },
         },
         config = function(_, opts)
-            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "NONE" })
-            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "NONE", fg = "#626262" })
+            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "none" })
+            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "none", fg = "#626262" })
 
             require("noice").setup(opts)
         end,

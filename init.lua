@@ -24,11 +24,8 @@ require("lazy").setup({
     },
 })
 
-vim.api.nvim_set_hl(0, "LazyButton", { link = "CursorLine" })
-vim.api.nvim_set_hl(0, "LazyButton", { bg = "none" })
-
-vim.api.nvim_set_hl(0, "LazyProp", { link = "Conceal" })
-vim.api.nvim_set_hl(0, "LazyProp", { bg = "none" })
+vim.api.nvim_set_hl(0, "LazyButton", { link = "none" })
+vim.api.nvim_set_hl(0, "LazyProp", { link = "none" })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
