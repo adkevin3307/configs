@@ -26,6 +26,7 @@ require("lazy").setup({
 
 vim.api.nvim_set_hl(0, "LazyButton", { link = "none" })
 vim.api.nvim_set_hl(0, "LazyProp", { link = "none" })
+vim.api.nvim_set_hl(0, "LazyDimmed", { link = "none" })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",

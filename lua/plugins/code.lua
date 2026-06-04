@@ -64,12 +64,6 @@ return {
             require("blink.cmp").build():pwait()
         end,
         opts = {
-            cmdline = {
-                enabled = false,
-            },
-            term = {
-                enabled = false,
-            },
             keymap = {
                 preset = "none",
                 ["<TAB>"] = {
@@ -162,6 +156,20 @@ return {
             },
             appearance = {
                 nerd_font_variant = "mono",
+            },
+            cmdline = {
+                enabled = true,
+                completion = {
+                    list = {
+                        selection = {
+                            preselect = false,
+                            auto_insert = true,
+                        },
+                    },
+                },
+            },
+            term = {
+                enabled = false,
             },
             sources = {
                 default = { "lazydev", "lsp", "path", "buffer", "snippets" },
