@@ -158,15 +158,7 @@ return {
                 nerd_font_variant = "mono",
             },
             cmdline = {
-                enabled = true,
-                completion = {
-                    list = {
-                        selection = {
-                            preselect = false,
-                            auto_insert = true,
-                        },
-                    },
-                },
+                enabled = false,
             },
             term = {
                 enabled = false,
