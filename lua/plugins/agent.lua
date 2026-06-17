@@ -21,32 +21,33 @@ return {
             },
         },
         opts = {
-            provider = "ollamalocal",
+            provider = "ollama",
             use_absolute_path = true,
             input = {
                 provider = "snacks",
-                provider_opts = {
-                    title = "Avante Input",
-                    icon = " ",
-                },
             },
             selector = {
-                provider = "snacks",
+                provider = "telescope",
             },
             providers = {
-                ollamalocal = {
+                ollama = {
                     ["local"] = true,
                     __inherited_from = "openai",
                     endpoint = "http://localhost:11434/v1",
                     model = "qwen3-coder:30b",
-                    tempature = 0,
                     disable_tools = false,
-                    max_tokens = 8192,
-                    num_ctx = 32768,
                     api_key_name = "",
                     is_env_set = function()
                         return true
                     end,
+                    extra_request_body = {
+                        stream = true,
+                    },
+                },
+                openai = {
+                    endpoint = "http://localhost/v1",
+                    model = "NVIDIA-Nemotron-3-Ultra-550B-A55B",
+                    disable_tools = false,
                     extra_request_body = {
                         stream = true,
                     },
