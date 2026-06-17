@@ -77,3 +77,23 @@ require("lazy").setup({
 vim.api.nvim_set_hl(0, "LazyButton", { link = "none" })
 vim.api.nvim_set_hl(0, "LazyProp", { link = "none" })
 vim.api.nvim_set_hl(0, "LazyDimmed", { link = "none" })
+
+if not vim.env.TERM_PROGRAM == "tmux" then
+    local function paste()
+        return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+    end
+
+    local osc52 = require("vim.ui.clipboard.osc52")
+
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = osc52.copy("+"),
+            ["*"] = osc52.copy("*"),
+        },
+        paste = {
+            ["+"] = paste,
+            ["*"] = paste,
+        },
+    }
+end
