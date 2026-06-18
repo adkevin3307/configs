@@ -29,6 +29,9 @@ return {
             selector = {
                 provider = "telescope",
             },
+            selection = {
+                enabled = false,
+            },
             behaviour = {
                 auto_set_keymaps = false,
                 jump_result_buffer_on_finish = true,
@@ -53,7 +56,9 @@ return {
                     normal = "<C-s>",
                     insert = "<C-s>",
                 },
-                select_model = "<Leader>a?",
+                select_model = "<Leader>am",
+                select_history = "<Leader>ah",
+                stop = "<Leader>ac",
             },
             windows = {
                 sidebar_header = {
@@ -71,6 +76,7 @@ return {
             providers = {
                 openai = {
                     endpoint = vim.env.OPENAI_HOST or "http://localhost:11434/v1",
+                    api_key_name = vim.env.OPENAI_API_KEY_NAME or "API KEY",
                     disable_tools = false,
                     extra_request_body = {
                         stream = true,
@@ -88,7 +94,7 @@ return {
                     function()
                         avante.toggle()
                     end,
-                    desc = "avante: toggle",
+                    desc = "agent: toggle",
                     mode = { "n", "v" },
                 },
                 {
@@ -96,7 +102,23 @@ return {
                     function()
                         avante.select_model()
                     end,
-                    desc = "avante: select model",
+                    desc = "agent: select model",
+                    mode = { "n" },
+                },
+                {
+                    opts.mappings.select_history,
+                    function()
+                        avante.select_history()
+                    end,
+                    desc = "agent: select history",
+                    mode = { "n" },
+                },
+                {
+                    opts.mappings.stop,
+                    function()
+                        avante.stop()
+                    end,
+                    desc = "agent: stop",
                     mode = { "n" },
                 },
             }
