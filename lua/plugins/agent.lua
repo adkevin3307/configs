@@ -67,7 +67,10 @@ return {
                 },
                 input = {
                     prefix = "",
-                    height = 20,
+                    height = 25,
+                },
+                seleced_files = {
+                    height = 10,
                 },
                 ask = {
                     start_insert = false,
@@ -76,7 +79,7 @@ return {
             providers = {
                 openai = {
                     endpoint = vim.env.OPENAI_HOST or "http://localhost:11434/v1",
-                    api_key_name = vim.env.OPENAI_API_KEY_NAME or "API KEY",
+                    api_key_name = vim.env.OPENAI_API_KEY_NAME or "",
                     disable_tools = false,
                     extra_request_body = {
                         stream = true,
