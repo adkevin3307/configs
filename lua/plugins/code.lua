@@ -10,7 +10,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {
-            ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown", "vue", "html", "css", "javascript", "dockerfile" },
+            ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown", "vue", "html", "css", "javascript", "typescript", "dockerfile" },
             sync_install = false,
             auto_install = true,
             highlight = {
@@ -243,6 +243,7 @@ return {
                 html = { "prettier" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
+                typescriptreact = { "prettier" },
                 nginx = { "nginxfmt" },
                 ["_"] = { "trim_whitespace" },
             },
@@ -339,7 +340,7 @@ return {
             "neovim/nvim-lspconfig",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff" },
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls" },
             automatic_enable = true,
         },
     },
