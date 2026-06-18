@@ -22,13 +22,51 @@ return {
             },
         },
         opts = {
-            provider = "ollama",
+            provider = "openai",
             use_absolute_path = true,
             input = {
                 provider = "snacks",
             },
             selector = {
                 provider = "telescope",
+            },
+            behaviour = {
+                auto_set_keymaps = false,
+                jump_result_buffer_on_finish = true,
+
+                confirmation_ui_style = "popup",
+            },
+            prompt_logger = {
+                next_prompt = {
+                    normal = "<C-Down>",
+                    insert = "<C-Down>",
+                },
+                prev_prompt = {
+                    normal = "<C-Up>",
+                    insert = "<C-Up>",
+                },
+            },
+            mappings = {
+                toggle = {
+                    default = "<C-a>",
+                },
+                submit = {
+                    normal = "<C-s>",
+                    insert = "<C-s>",
+                },
+            },
+            windows = {
+                sidebar_header = {
+                    align = "right",
+                    include_model = true,
+                },
+                input = {
+                    prefix = "",
+                    height = 20,
+                },
+                ask = {
+                    start_insert = false,
+                },
             },
             providers = {
                 ollama = {
@@ -55,6 +93,27 @@ return {
                 },
             },
         },
+        keys = function(_, keys)
+            local avante = require("avante.api")
+            local opts = require("lazy.core.plugin").values(require("lazy.core.config").spec.plugins["avante.nvim"], "opts", false)
+
+            local mappings = {
+                {
+                    opts.mappings.toggle.default,
+                    function()
+                        avante.toggle()
+                    end,
+                    desc = "avante: toggle",
+                    mode = { "n", "v" },
+                },
+            }
+
+            mappings = vim.tbl_filter(function(m)
+                return m[1] and #m[1] > 0
+            end, mappings)
+
+            return vim.list_extend(mappings, keys)
+        end,
     },
     {
         "olimorris/codecompanion.nvim",
@@ -88,7 +147,6 @@ return {
                 interactions = {
                     chat = {
                         adapter = "ollama",
-                        model = "qwen3-coder:30b",
                         keymaps = {
                             send = {
                                 modes = {
@@ -100,6 +158,11 @@ return {
                                 modes = {
                                     n = "<C-c>",
                                     i = "<C-c>",
+                                },
+                            },
+                            change_adapter = {
+                                modes = {
+                                    n = "<Leader>am",
                                 },
                             },
                         },
@@ -154,7 +217,6 @@ return {
                             position = "right",
                             width = 0.3,
                         },
-                        show_header_separator = true,
                         fold_context = true,
                     },
                 },
@@ -163,15 +225,21 @@ return {
                         ollama = function()
                             return require("codecompanion.adapters").extend("ollama", {
                                 env = {
-                                    url = "",
+                                    url = function()
+                                        return os.getenv("OLLAMA_HOST")
+                                    end,
                                 },
                             })
                         end,
-                        openai = function()
-                            return require("codecompanion.adapters").extend("openai", {
+                        openai_compatible = function()
+                            return require("codecompanion.adapters").extend("openai_compatible", {
                                 env = {
-                                    url = "",
-                                    api_key = "",
+                                    url = function()
+                                        return os.getenv("OPENAI_HOST")
+                                    end,
+                                    api_key = function()
+                                        return os.getenv("OPENAI_API_KEY")
+                                    end,
                                 },
                             })
                         end,
@@ -191,7 +259,7 @@ return {
         end,
         keys = {
             { "<Leader>aa", "<CMD>CodeCompanionAction<CR>", mode = { "n" }, desc = "Open agent action" },
-            { "<Leader>ac", "<CMD>CodeCompanionChat Toggle<CR>", mode = { "n" }, desc = "Toggle agent chat" },
+            { "<Leader>at", "<CMD>CodeCompanionChat Toggle<CR>", mode = { "n" }, desc = "Toggle agent chat" },
         },
     },
 }

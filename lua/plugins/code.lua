@@ -59,8 +59,6 @@ return {
             "folke/noice.nvim",
 
             "rafamadriz/friendly-snippets",
-
-            "Kaiser-Yang/blink-cmp-avante",
         },
         build = function()
             require("blink.cmp").build():pwait()
@@ -166,16 +164,12 @@ return {
                 enabled = false,
             },
             sources = {
-                default = { "lazydev", "avante", "lsp", "path", "buffer", "snippets" },
+                default = { "lazydev", "lsp", "path", "buffer", "snippets" },
                 providers = {
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
                         score_offset = 100,
-                    },
-                    avante = {
-                        module = "blink-cmp-avante",
-                        name = "Avante",
                     },
                 },
             },

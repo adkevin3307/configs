@@ -23,6 +23,7 @@ return {
 
                     ["@markup.heading"] = { fmt = "none" },
                     ["@markup.strong"] = { fmt = "none" },
+                    ["@markup.italic"] = { fmt = "none" },
                     ["@markup.heading.1.markdown"] = { fmt = "none" },
                     ["@markup.heading.2.markdown"] = { fmt = "none" },
                     ["@markup.heading.3.markdown"] = { fmt = "none" },
