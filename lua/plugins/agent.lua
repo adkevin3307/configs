@@ -79,11 +79,7 @@ return {
             providers = {
                 openai = {
                     endpoint = vim.env.AVANTE_OPENAI_HOST or "http://localhost:11434/v1",
-                    api_key_name = vim.env.AVANTE_OPENAI_API_KEY_NAME or "",
-                    disable_tools = false,
-                    extra_request_body = {
-                        stream = true,
-                    },
+                    api_key_name = vim.env.AVANTE_OPENAI_API_KEY and "OPENAI_API_KEY" or "",
                 },
             },
         },
