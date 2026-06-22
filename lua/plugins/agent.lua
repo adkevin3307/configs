@@ -5,13 +5,13 @@ return {
         event = "VeryLazy",
         version = false,
         dependencies = {
-            "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
-
-            "nvim-telescope/telescope.nvim",
-            "folke/snacks.nvim",
-
+            "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
+
+            "folke/snacks.nvim",
+            "nvim-telescope/telescope.nvim",
+
             {
                 "MeanderingProgrammer/render-markdown.nvim",
                 opts = {
@@ -78,8 +78,8 @@ return {
             },
             providers = {
                 openai = {
-                    endpoint = vim.env.OPENAI_HOST or "http://localhost:11434/v1",
-                    api_key_name = vim.env.OPENAI_API_KEY_NAME or "",
+                    endpoint = vim.env.AVANTE_OPENAI_HOST or "http://localhost:11434/v1",
+                    api_key_name = vim.env.AVANTE_OPENAI_API_KEY_NAME or "",
                     disable_tools = false,
                     extra_request_body = {
                         stream = true,
@@ -97,7 +97,7 @@ return {
                     function()
                         avante.toggle()
                     end,
-                    desc = "agent: toggle",
+                    desc = "avante: toggle",
                     mode = { "n", "v" },
                 },
                 {
@@ -105,7 +105,7 @@ return {
                     function()
                         avante.select_model()
                     end,
-                    desc = "agent: select model",
+                    desc = "avante: select model",
                     mode = { "n" },
                 },
                 {
@@ -113,7 +113,7 @@ return {
                     function()
                         avante.select_history()
                     end,
-                    desc = "agent: select history",
+                    desc = "avante: select history",
                     mode = { "n" },
                 },
                 {
@@ -121,7 +121,7 @@ return {
                     function()
                         avante.stop()
                     end,
-                    desc = "agent: stop",
+                    desc = "avante: stop",
                     mode = { "n" },
                 },
             }
