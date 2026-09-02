@@ -7,6 +7,7 @@ vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.wrap = false
+vim.opt.scrolloff = 3
 
 vim.opt.backup = false
 vim.opt.writebackup = false
