@@ -59,6 +59,26 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+function no_paste(reg)
+    return function(lines)
+        return vim.split(vim.fn.getreg('"'), "\n")
+    end
+end
+
+vim.opt.clipboard:append("unnamedplus")
+
+vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+        ["+"] = no_paste("+"),
+        ["*"] = no_paste("*"),
+    },
+}
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then

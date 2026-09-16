@@ -1,6 +1,7 @@
 return {
     {
         "yetone/avante.nvim",
+        enabled = false,
         build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
         event = "VeryLazy",
         version = false,
