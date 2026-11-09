@@ -100,7 +100,7 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S zsh gcc git lazygit bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
+            execute 'pacman -S --needed zsh gcc git lazygit bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
 
             ;;
         *)
@@ -163,7 +163,7 @@ function install_editor()
 
                     ;;
                 arch)
-                    execute 'pacman -S vim --noconfirm'
+                    execute 'pacman -S --needed vim --noconfirm'
 
                     ;;
                 *)
@@ -187,7 +187,7 @@ function install_editor()
 
                     ;;
                 arch)
-                    execute 'pacman -S neovim python-pynvim tree-sitter-cli --noconfirm'
+                    execute 'pacman -S --needed neovim python-pynvim tree-sitter-cli --noconfirm'
 
                     ;;
                 *)
