@@ -73,7 +73,7 @@ return {
                     prefix = "",
                     height = 25,
                 },
-                seleced_files = {
+                selected_files = {
                     height = 10,
                 },
                 ask = {

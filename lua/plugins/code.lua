@@ -232,7 +232,7 @@ return {
     {
         "stevearc/conform.nvim",
         opts = {
-            default_format_ops = {
+            default_format_opts = {
                 timeout_ms = 5000,
             },
             formatters_by_ft = {
@@ -296,7 +296,7 @@ return {
                         diagnostics = {
                             globals = { "vim" },
                         },
-                        workspance = {
+                        workspace = {
                             library = vim.api.nvim_get_runtime_file("", true),
                             checkThirdParty = false,
                         },
