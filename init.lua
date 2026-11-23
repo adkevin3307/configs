@@ -98,6 +98,9 @@ require("lazy").setup({
     ui = {
         border = "rounded",
     },
+    git = {
+        timeout = 600,
+    },
 })
 
 vim.api.nvim_set_hl(0, "LazyButton", { link = "none" })
