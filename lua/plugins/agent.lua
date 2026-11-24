@@ -85,6 +85,9 @@ return {
                     endpoint = vim.env.AVANTE_OPENAI_HOST or "http://localhost:11434/v1",
                     api_key_name = vim.env.AVANTE_OPENAI_API_KEY and "OPENAI_API_KEY" or "",
                 },
+                claude = {
+                    auth_type = "max",
+                },
             },
         },
         keys = function(_, keys)
@@ -99,6 +102,12 @@ return {
                     end,
                     desc = "avante: toggle",
                     mode = { "n", "v" },
+                },
+                {
+                    opts.mappings.select_provider,
+                    "<CMD>AvanteSwitchProvider<CR>",
+                    desc = "avante: select provider",
+                    mode = { "n" },
                 },
                 {
                     opts.mappings.select_model,
