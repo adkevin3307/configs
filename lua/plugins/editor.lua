@@ -213,7 +213,7 @@ return {
                     undo = {
                         mappings = {
                             i = {
-                                ["<CR>"] = require("telescope-undo.actions").restore,
+                                ["<cr>"] = require("telescope-undo.actions").restore,
                             },
                         },
                     },
