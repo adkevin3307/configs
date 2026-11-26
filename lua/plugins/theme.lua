@@ -18,8 +18,6 @@ return {
                     HoverFloat = { bg = "none" },
                     HoverFloatBorder = { bg = "none", fg = "#626262" },
 
-                    ["@spell"] = { fg = "none", bg = "none", sp = "none", fmt = "none" },
-
                     ["@constructor"] = { fmt = "none" },
 
                     ["@markup.heading"] = { fmt = "none" },
@@ -31,22 +29,11 @@ return {
                     ["@markup.heading.4"] = { fmt = "none" },
                     ["@markup.heading.5"] = { fmt = "none" },
                     ["@markup.heading.6"] = { fmt = "none" },
-                    ["@markup.heading.1.marker.markdown"] = { fmt = "none" },
-                    ["@markup.heading.2.marker.markdown"] = { fmt = "none" },
-                    ["@markup.heading.3.marker.markdown"] = { fmt = "none" },
-                    ["@markup.heading.4.marker.markdown"] = { fmt = "none" },
-                    ["@markup.heading.5.marker.markdown"] = { fmt = "none" },
-                    ["@markup.heading.6.marker.markdown"] = { fmt = "none" },
-
-                    ["@text.strong"] = { fmt = "none" },
-                    ["@text.title"] = { fmt = "none" },
 
                     NeoTreeRootName = { fmt = "none" },
                     NeoTreeGitConflict = { fmt = "none" },
                     NeoTreeGitUntracked = { fmt = "none" },
 
-                    illuminatedWord = { fmt = "none" },
-                    illuminatedCurWord = { fmt = "none" },
                     IlluminatedWordText = { fmt = "none" },
                     IlluminatedWordRead = { fmt = "none" },
                     IlluminatedWordWrite = { fmt = "none" },
@@ -57,11 +44,8 @@ return {
 
                     TelescopeMatching = { fmt = "none" },
 
-                    SnacksDashboardFooter = { fmt = "none" },
-                    SnacksDashboardSpecial = { fmt = "none" },
                     SnacksPickerMatch = { fmt = "none" },
 
-                    FocusedSymbol = { fmt = "none" },
                     AerialLine = { fmt = "none" },
 
                     cppStatement = { fmt = "none" },
