@@ -20,7 +20,6 @@ return {
         },
         opts = {
             provider = "openai",
-            use_absolute_path = true,
             input = {
                 provider = "snacks",
             },
@@ -34,6 +33,7 @@ return {
                 auto_set_keymaps = false,
                 jump_result_buffer_on_finish = true,
 
+                auto_approve_tool_permissions = false,
                 confirmation_ui_style = "popup",
             },
             prompt_logger = {
@@ -79,9 +79,11 @@ return {
                 openai = {
                     endpoint = vim.env.AVANTE_OPENAI_HOST or "http://localhost:11434/v1",
                     api_key_name = vim.env.AVANTE_OPENAI_API_KEY and "AVANTE_OPENAI_API_KEY" or "",
+                    use_response_api = false,
+                    support_previous_response_id = false,
                 },
                 claude = {
-                    auth_type = "max",
+                    auth_type = "subscription",
                 },
             },
         },
