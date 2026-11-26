@@ -243,8 +243,7 @@ return {
         "ntpeters/vim-better-whitespace",
         init = function()
             vim.g.better_whitespace_operator = ""
-
-            vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
+            vim.g.better_whitespace_guicolor = require("onedark.colors").red
         end,
     },
     {
