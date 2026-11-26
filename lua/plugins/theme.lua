@@ -213,12 +213,7 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        config = function()
-            require("dropbar").setup()
-
-            vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
-            vim.api.nvim_set_hl(0, "WinBarNC", { bg = "none" })
-        end,
+        config = true,
     },
     {
         "luukvbaal/statuscol.nvim",
