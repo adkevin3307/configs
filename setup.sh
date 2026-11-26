@@ -86,7 +86,8 @@ function install_packages()
     case $OS in
         ubuntu)
             execute 'apt install -y zsh gcc git bat fzf btop tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
-            execute 'ln -sf $(which batcat) /usr/bin/bat'
+            mkdir -vp ~/.local/bin
+            ln -sf $(which batcat) ~/.local/bin/bat
 
             execute 'mkdir -vp /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
