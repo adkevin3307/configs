@@ -60,6 +60,7 @@ return {
                     normal = "<C-s>",
                     insert = "<C-s>",
                 },
+                select_provider = "<Leader>ap",
                 select_model = "<Leader>am",
                 select_history = "<Leader>ah",
                 stop = "<Leader>ac",
