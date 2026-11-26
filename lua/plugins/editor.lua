@@ -113,7 +113,7 @@ return {
                 current = "<Leader>gxc",
                 incoming = "<Leader>gxi",
                 both = "<Leader>gxb",
-                base = "<Leader>gxB",
+                base = false,
                 none = "<Leader>gxn",
             },
             disable_diagnostics = false,
