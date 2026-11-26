@@ -152,7 +152,7 @@ return {
             "mason-org/mason.nvim",
         },
         opts = {
-            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format" },
+            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format", "nginx-config-formatter" },
         },
     },
     {
