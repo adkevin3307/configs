@@ -113,6 +113,7 @@ return {
     },
     {
         "niekdomi/conflict.nvim",
+        lazy = false,
         opts = {
             default_mappings = {
                 current = "<Leader>gxc",
@@ -122,6 +123,9 @@ return {
                 none = "<Leader>gxn",
             },
             disable_diagnostics = false,
+        },
+        keys = {
+            { "<Leader>gc", "<CMD>Conflict list<CR>", mode = { "n" }, desc = "Git conflicts" },
         },
     },
     {
@@ -175,7 +179,6 @@ return {
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
             "radyz/telescope-gitsigns",
-            "niekdomi/conflict.nvim",
             "folke/todo-comments.nvim",
             "debugloop/telescope-undo.nvim",
             "linux-cultist/venv-selector.nvim",
@@ -272,44 +275,6 @@ return {
             { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
             { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
-            {
-                "<Leader>gc",
-                function()
-                    local pickers = require("telescope.pickers")
-                    local finders = require("telescope.finders")
-                    local config = require("telescope.config").values
-                    local actions = require("telescope.actions")
-                    local actions_state = require("telescope.actions.state")
-
-                    local files = require("conflict").get_conflicted_files()
-
-                    if #files == 0 then
-                        vim.notify("No conflicted files found", vim.log.levels.INFO)
-
-                        return
-                    end
-
-                    pickers
-                        .new({}, {
-                            prompt_title = "Git Conflicts",
-                            finder = finders.new_table({ results = files }),
-                            sorter = config.generic_sorter({}),
-                            previewer = config.file_previewer({}),
-                            attach_mappings = function(prompt_bufnr)
-                                actions.select_default:replace(function()
-                                    local entry = actions_state.get_selected_entry()
-
-                                    actions.close(prompt_bufnr)
-                                    vim.cmd.edit(entry[1])
-                                end)
-                                return true
-                            end,
-                        })
-                        :find()
-                end,
-                mode = { "n" },
-                desc = "Git conflicts",
-            },
             {
                 "<Leader>gb",
                 function()
