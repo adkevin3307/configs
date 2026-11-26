@@ -6,10 +6,12 @@
 
 - `zsh >= 5.9`
 - `vim >= 8.2` / `nvim >= 0.12.2`
+- `tmux >= 3.3`
 
 ## Usage
 
 - `Ubuntu` / `Arch` users can use `setup.sh` directly
+- `setup.sh` also builds `git-graph`, `track` and `monitor` into `~/.local/bin`
 - After `setup.sh`, remember to open editor `vim / nvim`, then go get a coffee and wait
 - Warnings: currently, `vim` is suspend, please use `nvim` if possible
 
@@ -63,18 +65,19 @@ List some of useful custom key mappings.
 
 - `<Leader>`: `<C-b>`
 
-|       Key       |          Description          |
-| --------------- | ----------------------------- |
-| `<S-Up>`        | select up pane                |
-| `<S-Down>`      | select down pane              |
-| `<S-Left>`      | select left pane              |
-| `<S-Right>`     | select right pane             |
-| `<Leader>t`     | tmuxioner for session         |
-| `<Leader>\`     | popup window                  |
-| `<Leader><C-s>` | store current session         |
-| `<Leader><C-r>` | restore stored session        |
-| `<Leader>T`     | show clock                    |
-| `<Leader>?`     | for more information          |
+|        Key        |          Description          |
+| ----------------- | ----------------------------- |
+| `<S-Up>`          | select up pane                |
+| `<S-Down>`        | select down pane              |
+| `<S-Left>`        | select left pane              |
+| `<S-Right>`       | select right pane             |
+| `<Leader>t`       | tmuxioner for session         |
+| `<Leader>\`       | popup window                  |
+| `<Leader><C-s>`   | store current session         |
+| `<Leader><C-r>`   | restore stored session        |
+| `<Leader>T`       | show clock                    |
+| `<Leader><Space>` | show which-key menu           |
+| `<Leader>?`       | for more information          |
 
 ## Reference
 
@@ -101,7 +104,9 @@ List some of useful custom key mappings.
 > Check `.tmux.conf` for more settings and information
 
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
+- [alexwforsythe/tmux-which-key](https://github.com/alexwforsythe/tmux-which-key)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
+- [tmux-plugins/tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)
 - [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
 - [adkevin3307/tmuxioner](https://github.com/adkevin3307/tmuxioner)
 - [omerxx/tmux-floax](https://github.com/omerxx/tmux-floax)
