@@ -94,7 +94,9 @@ return {
         },
         opts = {
             ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls" },
-            automatic_enable = true,
+            automatic_enable = {
+                exclude = { "stylua" },
+            },
         },
     },
     {
