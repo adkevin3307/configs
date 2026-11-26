@@ -48,7 +48,7 @@ return {
             })
         end,
         keys = {
-            { "<Leader>ss", "<CMD>SessionSave<CR>", mode = { "n" }, desc = "Save session" },
+            { "<Leader>ss", "<CMD>Persisted save<CR>", mode = { "n" }, desc = "Save session" },
         },
     },
     {
