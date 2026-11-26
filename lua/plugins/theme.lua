@@ -147,6 +147,7 @@ return {
         lazy = false,
         priority = 1000,
         dependencies = {
+            "navarasu/onedark.nvim",
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
@@ -198,6 +199,7 @@ return {
         lazy = false,
         priority = 1000,
         dependencies = {
+            "navarasu/onedark.nvim",
             "nvim-tree/nvim-web-devicons",
         },
         opts = {
