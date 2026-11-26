@@ -523,16 +523,22 @@ return {
         opts = {
             client_callback = function(port, workspace_config)
                 local tmux = os.getenv("TMUX")
-                local cmd = ("tmux new-session -d -s 'editor_%s' 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+                local name = ("editor_%s"):format(workspace_config.host or workspace_config.workspace_id)
+                local client = ("%s --server localhost:%s --remote-ui"):format(vim.fn.shellescape(vim.v.progpath), port)
+                local cmd = { "tmux", "new-session", "-d", "-s", ("%s_%s"):format(name, port), client }
 
                 if tmux ~= nil and tmux ~= "" then
-                    cmd = ("tmux new-window -d -n editor_%s 'nvim --server localhost:%s --remote-ui'"):format(workspace_config.host, port)
+                    cmd = { "tmux", "new-window", "-n", name, client }
                 end
 
                 vim.fn.jobstart(cmd, {
                     detach = true,
-                    on_exit = function(job_id, exit_code, event_type)
-                        print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
+                    on_exit = function(_, exit_code)
+                        if exit_code ~= 0 then
+                            vim.notify(("Failed to start remote client %s, exit code %s"):format(name, exit_code), vim.log.levels.ERROR)
+                        elseif cmd[2] == "new-session" then
+                            vim.notify(("Remote client started, run `tmux attach -t %s` to use it"):format(cmd[5]))
+                        end
                     end,
                 })
             end,
