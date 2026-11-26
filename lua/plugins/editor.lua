@@ -399,7 +399,7 @@ return {
                 })
             end,
         },
-        cmd = { "RemoteStart" },
+        cmd = { "RemoteStart", "RemoteStop", "RemoteInfo", "RemoteCleanup", "RemoteConfigDel", "RemoteLog" },
     },
     {
         "folke/which-key.nvim",
