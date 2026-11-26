@@ -88,14 +88,13 @@ return {
             },
         },
         keys = function(_, keys)
-            local avante = require("avante.api")
             local opts = require("lazy.core.plugin").values(require("lazy.core.config").spec.plugins["avante.nvim"], "opts", false)
 
             local mappings = {
                 {
                     opts.mappings.toggle.default,
                     function()
-                        avante.toggle()
+                        require("avante.api").toggle()
                     end,
                     desc = "avante: toggle",
                     mode = { "n", "v" },
@@ -109,7 +108,7 @@ return {
                 {
                     opts.mappings.select_model,
                     function()
-                        avante.select_model()
+                        require("avante.api").select_model()
                     end,
                     desc = "avante: select model",
                     mode = { "n" },
@@ -117,7 +116,7 @@ return {
                 {
                     opts.mappings.select_history,
                     function()
-                        avante.select_history()
+                        require("avante.api").select_history()
                     end,
                     desc = "avante: select history",
                     mode = { "n" },
@@ -125,7 +124,7 @@ return {
                 {
                     opts.mappings.stop,
                     function()
-                        avante.stop()
+                        require("avante.api").stop()
                     end,
                     desc = "avante: stop",
                     mode = { "n" },
