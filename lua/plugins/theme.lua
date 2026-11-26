@@ -16,6 +16,8 @@ return {
 
                     NormalFloat = { bg = "none" },
                     FloatBorder = { bg = "none", fg = "#545b68" },
+                    HoverFloat = { bg = "none" },
+                    HoverFloatBorder = { bg = "none", fg = "#626262" },
 
                     ["@spell"] = { fg = "none", bg = "none", sp = "none", fmt = "none" },
 
@@ -135,12 +137,6 @@ return {
                 },
             },
         },
-        config = function(_, opts)
-            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "none" })
-            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "none", fg = "#626262" })
-
-            require("noice").setup(opts)
-        end,
     },
     {
         "akinsho/bufferline.nvim",
