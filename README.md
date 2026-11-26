@@ -71,7 +71,8 @@ List some of useful custom key mappings.
 | `<S-Right>`     | select right pane             |
 | `<Leader>t`     | tmuxioner for session         |
 | `<Leader>\`     | popup window                  |
-| `<Leader>s`     | store current session         |
+| `<Leader><C-s>` | store current session         |
+| `<Leader><C-r>` | restore stored session        |
 | `<Leader>T`     | show clock                    |
 | `<Leader>?`     | for more information          |
 
