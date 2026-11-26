@@ -59,8 +59,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-function no_paste(reg)
-    return function(lines)
+local function no_paste()
+    return function()
         return vim.split(vim.fn.getreg('"'), "\n")
     end
 end
@@ -74,14 +74,14 @@ vim.g.clipboard = {
         ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-        ["+"] = no_paste("+"),
-        ["*"] = no_paste("*"),
+        ["+"] = no_paste(),
+        ["*"] = no_paste(),
     },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 
