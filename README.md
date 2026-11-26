@@ -69,7 +69,6 @@ List some of useful custom key mappings.
 | `<S-Down>`      | select down pane              |
 | `<S-Left>`      | select left pane              |
 | `<S-Right>`     | select right pane             |
-| `<Leader>/`     | search in buffer              |
 | `<Leader>t`     | tmuxioner for session         |
 | `<Leader>\`     | popup window                  |
 | `<Leader>s`     | store current session         |
@@ -103,7 +102,6 @@ List some of useful custom key mappings.
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
 - [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
-- [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
 - [adkevin3307/tmuxioner](https://github.com/adkevin3307/tmuxioner)
 - [omerxx/tmux-floax](https://github.com/omerxx/tmux-floax)
 - [tmux-plugins/tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
