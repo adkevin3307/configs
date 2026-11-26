@@ -74,9 +74,6 @@ return {
                 changedelete = { text = " │" },
                 untracked = { text = " │" },
             },
-            watch_gitdir = {
-                follow_files = true,
-            },
             attach_to_untracked = true,
             current_line_blame = true,
             current_line_blame_opts = {

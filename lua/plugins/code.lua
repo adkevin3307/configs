@@ -11,11 +11,9 @@ return {
         },
         opts = {
             ensure_installed = { "c", "cpp", "lua", "vim", "bash", "yaml", "regex", "vimdoc", "python", "markdown", "vue", "html", "css", "javascript", "typescript", "dockerfile" },
-            sync_install = false,
             auto_install = true,
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = false,
             },
         },
     },
@@ -102,9 +100,6 @@ return {
     {
         "stevearc/conform.nvim",
         opts = {
-            default_format_opts = {
-                timeout_ms = 5000,
-            },
             formatters_by_ft = {
                 sh = { "shfmt" },
                 lua = { "stylua" },
@@ -231,7 +226,6 @@ return {
                 list = {
                     selection = {
                         preselect = false,
-                        auto_insert = true,
                     },
                 },
                 menu = {
@@ -254,9 +248,6 @@ return {
                         max_height = math.floor(vim.o.lines * 0.6),
                     },
                 },
-                ghost_text = {
-                    enabled = false,
-                },
             },
             signature = {
                 enabled = true,
@@ -268,14 +259,7 @@ return {
                     border = "rounded",
                     max_height = math.floor(vim.o.lines * 0.6),
                     show_documentation = true,
-                    treesitter_highlighting = true,
                 },
-            },
-            fuzzy = {
-                implementation = "prefer_rust_with_warning",
-            },
-            appearance = {
-                nerd_font_variant = "mono",
             },
             cmdline = {
                 enabled = false,
@@ -350,8 +334,6 @@ return {
                     },
                 },
             })
-
-            vim.diagnostic.config({ virtual_text = false })
         end,
         keys = {
             { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
@@ -402,7 +384,6 @@ return {
     },
     {
         "linux-cultist/venv-selector.nvim",
-        branch = "main",
         opts = {
             options = {
                 enable_cached_venvs = false,

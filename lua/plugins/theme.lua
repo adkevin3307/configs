@@ -5,7 +5,6 @@ return {
         priority = 1000,
         config = function()
             require("onedark").setup({
-                style = "dark",
                 transparent = true,
                 term_colors = false,
                 code_style = {
@@ -104,7 +103,6 @@ return {
         },
         opts = {
             presets = {
-                bottom_search = false,
                 lsp_doc_border = true,
                 command_palette = true,
                 long_message_to_split = true,
@@ -152,7 +150,6 @@ return {
             bufferline.setup({
                 options = {
                     close_command = "bdelete %d",
-                    left_mouse_command = "buffer %d",
                     right_mouse_command = "buffer %d",
                     middle_mouse_command = "bdelete %d",
 
@@ -165,7 +162,6 @@ return {
                     },
 
                     diagnostics = "nvim_lsp",
-                    always_show_bufferline = true,
                     diagnostics_indicator = function(_, _, diagnostics_dict)
                         local s = ""
                         local symbol = { ["error"] = " ", ["warning"] = " ", ["info"] = " ", ["hint"] = " " }
@@ -199,11 +195,7 @@ return {
             "navarasu/onedark.nvim",
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {
-            options = {
-                theme = "auto",
-            },
-        },
+        config = true,
     },
     {
         "Bekaboo/dropbar.nvim",
@@ -218,7 +210,6 @@ return {
             local builtin = require("statuscol.builtin")
 
             require("statuscol").setup({
-                relculright = true,
                 segments = {
                     { text = { "%s" }, click = "v:lua.ScSa" },
                     { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
@@ -249,9 +240,6 @@ return {
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-            file_types = { "markdown", "Avante" },
-        },
         ft = { "markdown", "Avante" },
     },
 }
