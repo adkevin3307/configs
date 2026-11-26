@@ -406,7 +406,6 @@ return {
         event = "VeryLazy",
         opts = {
             preset = "helix",
-            defaults = {},
             keys = {
                 scroll_up = "<C-k>",
                 scroll_down = "<C-j>",
