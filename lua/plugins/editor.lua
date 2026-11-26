@@ -18,6 +18,7 @@ return {
     },
     {
         "olimorris/persisted.nvim",
+        lazy = false,
         opts = {
             use_git_branch = true,
             telescope = {
@@ -312,17 +313,22 @@ return {
         },
     },
     {
+        "akinsho/toggleterm.nvim",
+        opts = {
+            open_mapping = "<C-\\>",
+            insert_mappings = false,
+            direction = "float",
+            auto_scroll = false,
+        },
+        keys = {
+            { "<C-\\>", mode = { "n" }, desc = "Toggle terminal" },
+        },
+    },
+    {
         "ryanmsnyder/toggleterm-manager.nvim",
+        lazy = true,
         dependencies = {
-            {
-                "akinsho/toggleterm.nvim",
-                opts = {
-                    open_mapping = "<C-\\>",
-                    insert_mappings = false,
-                    direction = "float",
-                    auto_scroll = false,
-                },
-            },
+            "akinsho/toggleterm.nvim",
             "nvim-telescope/telescope.nvim",
         },
         config = function()
