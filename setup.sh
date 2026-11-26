@@ -218,7 +218,7 @@ function install_editor()
                     tar -xzf nvim-linux-x86_64.tar.gz -C ~/.local/opt
                     rm nvim-linux-x86_64.tar.gz
                     ln -sf ~/.local/opt/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
-                    execute 'apt install -y python3-pynvim'
+                    execute 'apt install -y --no-install-recommends python3-pynvim'
                     cargo install --locked tree-sitter-cli --root ~/.local
 
                     ;;
