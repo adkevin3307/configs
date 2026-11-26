@@ -86,7 +86,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates cargo'
+            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -s $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
@@ -97,6 +97,9 @@ function install_packages()
             execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
             execute 'apt update'
             execute 'apt install -y nodejs'
+
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            source ~/.cargo/env
 
             ;;
         arch)
@@ -111,6 +114,19 @@ function install_packages()
     cp -vf ${DIRECTORY}/config.yml ~/.config/lazygit
 
     prompt "Install Packages Done\n"
+}
+
+function install_tools()
+{
+    prompt "Install Tools ..."
+
+    mkdir -vp ~/.local/bin
+
+    for TOOL in git-graph track monitor; do
+        cargo install --locked --git https://github.com/adkevin3307/$TOOL --root ~/.local
+    done
+
+    prompt "Install Tools Done\n"
 }
 
 function install_omz()
@@ -243,6 +259,7 @@ get_permission
 basic_update_upgrade $OS
 
 install_packages $OS $DIRECTORY
+install_tools
 
 install_omz $DIRECTORY
 install_tmux $DIRECTORY
