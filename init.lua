@@ -36,6 +36,14 @@ vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set("n", "<C-q>", "<CMD>bdelete<CR>", { silent = true, desc = "Buffer delete" })
 vim.keymap.set("t", "<ESC>", "<ESC><C-\\><C-n>")
 
+for _, key in ipairs({ "grn", "grr", "gO", "gcc", "[b", "]b", "<C-l>" }) do
+    vim.keymap.set("n", key, "")
+    vim.keymap.del("n", key)
+end
+
+vim.keymap.set({ "n", "x", "o" }, "gc", "")
+vim.keymap.del({ "n", "x", "o" }, "gc")
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     callback = function()
