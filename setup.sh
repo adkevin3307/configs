@@ -87,7 +87,7 @@ function install_packages()
     case $OS in
         ubuntu)
             execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
-            execute 'ln -s $(which batcat) /usr/bin/bat'
+            execute 'ln -sf $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
@@ -194,12 +194,15 @@ function install_editor()
         nvim)
             case $OS in
                 ubuntu)
-                    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-                    chmod u+x nvim.appimage
-                    ./nvim.appimage --appimage-extract
+                    curl -fLO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+                    chmod u+x nvim-linux-x86_64.appimage
+                    ./nvim-linux-x86_64.appimage --appimage-extract
+                    rm nvim-linux-x86_64.appimage
+                    execute 'rm -rf /squashfs-root'
                     execute 'mv squashfs-root /'
-                    execute 'ln -s /squashfs-root/AppRun /usr/bin/nvim'
-                    execute 'python3 -m pip install pynvim'
+                    execute 'ln -sf /squashfs-root/AppRun /usr/bin/nvim'
+                    execute 'apt install -y python3-pynvim'
+                    cargo install --locked tree-sitter-cli --root ~/.local
 
                     ;;
                 arch)
