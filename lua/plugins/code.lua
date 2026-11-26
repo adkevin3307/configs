@@ -376,16 +376,11 @@ return {
         "numToStr/Comment.nvim",
         opts = {
             ignore = "^$",
-            toggler = {
-                line = "<Leader>cc",
-            },
-            opleader = {
-                line = "<Leader>cc",
-            },
-            mapping = {
-                basic = false,
-                extra = false,
-            },
+            mappings = false,
+        },
+        keys = {
+            { "<Leader>cc", "<Plug>(comment_toggle_linewise_current)", mode = { "n" }, desc = "Comment toggle" },
+            { "<Leader>cc", "<Plug>(comment_toggle_linewise_visual)", mode = { "x" }, desc = "Comment toggle" },
         },
     },
     {
