@@ -151,6 +151,7 @@ return {
 
             bufferline.setup({
                 options = {
+                    close_command = "bdelete %d",
                     left_mouse_command = "buffer %d",
                     right_mouse_command = "buffer %d",
                     middle_mouse_command = "bdelete %d",
