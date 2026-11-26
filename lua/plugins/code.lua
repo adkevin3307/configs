@@ -241,8 +241,8 @@ return {
                         columns = {
                             { "kind_icon" },
                             { "label", "label_description", gap = 1 },
-                            { "kind", gap = 5 },
-                            { "source_id", gap = 1 },
+                            { "kind" },
+                            { "source_id" },
                         },
                     },
                 },
