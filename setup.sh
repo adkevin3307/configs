@@ -157,9 +157,9 @@ function install_tmux()
             curl -fLO https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
             tar -xzf tmux-${TMUX_VERSION}.tar.gz
             cd tmux-${TMUX_VERSION}
-            ./configure
+            ./configure --prefix=$HOME/.local
             make
-            execute 'make install'
+            make install
             cd ..
             rm -rf tmux-${TMUX_VERSION} tmux-${TMUX_VERSION}.tar.gz
 
@@ -272,6 +272,7 @@ fi
 
 DIRECTORY=$(check_directory)
 OS=$(check_os)
+PATH="$HOME/.local/bin:$PATH"
 
 prompt "Repository Path: $DIRECTORY, OS: $OS\n"
 
