@@ -11,7 +11,7 @@
 ## Usage
 
 - `Ubuntu` / `Arch` users can use `setup.sh` directly
-- `setup.sh` also builds `git-graph`, `track` and `monitor` into `~/.local/bin`
+- Tools not installed by `apt` / `pacman` are put into `~/.local/bin`, e.g. `git-graph`, `track`, `monitor` and latest `tmux` / `nvim` on `Ubuntu`
 - After `setup.sh`, remember to open editor `vim / nvim`, then go get a coffee and wait
 - Warnings: currently, `vim` is suspend, please use `nvim` if possible
 
