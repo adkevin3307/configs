@@ -11,7 +11,7 @@
 ## Usage
 
 - `Ubuntu` / `Arch` users can use `setup.sh` directly
-- Tools not installed by `apt` / `pacman` are put into `~/.local/bin`, e.g. `git-graph`, `track`, `monitor` and latest `tmux` / `nvim` on `Ubuntu`
+- Tools not installed by `apt` / `pacman` are put into `~/.local/bin`, e.g. `git-graph`, `track`, `monitor` and latest `tmux` / `nvim` / `fzf` on `Ubuntu`
 - After `setup.sh`, remember to open editor `vim / nvim`, then go get a coffee and wait
 - Install `HackNerdFont-Regular.ttf` on the machine running the terminal and use it as terminal font for icons
 - Warnings: currently, `vim` is suspend, please use `nvim` if possible
