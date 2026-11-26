@@ -355,7 +355,15 @@ return {
             mappings = false,
         },
         keys = {
-            { "<Leader>cc", "<Plug>(comment_toggle_linewise_current)", mode = { "n" }, desc = "Comment toggle" },
+            {
+                "<Leader>cc",
+                function()
+                    return vim.v.count == 0 and "<Plug>(comment_toggle_linewise_current)" or "<Plug>(comment_toggle_linewise_count)"
+                end,
+                mode = { "n" },
+                expr = true,
+                desc = "Comment toggle",
+            },
             { "<Leader>cc", "<Plug>(comment_toggle_linewise_visual)", mode = { "x" }, desc = "Comment toggle" },
         },
     },
