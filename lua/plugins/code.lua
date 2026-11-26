@@ -279,12 +279,13 @@ return {
         },
     },
     {
-        "zapling/mason-conform.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = {
             "mason-org/mason.nvim",
-            "stevearc/conform.nvim",
         },
-        config = true,
+        opts = {
+            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format" },
+        },
     },
     {
         "neovim/nvim-lspconfig",
