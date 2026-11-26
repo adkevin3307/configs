@@ -40,6 +40,9 @@ return {
         "neovim/nvim-lspconfig",
         lazy = false,
         config = function()
+            vim.keymap.set("n", "grn", "")
+            vim.keymap.del("n", "grn")
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(ev)
                     vim.keymap.set("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
