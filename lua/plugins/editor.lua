@@ -211,6 +211,14 @@ return {
                     },
                 },
                 extensions = {
+                    file_browser = {
+                        mappings = {
+                            i = {
+                                ["<A-h>"] = require("telescope._extensions.file_browser.actions").toggle_hidden,
+                                ["<C-h>"] = actions.preview_scrolling_left,
+                            },
+                        },
+                    },
                     undo = {
                         mappings = {
                             i = {
