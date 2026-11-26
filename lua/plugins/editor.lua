@@ -363,6 +363,7 @@ return {
                         ["<A-c>"] = { action = create, exit_on_action = false },
                         ["<A-d>"] = { action = actions.delete_term, exit_on_action = false },
                         ["<A-r>"] = { action = actions.rename_term, exit_on_action = false },
+                        ["<C-i>"] = { action = require("telescope.actions").move_selection_next, exit_on_action = false },
                     },
                 },
             })
