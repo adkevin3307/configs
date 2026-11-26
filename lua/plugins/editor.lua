@@ -85,8 +85,26 @@ return {
         },
         keys = {
             { "<Leader>gu", "<CMD>Gitsigns reset_hunk<CR>", mode = { "n" }, desc = "Git hunk reset" },
-            { "<Leader>gn", "<CMD>Gitsigns next_hunk<CR>zz", mode = { "n" }, desc = "Git hunk next" },
-            { "<Leader>gp", "<CMD>Gitsigns prev_hunk<CR>zz", mode = { "n" }, desc = "Git hunk prev" },
+            {
+                "<Leader>gn",
+                function()
+                    require("gitsigns").nav_hunk("next", nil, function()
+                        vim.cmd("normal! zz")
+                    end)
+                end,
+                mode = { "n" },
+                desc = "Git hunk next",
+            },
+            {
+                "<Leader>gp",
+                function()
+                    require("gitsigns").nav_hunk("prev", nil, function()
+                        vim.cmd("normal! zz")
+                    end)
+                end,
+                mode = { "n" },
+                desc = "Git hunk prev",
+            },
             { "<Leader>gg", "<CMD>Gitsigns preview_hunk<CR>", mode = { "n" }, desc = "Git hunk preview" },
         },
     },
