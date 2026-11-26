@@ -33,7 +33,7 @@ function check_directory()
     if [[ ! -e $DIRECTORY/setup.sh ]]; then
         prompt "Cannot Find 'setup.sh'\n"
 
-        exit 0
+        exit 1
     fi
 
     echo $DIRECTORY
@@ -80,18 +80,17 @@ function basic_update_upgrade()
 function install_packages()
 {
     OS=$1
-    DIRECTORY=$2
 
     prompt "Install Packages ..."
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git bat fzf btop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -sf $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
-            execute 'gpg -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
+            execute 'gpg --yes -o /etc/apt/keyrings/nodesource.gpg --dearmor nodesource-repo.gpg.key'
             rm nodesource-repo.gpg.key
             echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" > nodesource.list
             execute 'mv nodesource.list /etc/apt/sources.list.d/nodesource.list'
@@ -244,7 +243,7 @@ fi
 if [[ $TARGET_EDITOR != "vim" && $TARGET_EDITOR != "nvim" ]]; then
     prompt "Editor $TARGET_EDITOR not defined\n"
 
-    exit 0
+    exit 1
 fi
 
 DIRECTORY=$(check_directory)
@@ -255,7 +254,7 @@ prompt "Repository Path: $DIRECTORY, OS: $OS\n"
 get_permission
 basic_update_upgrade $OS
 
-install_packages $OS $DIRECTORY
+install_packages $OS
 install_tools
 
 install_omz $DIRECTORY
