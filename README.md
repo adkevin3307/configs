@@ -77,8 +77,8 @@ List some of useful custom key mappings.
 | `<Leader><C-s>`   | store current session         |
 | `<Leader><C-r>`   | restore stored session        |
 | `<Leader>T`       | show clock                    |
-| `<Leader><Space>` | show which-key menu           |
-| `<Leader>?`       | for more information          |
+| `<Leader>?`       | show which-key menu           |
+| `<Leader>??`      | for more information          |
 
 ## Reference
 
