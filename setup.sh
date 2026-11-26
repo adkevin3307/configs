@@ -86,7 +86,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git lazygit bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git bat fzf htop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -sf $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
@@ -103,15 +103,12 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S --needed zsh gcc git lazygit bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
+            execute 'pacman -S --needed zsh gcc git bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
 
             ;;
         *)
             ;;
     esac
-
-    mkdir -vp ~/.config/lazygit
-    cp -vf ${DIRECTORY}/config.yml ~/.config/lazygit
 
     prompt "Install Packages Done\n"
 }
