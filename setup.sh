@@ -148,11 +148,11 @@ function install_editor()
 {
     OS=$1
     DIRECTORY=$2
-    EDITOR=$3
+    TARGET_EDITOR=$3
 
-    prompt "Install $EDITOR ..."
+    prompt "Install $TARGET_EDITOR ..."
 
-    case $EDITOR in
+    case $TARGET_EDITOR in
         vim)
             case $OS in
                 ubuntu)
@@ -203,7 +203,7 @@ function install_editor()
             ;;
     esac
 
-    prompt "Copy $EDITOR Settings Done, Remember to RUN $EDITOR to Finish Install\n"
+    prompt "Copy $TARGET_EDITOR Settings Done, Remember to RUN $TARGET_EDITOR to Finish Install\n"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -211,7 +211,7 @@ while [[ $# -gt 0 ]]; do
 
     case $1 in
         -e|--editor)
-            EDITOR=$2
+            TARGET_EDITOR=$2
 
             shift
             shift
@@ -222,14 +222,14 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ -z $EDITOR ]]; then
+if [[ -z $TARGET_EDITOR ]]; then
     prompt "Set default editor to nvim ..."
 
-    EDITOR="nvim"
+    TARGET_EDITOR="nvim"
 fi
 
-if [[ $EDITOR != "vim" && $EDITOR != "nvim" ]]; then
-    prompt "Editor $EDITOR not defined\n"
+if [[ $TARGET_EDITOR != "vim" && $TARGET_EDITOR != "nvim" ]]; then
+    prompt "Editor $TARGET_EDITOR not defined\n"
 
     exit 0
 fi
@@ -247,4 +247,4 @@ install_packages $OS $DIRECTORY
 install_omz $DIRECTORY
 install_tmux $DIRECTORY
 
-install_editor $OS $DIRECTORY $EDITOR
+install_editor $OS $DIRECTORY $TARGET_EDITOR
