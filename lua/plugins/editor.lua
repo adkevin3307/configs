@@ -121,6 +121,7 @@ return {
                 current = "<Leader>gxc",
                 incoming = "<Leader>gxi",
                 both = "<Leader>gxb",
+                base = "<Leader>gxB",
                 none = "<Leader>gxn",
             },
             disable_diagnostics = false,
