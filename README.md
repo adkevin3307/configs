@@ -102,7 +102,7 @@ List some of useful custom key mappings.
 
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
 - [wfxr/tmux-power](https://github.com/wfxr/tmux-power)
-- [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tumx-sensible)
+- [tmux-plugins/tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
 - [tmux-plugins/tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 - [tmux-plugins/tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
 - [adkevin3307/tmuxioner](https://github.com/adkevin3307/tmuxioner)
