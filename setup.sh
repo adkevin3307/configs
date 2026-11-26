@@ -85,7 +85,7 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git bat fzf btop tmux tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git bat fzf btop tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             execute 'ln -sf $(which batcat) /usr/bin/bat'
 
             execute 'mkdir -vp /etc/apt/keyrings'
@@ -102,7 +102,7 @@ function install_packages()
 
             ;;
         arch)
-            execute 'pacman -S --needed zsh gcc git bat fzf btop tmux tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
+            execute 'pacman -S --needed zsh gcc git bat fzf btop tree wget curl direnv diffutils unzip fd ripgrep python-pip python-virtualenv nodejs npm rust --noconfirm'
 
             ;;
         *)
@@ -144,16 +144,40 @@ function install_omz()
 
 function install_tmux()
 {
-    DIRECTORY=$1
+    OS=$1
+    DIRECTORY=$2
 
-    prompt "Install tmux Plugins ..."
+    prompt "Install tmux ..."
+
+    case $OS in
+        ubuntu)
+            execute 'apt install -y libevent-dev libncurses-dev pkg-config bison make'
+
+            TMUX_VERSION=$(basename $(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/tmux/tmux/releases/latest))
+            curl -fLO https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+            tar -xzf tmux-${TMUX_VERSION}.tar.gz
+            cd tmux-${TMUX_VERSION}
+            ./configure
+            make
+            execute 'make install'
+            cd ..
+            rm -rf tmux-${TMUX_VERSION} tmux-${TMUX_VERSION}.tar.gz
+
+            ;;
+        arch)
+            execute 'pacman -S --needed tmux --noconfirm'
+
+            ;;
+        *)
+            ;;
+    esac
 
     rm -vrf ~/.tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     cp -vf $DIRECTORY/.tmux.conf ~
     ~/.tmux/plugins/tpm/bin/install_plugins
 
-    prompt "Install tmux Plugins Done\n"
+    prompt "Install tmux Done\n"
 }
 
 function install_editor()
@@ -258,6 +282,6 @@ install_packages $OS
 install_tools
 
 install_omz $DIRECTORY
-install_tmux $DIRECTORY
+install_tmux $OS $DIRECTORY
 
 install_editor $OS $DIRECTORY $TARGET_EDITOR
