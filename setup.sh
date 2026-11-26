@@ -85,9 +85,14 @@ function install_packages()
 
     case $OS in
         ubuntu)
-            execute 'apt install -y zsh gcc git bat fzf btop tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
+            execute 'apt install -y zsh gcc git bat btop tree wget curl direnv diffutils unzip fd-find ripgrep python3-pip python3-venv gnupg ca-certificates'
             mkdir -vp ~/.local/bin
             ln -sf $(which batcat) ~/.local/bin/bat
+
+            FZF_VERSION=$(basename $(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/junegunn/fzf/releases/latest))
+            curl -fLO https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION#v}-linux_amd64.tar.gz
+            tar -xzf fzf-${FZF_VERSION#v}-linux_amd64.tar.gz -C ~/.local/bin
+            rm fzf-${FZF_VERSION#v}-linux_amd64.tar.gz
 
             execute 'mkdir -vp /etc/apt/keyrings'
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key > nodesource-repo.gpg.key
