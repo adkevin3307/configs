@@ -13,6 +13,7 @@
 - `Ubuntu` / `Arch` users can use `setup.sh` directly
 - Tools not installed by `apt` / `pacman` are put into `~/.local/bin`, e.g. `git-graph`, `track`, `monitor` and latest `tmux` / `nvim` on `Ubuntu`
 - After `setup.sh`, remember to open editor `vim / nvim`, then go get a coffee and wait
+- Install `HackNerdFont-Regular.ttf` on the machine running the terminal and use it as terminal font for icons
 - Warnings: currently, `vim` is suspend, please use `nvim` if possible
 
 ## Key Mapping
@@ -86,7 +87,6 @@ List some of useful custom key mappings.
 > Check `.zshrc` for more settings and information
 
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k)
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
