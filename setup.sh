@@ -211,13 +211,12 @@ function install_editor()
         nvim)
             case $OS in
                 ubuntu)
-                    curl -fLO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
-                    chmod u+x nvim-linux-x86_64.appimage
-                    ./nvim-linux-x86_64.appimage --appimage-extract
-                    rm nvim-linux-x86_64.appimage
-                    execute 'rm -rf /squashfs-root'
-                    execute 'mv squashfs-root /'
-                    execute 'ln -sf /squashfs-root/AppRun /usr/bin/nvim'
+                    curl -fLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+                    mkdir -vp ~/.local/bin ~/.local/opt
+                    rm -rf ~/.local/opt/nvim-linux-x86_64
+                    tar -xzf nvim-linux-x86_64.tar.gz -C ~/.local/opt
+                    rm nvim-linux-x86_64.tar.gz
+                    ln -sf ~/.local/opt/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
                     execute 'apt install -y python3-pynvim'
                     cargo install --locked tree-sitter-cli --root ~/.local
 
