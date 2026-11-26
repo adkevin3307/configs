@@ -303,21 +303,30 @@ return {
 
             cmp.setup(opts)
 
-            vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "none" })
-            vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "none" })
-            vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { bg = "none", fg = "#5f5f5f" })
+            local function highlight()
+                vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { bg = "none", fg = "#5f5f5f" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "none", fg = "#5f5f5f" })
+                vim.api.nvim_set_hl(0, "BlinkCmpSource", { bg = "none", fg = "#5f5f5f" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none" })
-            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "none", fg = "#626262" })
+                vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "none", fg = "#626262" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none", fg = "#626262" })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none", fg = "#626262" })
+                vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none", fg = "#626262" })
+                vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none", fg = "#626262" })
 
-            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "none" })
-            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = "#626262" })
+                vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "none" })
+                vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = "#626262" })
+            end
+
+            highlight()
+
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                pattern = "*",
+                callback = highlight,
+            })
 
             vim.api.nvim_create_autocmd("CursorMovedI", {
                 pattern = "*",
