@@ -80,6 +80,69 @@ return {
         end,
     },
     {
+        "folke/snacks.nvim",
+        priority = 1000,
+        opts = {
+            input = { enabled = true },
+            picker = { enabled = true },
+            scroll = { enabled = true },
+        },
+    },
+    {
+        "rcarriga/nvim-notify",
+        opts = {
+            background_colour = "#000000",
+        },
+    },
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        opts = {
+            presets = {
+                bottom_search = false,
+                lsp_doc_border = true,
+                command_palette = true,
+                long_message_to_split = true,
+            },
+            messages = {
+                view_search = false,
+            },
+            lsp = {
+                signature = {
+                    enabled = false,
+                },
+            },
+            views = {
+                mini = {
+                    win_options = {
+                        winblend = 0,
+                    },
+                },
+                hover = {
+                    size = {
+                        max_height = math.floor(vim.o.lines * 0.6),
+                    },
+                    win_options = {
+                        winblend = 0,
+                        winhighlight = {
+                            Normal = "HoverFloat",
+                            FloatBorder = "HoverFloatBorder",
+                        },
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
+            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "none" })
+            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "none", fg = "#626262" })
+
+            require("noice").setup(opts)
+        end,
+    },
+    {
         "akinsho/bufferline.nvim",
         lazy = false,
         priority = 1000,
@@ -142,5 +205,60 @@ return {
                 theme = "auto",
             },
         },
+    },
+    {
+        "Bekaboo/dropbar.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("dropbar").setup()
+
+            vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+            vim.api.nvim_set_hl(0, "WinBarNC", { bg = "none" })
+        end,
+    },
+    {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            local builtin = require("statuscol.builtin")
+
+            require("statuscol").setup({
+                relculright = true,
+                segments = {
+                    { text = { "%s" }, click = "v:lua.ScSa" },
+                    { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+                    { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                },
+            })
+        end,
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
+            indent = {
+                char = "▏",
+            },
+        },
+    },
+    {
+        "ntpeters/vim-better-whitespace",
+        init = function()
+            vim.g.better_whitespace_operator = ""
+
+            vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
+        end,
+    },
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+            file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
     },
 }

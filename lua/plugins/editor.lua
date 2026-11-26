@@ -1,14 +1,5 @@
 return {
     {
-        "folke/snacks.nvim",
-        priority = 1000,
-        opts = {
-            input = { enabled = true },
-            picker = { enabled = true },
-            scroll = { enabled = true },
-        },
-    },
-    {
         "aserowy/tmux.nvim",
         opts = {
             navigation = {
@@ -18,18 +9,6 @@ return {
                 enable_default_keybindings = false,
             },
         },
-    },
-    {
-        "gbprod/yanky.nvim",
-        config = true,
-    },
-    {
-        "stevearc/aerial.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = true,
     },
     {
         "olimorris/persisted.nvim",
@@ -73,58 +52,8 @@ return {
         },
     },
     {
-        "rcarriga/nvim-notify",
-        opts = {
-            background_colour = "#000000",
-        },
-    },
-    {
-        "folke/noice.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
-        opts = {
-            presets = {
-                bottom_search = false,
-                lsp_doc_border = true,
-                command_palette = true,
-                long_message_to_split = true,
-            },
-            messages = {
-                view_search = false,
-            },
-            lsp = {
-                signature = {
-                    enabled = false,
-                },
-            },
-            views = {
-                mini = {
-                    win_options = {
-                        winblend = 0,
-                    },
-                },
-                hover = {
-                    size = {
-                        max_height = math.floor(vim.o.lines * 0.6),
-                    },
-                    win_options = {
-                        winblend = 0,
-                        winhighlight = {
-                            Normal = "HoverFloat",
-                            FloatBorder = "HoverFloatBorder",
-                        },
-                    },
-                },
-            },
-        },
-        config = function(_, opts)
-            vim.api.nvim_set_hl(0, "HoverFloat", { bg = "none" })
-            vim.api.nvim_set_hl(0, "HoverFloatBorder", { bg = "none", fg = "#626262" })
-
-            require("noice").setup(opts)
-        end,
+        "gbprod/yanky.nvim",
+        config = true,
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -173,30 +102,44 @@ return {
         },
     },
     {
-        "folke/todo-comments.nvim",
+        "kevinhwang91/nvim-hlslens",
+        lazy = false,
         dependencies = {
-            "nvim-lua/plenary.nvim",
+            "haya14busa/vim-asterisk",
         },
-        opts = {
-            signs = false,
+        config = true,
+        keys = {
+            { "*", "<PLUG>(asterisk-z*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "#", "<PLUG>(asterisk-z#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "g*", "<PLUG>(asterisk-gz*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "g#", "<PLUG>(asterisk-gz#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
+            { "<Leader><ESC>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Disable highlight search" },
         },
     },
     {
-        "linux-cultist/venv-selector.nvim",
-        branch = "main",
-        opts = {
-            options = {
-                enable_cached_venvs = false,
-                cached_venv_automatic_activation = false,
-                notify_user_on_venv_activation = true,
-            },
-            search = {
-                uv = {
-                    command = "fd /bin/python$ ~/.cache/uv/virtualenvs --full-path",
-                },
-            },
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async",
+            "nvim-treesitter/nvim-treesitter",
+            "luukvbaal/statuscol.nvim",
         },
-        cmd = { "VenvSelect" },
+        opts = {
+            provider_selector = function()
+                return { "treesitter", "indent" }
+            end,
+        },
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        keys = {
+            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" }, desc = "Neotree toggle" },
+        },
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -393,124 +336,6 @@ return {
                     },
                 },
             })
-        end,
-    },
-    {
-        "Bekaboo/dropbar.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("dropbar").setup()
-
-            vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
-            vim.api.nvim_set_hl(0, "WinBarNC", { bg = "none" })
-        end,
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {
-            scope = {
-                show_start = false,
-                show_end = false,
-            },
-            indent = {
-                char = "▏",
-            },
-        },
-    },
-    {
-        "ntpeters/vim-better-whitespace",
-        init = function()
-            vim.g.better_whitespace_operator = ""
-
-            vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = require("onedark.colors").red })
-        end,
-    },
-    {
-        "numToStr/Comment.nvim",
-        opts = {
-            ignore = "^$",
-            toggler = {
-                line = "<Leader>cc",
-            },
-            opleader = {
-                line = "<Leader>cc",
-            },
-            mapping = {
-                basic = false,
-                extra = false,
-            },
-        },
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
-        keys = {
-            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" }, desc = "Neotree toggle" },
-        },
-    },
-    {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-            local builtin = require("statuscol.builtin")
-
-            require("statuscol").setup({
-                relculright = true,
-                segments = {
-                    { text = { "%s" }, click = "v:lua.ScSa" },
-                    { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-                    { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-                },
-            })
-        end,
-    },
-    {
-        "kevinhwang91/nvim-ufo",
-        dependencies = {
-            "kevinhwang91/promise-async",
-            "nvim-treesitter/nvim-treesitter",
-            "luukvbaal/statuscol.nvim",
-        },
-        opts = {
-            provider_selector = function()
-                return { "treesitter", "indent" }
-            end,
-        },
-    },
-    {
-        "kevinhwang91/nvim-hlslens",
-        lazy = false,
-        dependencies = {
-            "haya14busa/vim-asterisk",
-        },
-        config = true,
-        keys = {
-            { "*", "<PLUG>(asterisk-z*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "#", "<PLUG>(asterisk-z#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "g*", "<PLUG>(asterisk-gz*)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "g#", "<PLUG>(asterisk-gz#)<CMD>lua require('hlslens').start()<CR>", mode = { "n", "v" }, desc = "Search" },
-            { "<Leader><ESC>", "<CMD>nohlsearch<CR>", mode = { "n" }, desc = "Disable highlight search" },
-        },
-    },
-    {
-        "RRethy/vim-illuminate",
-        lazy = false,
-        opts = {
-            delay = 200,
-            large_file_cutoff = 2000,
-            large_file_overrides = {
-                providers = { "lsp" },
-            },
-        },
-        config = function(_, opts)
-            require("illuminate").configure(opts)
         end,
     },
     {

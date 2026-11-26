@@ -20,22 +20,143 @@ return {
         },
     },
     {
-        "rachartier/tiny-inline-diagnostic.nvim",
+        "mason-org/mason.nvim",
+        opts = {
+            ui = {
+                height = 0.8,
+                border = "rounded",
+            },
+        },
+        config = function(_, opts)
+            require("mason").setup(opts)
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "mason",
+                callback = function()
+                    vim.opt_local.cursorline = false
+                end,
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
         lazy = false,
         config = function()
-            require("tiny-inline-diagnostic").setup({
-                options = {
-                    show_diags_only_under_cursor = true,
-                    show_source = {
-                        enabled = true,
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
+                        },
                     },
                 },
             })
 
-            vim.diagnostic.config({ virtual_text = false })
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(ev)
+                    vim.keymap.set("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
+                    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
+
+                    vim.keymap.set("n", "K", "", { buffer = ev.buf })
+                    vim.keymap.del("n", "K", { buffer = ev.buf })
+                end,
+            })
+
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
+                    },
+                    linehl = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
+                    },
+                    numhl = {
+                        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                    },
+                },
+            })
         end,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {
+            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls" },
+            automatic_enable = true,
+        },
+    },
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            default_format_opts = {
+                timeout_ms = 5000,
+            },
+            formatters_by_ft = {
+                sh = { "shfmt" },
+                lua = { "stylua" },
+                json = { "prettier" },
+                yaml = { "yamlfmt" },
+                python = { "black" },
+                c = { "clang-format" },
+                cpp = { "clang-format" },
+                vue = { "prettier" },
+                css = { "prettier" },
+                html = { "prettier" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                typescriptreact = { "prettier" },
+                nginx = { "nginxfmt" },
+                ["_"] = { "trim_whitespace" },
+            },
+            formatters = {
+                stylua = {
+                    prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
+                },
+                black = {
+                    prepend_args = { "--line-length", "250", "--skip-string-normalization" },
+                },
+                prettier = {
+                    prepend_args = { "--print-width", "250", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
+                },
+                yamlfmt = {
+                    prepend_args = { "-formatter", "retain_line_breaks_single=true" },
+                },
+            },
+        },
         keys = {
-            { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
+            {
+                "<F4>",
+                function()
+                    require("conform").format({ async = true })
+                end,
+                mode = { "n", "v" },
+                desc = "LSP format",
+            },
+        },
+    },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = {
+            "mason-org/mason.nvim",
+        },
+        opts = {
+            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format" },
         },
     },
     {
@@ -211,143 +332,86 @@ return {
         end,
     },
     {
-        "mason-org/mason.nvim",
+        "rachartier/tiny-inline-diagnostic.nvim",
+        lazy = false,
+        config = function()
+            require("tiny-inline-diagnostic").setup({
+                options = {
+                    show_diags_only_under_cursor = true,
+                    show_source = {
+                        enabled = true,
+                    },
+                },
+            })
+
+            vim.diagnostic.config({ virtual_text = false })
+        end,
+        keys = {
+            { "<F3>", "<CMD>TinyInlineDiag toggle<CR>", mode = { "n" }, desc = "Toggle diagnostic" },
+        },
+    },
+    {
+        "RRethy/vim-illuminate",
+        lazy = false,
         opts = {
-            ui = {
-                height = 0.8,
-                border = "rounded",
+            delay = 200,
+            large_file_cutoff = 2000,
+            large_file_overrides = {
+                providers = { "lsp" },
             },
         },
         config = function(_, opts)
-            require("mason").setup(opts)
-
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "mason",
-                callback = function()
-                    vim.opt_local.cursorline = false
-                end,
-            })
+            require("illuminate").configure(opts)
         end,
     },
     {
-        "stevearc/conform.nvim",
-        opts = {
-            default_format_opts = {
-                timeout_ms = 5000,
-            },
-            formatters_by_ft = {
-                sh = { "shfmt" },
-                lua = { "stylua" },
-                json = { "prettier" },
-                yaml = { "yamlfmt" },
-                python = { "black" },
-                c = { "clang-format" },
-                cpp = { "clang-format" },
-                vue = { "prettier" },
-                css = { "prettier" },
-                html = { "prettier" },
-                javascript = { "prettier" },
-                typescript = { "prettier" },
-                typescriptreact = { "prettier" },
-                nginx = { "nginxfmt" },
-                ["_"] = { "trim_whitespace" },
-            },
-            formatters = {
-                stylua = {
-                    prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
-                },
-                black = {
-                    prepend_args = { "--line-length", "250", "--skip-string-normalization" },
-                },
-                prettier = {
-                    prepend_args = { "--print-width", "250", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
-                },
-                yamlfmt = {
-                    prepend_args = { "-formatter", "retain_line_breaks_single=true" },
-                },
-            },
-        },
-        keys = {
-            {
-                "<F4>",
-                function()
-                    require("conform").format({ async = true })
-                end,
-                mode = { "n", "v" },
-                desc = "LSP format",
-            },
-        },
-    },
-    {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "stevearc/aerial.nvim",
         dependencies = {
-            "mason-org/mason.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
+        config = true,
+    },
+    {
+        "numToStr/Comment.nvim",
         opts = {
-            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format" },
+            ignore = "^$",
+            toggler = {
+                line = "<Leader>cc",
+            },
+            opleader = {
+                line = "<Leader>cc",
+            },
+            mapping = {
+                basic = false,
+                extra = false,
+            },
         },
     },
     {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = function()
-            vim.lsp.config("lua_ls", {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true),
-                            checkThirdParty = false,
-                        },
-                    },
-                },
-            })
-
-            vim.api.nvim_create_autocmd("LspAttach", {
-                callback = function(ev)
-                    vim.keymap.set("n", "?", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP hover" })
-                    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP rename" })
-
-                    vim.keymap.set("n", "K", "", { buffer = ev.buf })
-                    vim.keymap.del("n", "K", { buffer = ev.buf })
-                end,
-            })
-
-            vim.diagnostic.config({
-                signs = {
-                    text = {
-                        [vim.diagnostic.severity.ERROR] = "",
-                        [vim.diagnostic.severity.WARN] = "",
-                        [vim.diagnostic.severity.INFO] = "",
-                        [vim.diagnostic.severity.HINT] = "",
-                    },
-                    linehl = {
-                        [vim.diagnostic.severity.ERROR] = "",
-                        [vim.diagnostic.severity.WARN] = "",
-                        [vim.diagnostic.severity.INFO] = "",
-                        [vim.diagnostic.severity.HINT] = "",
-                    },
-                    numhl = {
-                        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-                        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-                        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-                        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-                    },
-                },
-            })
-        end,
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
+        "folke/todo-comments.nvim",
         dependencies = {
-            "mason-org/mason.nvim",
-            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
         },
         opts = {
-            ensure_installed = { "clangd", "yamlls", "jsonls", "bashls", "lua_ls", "pyright", "ruff", "ts_ls" },
-            automatic_enable = true,
+            signs = false,
         },
+    },
+    {
+        "linux-cultist/venv-selector.nvim",
+        branch = "main",
+        opts = {
+            options = {
+                enable_cached_venvs = false,
+                cached_venv_automatic_activation = false,
+                notify_user_on_venv_activation = true,
+            },
+            search = {
+                uv = {
+                    command = "fd /bin/python$ ~/.cache/uv/virtualenvs --full-path",
+                },
+            },
+        },
+        cmd = { "VenvSelect" },
     },
 }

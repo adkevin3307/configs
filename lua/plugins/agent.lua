@@ -12,13 +12,7 @@ return {
             "folke/snacks.nvim",
             "nvim-telescope/telescope.nvim",
 
-            {
-                "MeanderingProgrammer/render-markdown.nvim",
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
+            "MeanderingProgrammer/render-markdown.nvim",
             {
                 "ColinKennedy/mega.cmdparse",
                 dependencies = { "ColinKennedy/mega.logging" },
