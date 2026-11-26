@@ -408,6 +408,7 @@ return {
                 enable_cached_venvs = false,
                 cached_venv_automatic_activation = false,
                 notify_user_on_venv_activation = true,
+                override_notify = false,
             },
             search = {
                 uv = {
