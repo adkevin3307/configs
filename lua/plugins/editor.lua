@@ -100,12 +100,6 @@ return {
         },
     },
     {
-        "radyz/telescope-gitsigns",
-        dependencies = {
-            "lewis6991/gitsigns.nvim",
-        },
-    },
-    {
         "niekdomi/conflict.nvim",
         lazy = false,
         opts = {
@@ -172,7 +166,6 @@ return {
             "gbprod/yanky.nvim",
             "folke/noice.nvim",
             "jemag/telescope-diff.nvim",
-            "radyz/telescope-gitsigns",
             "folke/todo-comments.nvim",
             "debugloop/telescope-undo.nvim",
             "linux-cultist/venv-selector.nvim",
@@ -229,7 +222,6 @@ return {
             require("telescope").load_extension("aerial")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("diff")
-            require("telescope").load_extension("git_signs")
             require("telescope").load_extension("undo")
         end,
         keys = {
@@ -268,7 +260,16 @@ return {
             { "<Leader>tu", "<CMD>Telescope undo<CR>", mode = { "n" }, desc = "Telescope undo" },
             { "<Leader>tv", "<CMD>VenvSelect<CR>", mode = { "n" }, desc = "Telescope venv" },
             { "<Leader>sl", "<CMD>Telescope persisted<CR>", mode = { "n" }, desc = "Load session" },
-            { "<Leader>gs", "<CMD>Telescope git_signs<CR>", mode = { "n" }, desc = "Git status" },
+            {
+                "<Leader>gs",
+                function()
+                    require("gitsigns").setqflist(0, { use_location_list = true, open = false }, function()
+                        require("telescope.builtin").loclist({ prompt_title = "Git hunks" })
+                    end)
+                end,
+                mode = { "n" },
+                desc = "Git status",
+            },
             {
                 "<Leader>gb",
                 function()
