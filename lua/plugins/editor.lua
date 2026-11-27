@@ -112,9 +112,6 @@ return {
             },
             disable_diagnostics = false,
         },
-        keys = {
-            { "<Leader>gc", "<CMD>Conflict list<CR>", mode = { "n" }, desc = "Git conflicts" },
-        },
     },
     {
         "kevinhwang91/nvim-hlslens",
@@ -257,6 +254,20 @@ return {
                 end,
                 mode = { "n" },
                 desc = "Git status",
+            },
+            {
+                "<Leader>gc",
+                function()
+                    if #require("conflict").get_conflicted_files() == 0 then
+                        vim.notify("No conflicted files found", vim.log.levels.INFO)
+
+                        return
+                    end
+
+                    require("telescope.builtin").find_files({ prompt_title = "Git conflicts", find_command = { "git", "diff", "--name-only", "--diff-filter=U" } })
+                end,
+                mode = { "n" },
+                desc = "Git conflicts",
             },
             {
                 "<Leader>gb",
