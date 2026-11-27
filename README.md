@@ -101,7 +101,7 @@ List some of useful custom key mappings.
 
 ### tmux
 
-> Check `.tmux.conf` for more settings and information
+> Check `.tmux.conf` and `tmux-which-key.yaml` for more settings and information
 
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
 - [alexwforsythe/tmux-which-key](https://github.com/alexwforsythe/tmux-which-key)

@@ -181,6 +181,8 @@ function install_tmux()
     rm -vrf ~/.tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     cp -vf $DIRECTORY/.tmux.conf ~
+    mkdir -vp ~/.config/tmux/plugins/tmux-which-key
+    cp -vf $DIRECTORY/tmux-which-key.yaml ~/.config/tmux/plugins/tmux-which-key/config.yaml
     ~/.tmux/plugins/tpm/bin/install_plugins
 
     prompt "Install tmux Done\n"
