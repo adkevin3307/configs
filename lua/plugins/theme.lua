@@ -30,10 +30,6 @@ return {
                     ["@markup.heading.5"] = { fmt = "none" },
                     ["@markup.heading.6"] = { fmt = "none" },
 
-                    NeoTreeRootName = { fmt = "none" },
-                    NeoTreeGitConflict = { fmt = "none" },
-                    NeoTreeGitUntracked = { fmt = "none" },
-
                     IlluminatedWordText = { fmt = "none" },
                     IlluminatedWordRead = { fmt = "none" },
                     IlluminatedWordWrite = { fmt = "none" },

@@ -145,18 +145,6 @@ return {
         },
     },
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
-        keys = {
-            { "<Space><Space>", "<CMD>Neotree toggle<CR>", mode = { "n" }, desc = "Neotree toggle" },
-        },
-    },
-    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
