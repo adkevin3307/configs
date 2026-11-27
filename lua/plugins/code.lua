@@ -95,7 +95,7 @@ return {
                 lua = { "stylua" },
                 json = { "prettier" },
                 yaml = { "yamlfmt" },
-                python = { "black" },
+                python = { "ruff_format" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
                 vue = { "prettier" },
@@ -111,8 +111,8 @@ return {
                 stylua = {
                     prepend_args = { "--column-width", "250", "--indent-type", "Spaces" },
                 },
-                black = {
-                    prepend_args = { "--line-length", "250", "--skip-string-normalization" },
+                ruff_format = {
+                    prepend_args = { "--config", "line-length = 250", "--config", "format.quote-style = 'preserve'" },
                 },
                 prettier = {
                     prepend_args = { "--print-width", "250", "--tab-width", "4", "--vue-indent-script-and-style", "true" },
@@ -139,7 +139,7 @@ return {
             "mason-org/mason.nvim",
         },
         opts = {
-            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "black", "clang-format", "nginx-config-formatter" },
+            ensure_installed = { "shfmt", "stylua", "prettier", "yamlfmt", "clang-format", "nginx-config-formatter" },
         },
     },
     {
